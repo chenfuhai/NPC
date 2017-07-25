@@ -3,6 +3,7 @@ package com.liufeng.npc.controller;
 import com.liufeng.npc.bean.AdminUserWithBLOBs;
 import com.liufeng.npc.bean.Msg;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -10,7 +11,10 @@ public class AdminUserController {
     //获取所有的用户
     @ResponseBody
     @RequestMapping(value = "/users",method = RequestMethod.GET)
-    public Msg getUsers(@RequestParam(value = "pn",defaultValue = "1")Integer pn){
+    public Msg getUsers(@RequestParam(value = "pn",defaultValue = "1")Integer pn,Model model){
+
+
+
         return Msg.success();
     }
     //获取对应ID的用户信息
@@ -20,7 +24,7 @@ public class AdminUserController {
         return Msg.success();
     }
 
-    //检查用户名密码是否合法
+    //检查用户名是否合法
     @ResponseBody
     @RequestMapping("/checkuser")
     public Msg checkuser(@RequestParam("userName")String userName ){

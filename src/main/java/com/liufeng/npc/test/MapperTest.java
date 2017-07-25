@@ -39,14 +39,14 @@ public class MapperTest {
     @Test
     public void testnpc() {
 
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj", "1234569", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj2", "1234569", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj3", "1234569", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj4", "1234569", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj5", "1234569", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj6", "1234569", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj7", "1234569", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj8", "1234569", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj2", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj3", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj4", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj5", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj6", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj7", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj8", "123456", "超级管理员", 1));
 
 //        AdminUserExample adminUserExample = new AdminUserExample();
 //		adminUserExample.createCriteria().andAdNameEqualTo("liufengkj");
@@ -93,7 +93,7 @@ public class MapperTest {
 //        for (Article article:articles) {
 //            System.out.println(article);
 //        }
-
+//
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
@@ -102,8 +102,8 @@ public class MapperTest {
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
-
-//        ColumnExample columnExample = new ColumnExample();
+//
+////        ColumnExample columnExample = new ColumnExample();
 //        columnExample.createCriteria().andCoNameLike("测试栏目%");
 //
 //        List<Column> columns = columnMapper.selectByExample(columnExample);

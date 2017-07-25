@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liufeng.npc.dao.ColumnMapper">
+  <resultMap id="BaseResultMap" type="com.liufeng.npc.bean.Column">
+    <id column="Co_ID" jdbcType="INTEGER" property="coId" />
+    <result column="Co_Name" jdbcType="VARCHAR" property="coName" />
+    <result column="Co_Info" jdbcType="VARCHAR" property="coInfo" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.liufeng.npc.bean.ColumnWithBLOBs">
+    <result column="Co_1" jdbcType="LONGVARCHAR" property="co1" />
+    <result column="Co_2" jdbcType="LONGVARCHAR" property="co2" />
+    <result column="Co_3" jdbcType="LONGVARCHAR" property="co3" />
+    <result column="Co_4" jdbcType="LONGVARCHAR" property="co4" />
+    <result column="Co_5" jdbcType="LONGVARCHAR" property="co5" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Co_ID, Co_Name, Co_Info
+  </sql>
+  <sql id="Blob_Column_List">
+    Co_1, Co_2, Co_3, Co_4, Co_5
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.liufeng.npc.bean.ColumnExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.liufeng.npc.bean.ColumnExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from NPC_Column
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from NPC_Column
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.liufeng.npc.bean.ColumnExample">
+    delete from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    insert into NPC_Column (Co_ID, Co_Name, Co_Info, 
+      Co_1, Co_2, Co_3, 
+      Co_4, Co_5)
+    values (#{coId,jdbcType=INTEGER}, #{coName,jdbcType=VARCHAR}, #{coInfo,jdbcType=VARCHAR}, 
+      #{co1,jdbcType=LONGVARCHAR}, #{co2,jdbcType=LONGVARCHAR}, #{co3,jdbcType=LONGVARCHAR}, 
+      #{co4,jdbcType=LONGVARCHAR}, #{co5,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    insert into NPC_Column
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coId != null">
+        Co_ID,
+      </if>
+      <if test="coName != null">
+        Co_Name,
+      </if>
+      <if test="coInfo != null">
+        Co_Info,
+      </if>
+      <if test="co1 != null">
+        Co_1,
+      </if>
+      <if test="co2 != null">
+        Co_2,
+      </if>
+      <if test="co3 != null">
+        Co_3,
+      </if>
+      <if test="co4 != null">
+        Co_4,
+      </if>
+      <if test="co5 != null">
+        Co_5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coId != null">
+        #{coId,jdbcType=INTEGER},
+      </if>
+      <if test="coName != null">
+        #{coName,jdbcType=VARCHAR},
+      </if>
+      <if test="coInfo != null">
+        #{coInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="co1 != null">
+        #{co1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co2 != null">
+        #{co2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co3 != null">
+        #{co3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co4 != null">
+        #{co4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co5 != null">
+        #{co5,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.liufeng.npc.bean.ColumnExample" resultType="java.lang.Long">
+    select count(*) from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update NPC_Column
+    <set>
+      <if test="record.coId != null">
+        Co_ID = #{record.coId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coName != null">
+        Co_Name = #{record.coName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coInfo != null">
+        Co_Info = #{record.coInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.co1 != null">
+        Co_1 = #{record.co1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co2 != null">
+        Co_2 = #{record.co2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co3 != null">
+        Co_3 = #{record.co3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co4 != null">
+        Co_4 = #{record.co4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co5 != null">
+        Co_5 = #{record.co5,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update NPC_Column
+    set Co_ID = #{record.coId,jdbcType=INTEGER},
+      Co_Name = #{record.coName,jdbcType=VARCHAR},
+      Co_Info = #{record.coInfo,jdbcType=VARCHAR},
+      Co_1 = #{record.co1,jdbcType=LONGVARCHAR},
+      Co_2 = #{record.co2,jdbcType=LONGVARCHAR},
+      Co_3 = #{record.co3,jdbcType=LONGVARCHAR},
+      Co_4 = #{record.co4,jdbcType=LONGVARCHAR},
+      Co_5 = #{record.co5,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update NPC_Column
+    set Co_ID = #{record.coId,jdbcType=INTEGER},
+      Co_Name = #{record.coName,jdbcType=VARCHAR},
+      Co_Info = #{record.coInfo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    update NPC_Column
+    <set>
+      <if test="coName != null">
+        Co_Name = #{coName,jdbcType=VARCHAR},
+      </if>
+      <if test="coInfo != null">
+        Co_Info = #{coInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="co1 != null">
+        Co_1 = #{co1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co2 != null">
+        Co_2 = #{co2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co3 != null">
+        Co_3 = #{co3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co4 != null">
+        Co_4 = #{co4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co5 != null">
+        Co_5 = #{co5,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    update NPC_Column
+    set Co_Name = #{coName,jdbcType=VARCHAR},
+      Co_Info = #{coInfo,jdbcType=VARCHAR},
+      Co_1 = #{co1,jdbcType=LONGVARCHAR},
+      Co_2 = #{co2,jdbcType=LONGVARCHAR},
+      Co_3 = #{co3,jdbcType=LONGVARCHAR},
+      Co_4 = #{co4,jdbcType=LONGVARCHAR},
+      Co_5 = #{co5,jdbcType=LONGVARCHAR}
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liufeng.npc.bean.Column">
+    update NPC_Column
+    set Co_Name = #{coName,jdbcType=VARCHAR},
+      Co_Info = #{coInfo,jdbcType=VARCHAR}
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.liufeng.npc.bean.Column">
+    <id column="Co_ID" jdbcType="INTEGER" property="coId" />
+    <result column="Co_Name" jdbcType="VARCHAR" property="coName" />
+    <result column="Co_Info" jdbcType="VARCHAR" property="coInfo" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.liufeng.npc.bean.ColumnWithBLOBs">
+    <result column="Co_1" jdbcType="LONGVARCHAR" property="co1" />
+    <result column="Co_2" jdbcType="LONGVARCHAR" property="co2" />
+    <result column="Co_3" jdbcType="LONGVARCHAR" property="co3" />
+    <result column="Co_4" jdbcType="LONGVARCHAR" property="co4" />
+    <result column="Co_5" jdbcType="LONGVARCHAR" property="co5" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Co_ID, Co_Name, Co_Info
+  </sql>
+  <sql id="Blob_Column_List">
+    Co_1, Co_2, Co_3, Co_4, Co_5
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.liufeng.npc.bean.ColumnExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.liufeng.npc.bean.ColumnExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from NPC_Column
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from NPC_Column
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.liufeng.npc.bean.ColumnExample">
+    delete from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    insert into NPC_Column (Co_ID, Co_Name, Co_Info, 
+      Co_1, Co_2, Co_3, 
+      Co_4, Co_5)
+    values (#{coId,jdbcType=INTEGER}, #{coName,jdbcType=VARCHAR}, #{coInfo,jdbcType=VARCHAR}, 
+      #{co1,jdbcType=LONGVARCHAR}, #{co2,jdbcType=LONGVARCHAR}, #{co3,jdbcType=LONGVARCHAR}, 
+      #{co4,jdbcType=LONGVARCHAR}, #{co5,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    insert into NPC_Column
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coId != null">
+        Co_ID,
+      </if>
+      <if test="coName != null">
+        Co_Name,
+      </if>
+      <if test="coInfo != null">
+        Co_Info,
+      </if>
+      <if test="co1 != null">
+        Co_1,
+      </if>
+      <if test="co2 != null">
+        Co_2,
+      </if>
+      <if test="co3 != null">
+        Co_3,
+      </if>
+      <if test="co4 != null">
+        Co_4,
+      </if>
+      <if test="co5 != null">
+        Co_5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coId != null">
+        #{coId,jdbcType=INTEGER},
+      </if>
+      <if test="coName != null">
+        #{coName,jdbcType=VARCHAR},
+      </if>
+      <if test="coInfo != null">
+        #{coInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="co1 != null">
+        #{co1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co2 != null">
+        #{co2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co3 != null">
+        #{co3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co4 != null">
+        #{co4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co5 != null">
+        #{co5,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.liufeng.npc.bean.ColumnExample" resultType="java.lang.Long">
+    select count(*) from NPC_Column
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update NPC_Column
+    <set>
+      <if test="record.coId != null">
+        Co_ID = #{record.coId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coName != null">
+        Co_Name = #{record.coName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coInfo != null">
+        Co_Info = #{record.coInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.co1 != null">
+        Co_1 = #{record.co1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co2 != null">
+        Co_2 = #{record.co2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co3 != null">
+        Co_3 = #{record.co3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co4 != null">
+        Co_4 = #{record.co4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.co5 != null">
+        Co_5 = #{record.co5,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update NPC_Column
+    set Co_ID = #{record.coId,jdbcType=INTEGER},
+      Co_Name = #{record.coName,jdbcType=VARCHAR},
+      Co_Info = #{record.coInfo,jdbcType=VARCHAR},
+      Co_1 = #{record.co1,jdbcType=LONGVARCHAR},
+      Co_2 = #{record.co2,jdbcType=LONGVARCHAR},
+      Co_3 = #{record.co3,jdbcType=LONGVARCHAR},
+      Co_4 = #{record.co4,jdbcType=LONGVARCHAR},
+      Co_5 = #{record.co5,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update NPC_Column
+    set Co_ID = #{record.coId,jdbcType=INTEGER},
+      Co_Name = #{record.coName,jdbcType=VARCHAR},
+      Co_Info = #{record.coInfo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    update NPC_Column
+    <set>
+      <if test="coName != null">
+        Co_Name = #{coName,jdbcType=VARCHAR},
+      </if>
+      <if test="coInfo != null">
+        Co_Info = #{coInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="co1 != null">
+        Co_1 = #{co1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co2 != null">
+        Co_2 = #{co2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co3 != null">
+        Co_3 = #{co3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co4 != null">
+        Co_4 = #{co4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="co5 != null">
+        Co_5 = #{co5,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.liufeng.npc.bean.ColumnWithBLOBs">
+    update NPC_Column
+    set Co_Name = #{coName,jdbcType=VARCHAR},
+      Co_Info = #{coInfo,jdbcType=VARCHAR},
+      Co_1 = #{co1,jdbcType=LONGVARCHAR},
+      Co_2 = #{co2,jdbcType=LONGVARCHAR},
+      Co_3 = #{co3,jdbcType=LONGVARCHAR},
+      Co_4 = #{co4,jdbcType=LONGVARCHAR},
+      Co_5 = #{co5,jdbcType=LONGVARCHAR}
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liufeng.npc.bean.Column">
+    update NPC_Column
+    set Co_Name = #{coName,jdbcType=VARCHAR},
+      Co_Info = #{coInfo,jdbcType=VARCHAR}
+    where Co_ID = #{coId,jdbcType=INTEGER}
+  </update>
+</mapper>

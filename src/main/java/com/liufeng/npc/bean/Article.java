@@ -23,6 +23,38 @@ public class Article {
 
     private Integer arStatus;
 
+    public Article(String arTitle, String arSubtitle, Date arPublictime, String arIshot, String arIsnew, String arFrom, Integer arClickarunt, Integer arColumnid, Integer arStatus) {
+        this.arTitle = arTitle;
+        this.arSubtitle = arSubtitle;
+        this.arPublictime = arPublictime;
+        this.arIshot = arIshot;
+        this.arIsnew = arIsnew;
+        this.arFrom = arFrom;
+        this.arClickarunt = arClickarunt;
+        this.arColumnid = arColumnid;
+        this.arStatus = arStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "arId=" + arId +
+                ", arTitle='" + arTitle + '\'' +
+                ", arSubtitle='" + arSubtitle + '\'' +
+                ", arPublictime=" + arPublictime +
+                ", arIshot='" + arIshot + '\'' +
+                ", arIsnew='" + arIsnew + '\'' +
+                ", arFrom='" + arFrom + '\'' +
+                ", arClickarunt=" + arClickarunt +
+                ", arColumnid=" + arColumnid +
+                ", arStatus=" + arStatus +
+                '}';
+    }
+
+    public Article() {
+        super();
+    }
+
     public Integer getArId() {
         return arId;
     }

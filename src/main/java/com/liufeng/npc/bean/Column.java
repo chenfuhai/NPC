@@ -7,6 +7,25 @@ public class Column {
 
     private String coInfo;
 
+
+    public Column( String coName, String coInfo) {
+        this.coName = coName;
+        this.coInfo = coInfo;
+    }
+
+    public Column() {
+        super();
+    }
+
+    @Override
+    public String toString() {
+        return "Column{" +
+                "coId=" + coId +
+                ", coName='" + coName + '\'' +
+                ", coInfo='" + coInfo + '\'' +
+                '}';
+    }
+
     public Integer getCoId() {
         return coId;
     }

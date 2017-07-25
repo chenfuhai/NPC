@@ -11,6 +11,29 @@ public class AdminUser {
 
     private Integer adPowercode;
 
+    public AdminUser(){
+        super();
+    }
+
+    public AdminUser(String adName, String adPwd, String adInfo, Integer adPowercode) {
+        this.adName = adName;
+        this.adPwd = adPwd;
+        this.adInfo = adInfo;
+        this.adPowercode = adPowercode;
+    }
+
+
+    @Override
+    public String toString() {
+        return "AdminUser{" +
+                "adId=" + adId +
+                ", adName='" + adName + '\'' +
+                ", adPwd='" + adPwd + '\'' +
+                ", adInfo='" + adInfo + '\'' +
+                ", adPowercode=" + adPowercode +
+                '}';
+    }
+
     public Integer getAdId() {
         return adId;
     }

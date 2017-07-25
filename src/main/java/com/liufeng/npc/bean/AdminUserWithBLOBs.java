@@ -11,6 +11,13 @@ public class AdminUserWithBLOBs extends AdminUser {
 
     private String ad5;
 
+    public AdminUserWithBLOBs(String adName, String adPwd, String adInfo, Integer adPowercode) {
+        super(adName, adPwd, adInfo, adPowercode);
+    }
+    public AdminUserWithBLOBs(){
+        super();
+    }
+
     public String getAd1() {
         return ad1;
     }

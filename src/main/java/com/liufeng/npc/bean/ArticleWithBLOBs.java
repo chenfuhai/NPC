@@ -1,5 +1,7 @@
 package com.liufeng.npc.bean;
 
+import java.util.Date;
+
 public class ArticleWithBLOBs extends Article {
     private String arContent;
 
@@ -12,6 +14,16 @@ public class ArticleWithBLOBs extends Article {
     private String ar4;
 
     private String ar5;
+
+    public ArticleWithBLOBs(String arTitle, String arSubtitle, Date arPublictime, String arIshot, String arIsnew,
+                            String arFrom, Integer arClickarunt, Integer arColumnid, Integer arStatus, String arContent) {
+        super(arTitle, arSubtitle, arPublictime, arIshot, arIsnew, arFrom, arClickarunt, arColumnid, arStatus);
+        this.arContent = arContent;
+    }
+
+    public ArticleWithBLOBs() {
+        super();
+    }
 
     public String getArContent() {
         return arContent;

@@ -15,9 +15,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml","file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext.xml", "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml"})
 public class MVCTest {
     @Autowired
     WebApplicationContext context;
@@ -29,16 +34,14 @@ public class MVCTest {
 
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
+
     @Test
     public void testPage() throws Exception {
         //模拟请求拿到返回值
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/users").param("pn", "5")).andReturn();
         //请求成功以后 在请求域中会有pageInfo 取出进行验证
 
-        MockHttpServletRequest request = result.getRequest();
 
-
-        System.out.println(request.getAttribute("key"));
 
     }
 

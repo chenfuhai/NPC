@@ -39,6 +39,8 @@ public class MapperTest {
     @Test
     public void testnpc() {
 
+
+
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj", "123456", "超级管理员", 1));
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj2", "123456", "超级管理员", 1));
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj3", "123456", "超级管理员", 1));
@@ -59,11 +61,11 @@ public class MapperTest {
 
 //        AdminUserExample adminUserExample = new AdminUserExample();
 //		adminUserExample.createCriteria().andAdNameEqualTo("liufengkj");
-//        List<AdminUser> adminUsers = adminUserMapper.selectByExample(adminUserExample);
-//        for (AdminUser adminUser:adminUsers
-//             ) {
-//            System.out.println(adminUser.toString());
-//        }
+        List<AdminUserWithBLOBs> adminUsers = adminUserMapper.selectByExampleWithBLOBs(null);
+        for (AdminUserWithBLOBs adminUser:adminUsers
+             ) {
+            System.out.println(adminUser.toString());
+        }
 
 //        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
 //                null,null,null,null,null,null,null));

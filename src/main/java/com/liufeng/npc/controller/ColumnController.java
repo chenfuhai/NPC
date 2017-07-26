@@ -1,18 +1,28 @@
 package com.liufeng.npc.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.liufeng.npc.bean.Column;
 import com.liufeng.npc.bean.ColumnWithBLOBs;
 import com.liufeng.npc.bean.Msg;
+import com.liufeng.npc.service.ColumnService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class ColumnController {
+    @Autowired
+    ColumnService columnService;
 
     //获取所有的栏目
     @ResponseBody
     @RequestMapping(value = "/cols",method = RequestMethod.GET)
-    public Msg getCols(@RequestParam(value = "pn",defaultValue = "1")Integer pn){
-        return Msg.success();
+    public Msg getCols(){
+        List<Column> columns = columnService.getAll();
+        return Msg.success().add("cols",columns);
     }
     //获取对应ID的栏目信息
     @ResponseBody

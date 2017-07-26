@@ -1,7 +1,12 @@
 package com.liufeng.npc.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.liufeng.npc.bean.ArticleWithBLOBs;
 import com.liufeng.npc.bean.Msg;
+import com.liufeng.npc.dao.ArticleMapper;
+import com.liufeng.npc.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +15,10 @@ import java.util.List;
 
 @Controller
 public class ArticleController {
+
+    @Autowired
+    ArticleService articleService;
+
     //获取某个栏目的所有文章
     @ResponseBody
     @RequestMapping(value = "/arts/{coId}", method = RequestMethod.GET)
@@ -23,7 +32,11 @@ public class ArticleController {
     @RequestMapping(value = "/arts",method = RequestMethod.GET)
     public Msg getArts(@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
 
-        return Msg.success();
+        PageHelper.startPage(pn,10);
+        List<ArticleWithBLOBs> articles = articleService.getAll();
+        PageInfo pageInfo = new PageInfo(articles,5);
+
+        return Msg.success().add("arts",pageInfo);
     }
 
     //获取对应ID的文章

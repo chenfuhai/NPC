@@ -23,8 +23,9 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/arts/{coId}", method = RequestMethod.GET)
     public Msg getArtsByCol(@PathVariable("coId") Integer coId) {
+        List<ArticleWithBLOBs> articles = articleService.getAllByColId(coId);
 
-        return Msg.success();
+        return Msg.success().add("arts",articles);
     }
 
     //获取所有文章
@@ -43,15 +44,25 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/art/{artId}", method = RequestMethod.GET)
     public Msg getArtById(@PathVariable("artId") Integer artId) {
-        return Msg.success();
+        ArticleWithBLOBs art = articleService.getArtById(artId);
+
+        return Msg.success().add("art",art);
     }
 
     //保存文章
 
     @ResponseBody
     @RequestMapping(value = "/art", method = RequestMethod.POST)
-    public Msg saveArt(ArticleWithBLOBs articleWithBLOBs) {
-        return Msg.success();
+    public Msg newArt(ArticleWithBLOBs articleWithBLOBs) {
+        boolean flag = false;
+         flag = articleService.saveArt(articleWithBLOBs);
+         if (flag){
+             return Msg.success();
+         }else{
+             Msg msg =  Msg.error();
+             msg.msg="保存失败";
+             return msg;
+         }
     }
 
     //更新文章信息
@@ -59,8 +70,14 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/art/{arId}" ,method = RequestMethod.PUT)
     public Msg updateArt(ArticleWithBLOBs articleWithBLOBs){
+        boolean flag =false;
+        flag= articleService.updateArt(articleWithBLOBs);
+        if (flag){
+            return Msg.success();
+        }else{
+            return Msg.error();
 
-        return Msg.success();
+        }
     }
 
     //删除文章 单个文章和多个文章一起处理 单个1 多个1-2-3
@@ -76,14 +93,32 @@ public class ArticleController {
                 del_ids.add(Integer.parseInt(string));
             }
             //执行批量删除
-//            employeeService.deleteBatch(del_ids);
+            int code = articleService.deleteBatch(del_ids);
+            Msg msg100 = Msg.success();
+            msg100.msg="删除成功";
+            Msg msg200= Msg.success();
+            msg200.msg="部分删除成功";
+            Msg msg300 = Msg.success();
+            msg300.msg="删除失败";
+            switch (code){
+                case 100:return msg100;
+                case 200:return msg200;
+                case 300:return msg300;
+                default:return Msg.error();
+            }
         }else{
             Integer id = Integer.parseInt(artIds);
             //直接删除
-            //employeeService.deleteEmp(id);
+            boolean b = false;
+            b = articleService.deleteById(id);
+            if (b){
+                return Msg.success();
+            }else {
+                return Msg.error();
+            }
         }
 
-        return Msg.success();
+
     }
 
 }

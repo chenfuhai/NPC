@@ -7,8 +7,10 @@ import com.liufeng.npc.bean.AdminUserExample;
 import com.liufeng.npc.bean.AdminUserWithBLOBs;
 import com.liufeng.npc.bean.Msg;
 import com.liufeng.npc.service.AdminUserService;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class AdminUserController {
     @RequestMapping("/login")
     public Msg login(@RequestParam("userName")String userName ,@RequestParam("userPwd") String pwd ){
 
-        String regx = "(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})";
+        String regx = "(^[a-zA-Z0-9_-]{6,16}$)";
         if(!userName.matches(regx)){
             return Msg.error().add("va_msg", "用户名必须是6-16位数字和字母的组合或者2-5位中文");
         }
@@ -63,6 +65,7 @@ public class AdminUserController {
     @ResponseBody
     @RequestMapping(value = "/user/{adId}",method = RequestMethod.PUT)
     public Msg updateUser(AdminUserWithBLOBs adminUser){
+
         boolean flag = false;
         flag = adminUserService.updateUser(adminUser);
         if (flag){
@@ -79,8 +82,11 @@ public class AdminUserController {
     @RequestMapping(value = "/user/{userIds}",method = RequestMethod.DELETE)
     public Msg delUser(@PathVariable("userIds") String userIds){
         //判断是删除单个还是删除多个 再分别执行操作
+        System.out.println(userIds);
         if(userIds.contains("-")){
+
             List<Integer> del_ids = new ArrayList();
+
             String[] str_ids = userIds.split("-");
             //组装id的集合
             for (String string : str_ids) {
@@ -98,17 +104,23 @@ public class AdminUserController {
     }
     //保存对应的用户
     @ResponseBody
-    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    @RequestMapping(value ="/user",method = RequestMethod.POST)
     public Msg newUser(AdminUserWithBLOBs adminUserWithBLOBs){
+
         if (adminUserWithBLOBs!=null){
-            if (adminUserWithBLOBs.getAdName()!=null && adminUserWithBLOBs.getAdName().equals("")
-                    && adminUserWithBLOBs.getAdPowercode()!=null && adminUserWithBLOBs.getAdPowercode().equals("")){
-                AdminUser user = adminUserService.saveUser(adminUserWithBLOBs);
-                if (user!=null){
-                    return Msg.success();
-                }
+            if (adminUserWithBLOBs.getAdName()!=null && !adminUserWithBLOBs.getAdName().equals("")
+                    && adminUserWithBLOBs.getAdPwd()!=null && !adminUserWithBLOBs.getAdPwd().equals("")){
+                boolean flag = false;
+                flag = adminUserService.saveUser(adminUserWithBLOBs);
+
+                    if (flag){
+                        return Msg.success();
+
+                    }
+
             }
         }
+
         Msg msg =  Msg.error();
         msg.msg="新增用户失败 可能已存在用户";
         return msg;

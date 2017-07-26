@@ -4,6 +4,7 @@ import com.liufeng.npc.bean.AdminUser;
 import com.liufeng.npc.bean.AdminUserExample;
 import com.liufeng.npc.bean.AdminUserWithBLOBs;
 import com.liufeng.npc.dao.AdminUserMapper;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +57,8 @@ public class AdminUserService {
         AdminUserExample example = new AdminUserExample();
         example.createCriteria().andAdIdIn(del_ids);
 
-        adminUserMapper.deleteByExample(example);
+        int i = adminUserMapper.deleteByExample(example);
+
     }
 
     //删除用户
@@ -65,29 +67,27 @@ public class AdminUserService {
         adminUserMapper.deleteByPrimaryKey(id);
     }
 
-    public AdminUser saveUser(AdminUserWithBLOBs adminUserWithBLOBs) {
+    public boolean saveUser(AdminUserWithBLOBs adminUserWithBLOBs) {
         //判断是否已经存在这个用户了
         AdminUserExample e = new AdminUserExample();
         e.createCriteria().andAdNameEqualTo(adminUserWithBLOBs.getAdName());
         List<AdminUser> adminUsers = adminUserMapper.selectByExample(e);
-        if (adminUsers.size()<=0){
+        if (adminUsers.size()>0){
             //已存在用户
-            return null;
+            return false;
         }
-
         int i = adminUserMapper.insertSelective(adminUserWithBLOBs);
         if (i>0){
             //c插入成功
             AdminUserExample example = new AdminUserExample();
-            example.createCriteria().andAdNameEqualTo(adminUserWithBLOBs.getAdName())
-                    .andAdPowercodeEqualTo(adminUserWithBLOBs.getAdPowercode())
-                    .andAdInfoEqualTo(adminUserWithBLOBs.getAdInfo());
+            example.createCriteria().andAdNameEqualTo(adminUserWithBLOBs.getAdName());
+
             List<AdminUser> users = adminUserMapper.selectByExample(example);
-            if (adminUsers.size()>0){
-                AdminUser user = users.get(0);
-                return  user;
+            if (users.size()>0){
+
+                return  true;
             }
         }
-        return null;
+        return false;
     }
 }

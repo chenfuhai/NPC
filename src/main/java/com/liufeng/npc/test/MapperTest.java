@@ -61,41 +61,13 @@ public class MapperTest {
 
 //        AdminUserExample adminUserExample = new AdminUserExample();
 //		adminUserExample.createCriteria().andAdNameEqualTo("liufengkj");
-        List<AdminUserWithBLOBs> adminUsers = adminUserMapper.selectByExampleWithBLOBs(null);
-        for (AdminUserWithBLOBs adminUser:adminUsers
-             ) {
-            System.out.println(adminUser.toString());
-        }
-
-//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
-//                null,null,null,null,null,null,null));
-//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
-//                null,null,null,null,null,null,null));
-//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
-//                null,null,null,null,null,null,null));
-//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
-//                null,null,null,null,null,null,null));
-//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
-//                null,null,null,null,null,null,null));
-//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
-//                null,null,null,null,null,null,null));
-
-//        ArticleExample articleExample = new ArticleExample();
-//        articleExample.createCriteria().andArTitleLike("测试文章%");
-//
-////        articleMapper.updateByExampleSelective(new ArticleWithBLOBs("测试文章2"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
-////                null,null,null,null,null,null,null),articleExample);
-//
-//        int i = articleMapper.deleteByExample(articleExample);
-//        System.out.println(i);
-//
-//        List<Article> articles = articleMapper.selectByExample(articleExample);
-//
-//        System.out.println(articles.size());
-//        for (Article article:articles) {
-//            System.out.println(article);
+//        List<AdminUserWithBLOBs> adminUsers = adminUserMapper.selectByExampleWithBLOBs(null);
+//        for (AdminUserWithBLOBs adminUser:adminUsers
+//             ) {
+//            System.out.println(adminUser.toString());
 //        }
-//
+
+
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
 //        columnMapper.insertSelective(new ColumnWithBLOBs("测试栏目"+UUID.randomUUID().toString().substring(0,4),"栏目详情介绍"));
@@ -125,6 +97,38 @@ public class MapperTest {
 //        }
 //        int o =columnMapper.deleteByExample(columnExample);
 //        System.out.println(o);
+
+
+
+//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
+//                null,null,null,null,10,null,null));
+//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
+//                null,null,null,null,14,null,null));
+//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
+//                null,null,null,null,15,null,null));
+//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
+//                null,null,null,null,12,null,null));
+//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
+//                null,null,null,null,15,null,null));
+//        articleMapper.insertSelective(new ArticleWithBLOBs("测试文章"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
+//                null,null,null,null,14,null,null));
+
+//        ArticleExample articleExample = new ArticleExample();
+//        articleExample.createCriteria().andArTitleLike("测试文章%");
+//
+////        articleMapper.updateByExampleSelective(new ArticleWithBLOBs("测试文章2"+UUID.randomUUID().toString().substring(0,4),null,new Date(),
+////                null,null,null,null,null,null,null),articleExample);
+//
+//        int i = articleMapper.deleteByExample(articleExample);
+//        System.out.println(i);
+//
+//        List<Article> articles = articleMapper.selectByExample(articleExample);
+//
+//        System.out.println(articles.size());
+//        for (Article article:articles) {
+//            System.out.println(article);
+//        }
+//
 
 
 

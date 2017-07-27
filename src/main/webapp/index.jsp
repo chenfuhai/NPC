@@ -15,9 +15,11 @@
 
 ============================用户=========================
 <br/>
+删除ID<input type="text" id="delUser">
 <button id="btnDel">delete</button>
 <button id="btnAdd">add</button>
-<button id="btnUpdata">updata</button>
+修改ID<input type="text" id="updateUser">
+<button id="btnUpdate">update</button>
 
 
 <form id="addForm" >
@@ -33,9 +35,11 @@
 <br/>
 ============================文章=========================
 <br/>
+删除ID<input type="text" id="delArt">
 <button id="btnDelArt">delete</button>
 <button id="btnAddArt">add</button>
-<button id="btnUpdataArt">updata</button>
+修改ID<input type="text" id="updateArt">
+<button id="btnUpdateArt">update</button>
 
 
 <form id="addFormArt" >
@@ -51,9 +55,11 @@
 <br/>
 ============================栏目========================
 <br/>
+删除ID<input type="text" id="delCol">
 <button id="btnDelCol">delete</button>
 <button id="btnAddCol">add</button>
-<button id="btnUpdataCol">updata</button>
+修改ID<input type="text" id="updateCol">
+<button id="btnUpdateCol">update</button>
 
 
 <form id="addFormCol" >
@@ -72,7 +78,7 @@
     (function () {
         $("#btnDel").click(function () {
             $.ajax({
-                url: '/user/' + '1002-1003-1004-1005',
+                url: '/user/' + $("#delUser").val(),
                 type: 'delete',
                 success: function (result) {
                     console.log(result);
@@ -92,9 +98,9 @@
             })
         });
 
-        $("#btnUpdata").click(function () {
+        $("#btnUpdate").click(function () {
             $.ajax({
-                url: '/user/' + '2010',
+                url: '/user/' +$("#updateUser").val(),
                 type: 'put',
                 data:$('#addForm').serialize(),
                 success: function (result) {
@@ -105,7 +111,7 @@
 
         $("#btnDelArt").click(function () {
             $.ajax({
-                url: '/art/' + '1002',
+                url: '/art/' +$("#delArt").val(),
                 type: 'delete',
                 success: function (result) {
                     console.log(result);
@@ -124,9 +130,9 @@
             })
         });
 
-        $("#btnUpdataArt").click(function () {
+        $("#btnUpdateArt").click(function () {
             $.ajax({
-                url: '/art/' + '1003',
+                url: '/art/' +$("#updateArt").val(),
                 type: 'put',
                 data:$('#addFormArt').serialize(),
                 success: function (result) {
@@ -137,7 +143,7 @@
 
         $("#btnDelCol").click(function () {
             $.ajax({
-                url: '/col/' + '12',
+                url: '/col/' + $('#delCol').val(),
                 type: 'delete',
 
                 success: function (result) {
@@ -146,9 +152,9 @@
             })
         });
 
-        $("#btnUpdataCol").click(function () {
+        $("#btnUpdateCol").click(function () {
             $.ajax({
-                url: '/col/' + '13',
+                url: '/col/' +$("#updateCol").val(),
                 type: 'put',
                 data:$('#addFormCol').serialize(),
                 success: function (result) {

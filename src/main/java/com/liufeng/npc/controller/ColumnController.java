@@ -1,19 +1,22 @@
 package com.liufeng.npc.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.liufeng.npc.bean.Column;
 import com.liufeng.npc.bean.ColumnWithBLOBs;
 import com.liufeng.npc.bean.Msg;
 import com.liufeng.npc.service.ColumnService;
+import com.liufeng.npc.utils.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class ColumnController {
     @Autowired
     ColumnService columnService;
@@ -27,17 +30,18 @@ public class ColumnController {
     }
     //获取对应ID的栏目信息
     @ResponseBody
-    @RequestMapping(value = "/col/{colId}",method = RequestMethod.GET)
-    public Msg getCol(@PathVariable("colId") Integer colId){
-        Column allByCol = columnService.getAllByCol(colId);
+    @RequestMapping(value = "/col/{coId}",method = RequestMethod.GET)
+    public Msg getCol(@PathVariable("coId") Integer coId){
+        Column allByCol = columnService.getAllByCol(coId);
 
         return Msg.success().add("col",allByCol);
     }
     //更新对应的栏目信息
     @ResponseBody
-    @RequestMapping(value = "/col/{colId}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/col/{coId}",method = RequestMethod.PUT)
     public Msg updateCol(ColumnWithBLOBs columnWithBLOBs){
         boolean b = false;
+        Log.logI(columnWithBLOBs.toString());
          b = columnService.updateCol(columnWithBLOBs);
         if (b){
             return Msg.success();
@@ -48,12 +52,12 @@ public class ColumnController {
     }
     //删除对应的栏目信息
     @ResponseBody
-    @RequestMapping(value = "/col/{colIds}",method = RequestMethod.DELETE)
-    public Msg delCol(@PathVariable("colIds") String colIds){
+    @RequestMapping(value = "/col/{coIds}",method = RequestMethod.DELETE)
+    public Msg delCol(@PathVariable("coIds") String coIds){
         //判断是删除单个还是删除多个 再分别执行操作
-        if(colIds.contains("-")){
+        if(coIds.contains("-")){
             List<Integer> del_ids = new ArrayList();
-            String[] str_ids = colIds.split("-");
+            String[] str_ids = coIds.split("-");
             //组装id的集合
             for (String string : str_ids) {
                 del_ids.add(Integer.parseInt(string));
@@ -73,7 +77,7 @@ public class ColumnController {
                 default:return Msg.error();
             }
         }else{
-            Integer id = Integer.parseInt(colIds);
+            Integer id = Integer.parseInt(coIds);
             //直接删除
             boolean b = false;
             b = columnService.deleteById(id);

@@ -11,6 +11,7 @@ public class ColumnWithBLOBs extends Column {
 
     private String co5;
 
+
     public ColumnWithBLOBs(String coName, String coInfo) {
         super(coName, coInfo);
     }

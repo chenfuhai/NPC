@@ -3,23 +3,26 @@ package com.liufeng.npc.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liufeng.npc.bean.AdminUser;
-import com.liufeng.npc.bean.AdminUserExample;
 import com.liufeng.npc.bean.AdminUserWithBLOBs;
 import com.liufeng.npc.bean.Msg;
 import com.liufeng.npc.service.AdminUserService;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
+@SessionAttributes("loginedUser")
 public class AdminUserController {
     @Autowired
     AdminUserService adminUserService;
+
+
     //获取所有的用户
     @ResponseBody
     @RequestMapping(value = "/users",method = RequestMethod.GET)
@@ -42,22 +45,31 @@ public class AdminUserController {
 
     //登录
     @ResponseBody
-    @RequestMapping("/login")
-    public Msg login(@RequestParam("userName")String userName ,@RequestParam("userPwd") String pwd ){
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public Msg login(@RequestParam("userName")String userName ,@RequestParam("userPwd") String pwd ,Model model){
 
         String regx = "(^[a-zA-Z0-9_-]{6,16}$)";
         if(!userName.matches(regx)){
             return Msg.error().add("va_msg", "用户名必须是6-16位数字和字母的组合或者2-5位中文");
         }
-        boolean flag =false;
-                flag = adminUserService.isExistUser(userName,pwd);
-        if (flag){
+        int type  = adminUserService.login(userName,pwd);
 
-            return Msg.success();
-        }else  {
-            Msg msgError = Msg.error();
-            msgError.msg="登录失败，不存在该用户";
-            return msgError;
+        Msg msg0 = Msg.error();
+        msg0.msg="登录失败，不存在该用户";
+        Msg msg1 = Msg.error();
+        msg1.msg="登录失败，密码不正确";
+        Msg msg2 = Msg.success();
+        msg2.msg="登录成功";
+        switch (type){
+            case 0:return msg0;
+            case 1:return msg1;
+            case 2:
+                AdminUser user = adminUserService.getUserByNameAndPwd(userName,pwd);
+                if (user!=null){
+                    model.addAttribute("loginedUser",user);
+                    return msg2;
+                }
+            default:return Msg.error();
         }
 
     }
@@ -127,7 +139,12 @@ public class AdminUserController {
 
     }
 
-
+    @ResponseBody
+    @RequestMapping("/logout")
+    public Msg logout(SessionStatus sessionStatus){
+        sessionStatus.setComplete();
+        return Msg.success();
+    }
 
 
 

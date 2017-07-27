@@ -4,8 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liufeng.npc.bean.ArticleWithBLOBs;
 import com.liufeng.npc.bean.Msg;
-import com.liufeng.npc.dao.ArticleMapper;
 import com.liufeng.npc.service.ArticleService;
+import com.liufeng.npc.utils.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class ArticleController {
 
     @Autowired
@@ -84,6 +85,7 @@ public class ArticleController {
     @ResponseBody
     @RequestMapping(value = "/art/{artIds}",method = RequestMethod.DELETE)
     public Msg delArt(@PathVariable("artIds")String artIds){
+        Log.logI("artIds="+artIds);
 //批量删除
         if(artIds.contains("-")){
             List<Integer> del_ids = new ArrayList();

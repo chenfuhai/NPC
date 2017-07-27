@@ -5,12 +5,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <script  type="text/javascript"  src="./static/js/jquery-1.12.4.min.js"></script>
+    <title>Title</title>
 </head>
 <body>
-<h2>首页</h2>
+<h1>非法访问 </h1>
 
-
+<a href="/admin"> 点击返回登录入口</a>
 </body>
 </html>

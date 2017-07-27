@@ -1,15 +1,8 @@
 package com.liufeng.npc.test;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-
-import com.liufeng.npc.bean.*;
 import com.liufeng.npc.dao.AdminUserMapper;
 import com.liufeng.npc.dao.ArticleMapper;
 import com.liufeng.npc.dao.ColumnMapper;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +34,14 @@ public class MapperTest {
 
 
 
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj", "123456", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj2", "123456", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj3", "123456", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj4", "123456", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj5", "123456", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj6", "123456", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj7", "123456", "超级管理员", 1));
-//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj8", "123456", "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj2", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj3", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj4", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj5", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj6", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj7", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj8", Md5Tool.getMd5("123456"), "超级管理员", 1));
 
 //        AdminUserExample adminUserExample = new AdminUserExample();
 //		adminUserExample.createCriteria().andAdNameEqualTo("liufengkj");

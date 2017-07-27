@@ -4,6 +4,7 @@ import com.liufeng.npc.bean.Article;
 import com.liufeng.npc.bean.ArticleExample;
 import com.liufeng.npc.bean.ArticleWithBLOBs;
 import com.liufeng.npc.dao.ArticleMapper;
+import com.liufeng.npc.utils.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +81,8 @@ public class ArticleService {
 
     public boolean deleteById(Integer artIds) {
         int i = articleMapper.deleteByPrimaryKey(artIds);
+
+
         if (i>0){
             return true;
         }else {

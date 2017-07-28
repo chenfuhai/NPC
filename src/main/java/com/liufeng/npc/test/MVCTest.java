@@ -14,6 +14,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.servlet.http.HttpServletRequest;
+
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml", "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml"})
@@ -42,6 +44,10 @@ public class MVCTest {
 //        System.out.println(result.getRequest().getSession().getAttribute("loginedUser").toString());
 
         System.out.println(Md5Tool.getMd5("123456"));
+
+        String path = result.getRequest().getServletContext().getRealPath("/");
+        System.out.println(path);
+        System.out.println(result.getRequest().getContextPath());
 
     }
 

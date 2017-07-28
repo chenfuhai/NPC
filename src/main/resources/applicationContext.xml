@@ -56,7 +56,11 @@
 		<!-- 控制住数据源 开启关闭回滚操作使用这个事物管理器来做 -->
 		<property name="dataSource" ref="PooledDataSource"></property>
 	</bean>
-	
+
+	<!--上传文件的支持-->
+
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	<!-- 开启基于注解的事物吗，使用xml形式的事物（主要使用的事配置试） -->
 	<aop:config>
 		<!-- 切入点表达式  -->

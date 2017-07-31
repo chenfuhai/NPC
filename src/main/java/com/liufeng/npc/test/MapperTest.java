@@ -1,8 +1,10 @@
 package com.liufeng.npc.test;
 
+import com.liufeng.npc.bean.AdminUserWithBLOBs;
 import com.liufeng.npc.dao.AdminUserMapper;
 import com.liufeng.npc.dao.ArticleMapper;
 import com.liufeng.npc.dao.ColumnMapper;
+import com.liufeng.npc.utils.Md5Tool;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class MapperTest {
     public void testnpc() {
 
 
-
+//
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj", Md5Tool.getMd5("123456"), "超级管理员", 1));
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj2", Md5Tool.getMd5("123456"), "超级管理员", 1));
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj3", Md5Tool.getMd5("123456"), "超级管理员", 1));

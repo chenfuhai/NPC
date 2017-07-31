@@ -2,15 +2,20 @@ package com.liufeng.npc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.liufeng.npc.bean.Article;
 import com.liufeng.npc.bean.ArticleWithBLOBs;
 import com.liufeng.npc.bean.Msg;
 import com.liufeng.npc.service.ArticleService;
 import com.liufeng.npc.utils.Log;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,25 +25,68 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
-    //获取某个栏目的所有文章
-    @ResponseBody
-    @RequestMapping(value = "/arts/{coId}", method = RequestMethod.GET)
-    public Msg getArtsByCol(@PathVariable("coId") Integer coId) {
-        List<ArticleWithBLOBs> articles = articleService.getAllByColId(coId);
 
-        return Msg.success().add("arts",articles);
+    //获取某个栏目的所有文章  produces = "application/json;charset=utf-8" 使用ResponseBody并且返回时String的时候加 其他不要
+    @ResponseBody
+    @RequestMapping(value = "/arts/{coId}", method = RequestMethod.GET,produces = "application/json;charset=utf-8")
+    public String getArtsByCol(@PathVariable("coId") Integer coId,
+                            @RequestParam(value = "page", defaultValue = "1") Integer pn,
+                            @RequestParam(value = "pagesize", defaultValue = "1") Integer pagesize) {
+
+        PageHelper.startPage(pn,pagesize);
+        List<ArticleWithBLOBs> articles = articleService.getAllByColId(coId);
+        PageInfo pageInfo = new PageInfo(articles,5);
+
+
+        return dealArtsToJson(pageInfo.getList(),pageInfo.getTotal());
     }
 
     //获取所有文章
     @ResponseBody
-    @RequestMapping(value = "/arts",method = RequestMethod.GET)
-    public Msg getArts(@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
+    @RequestMapping(value = "/arts",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
+    public String getArts(@RequestParam(value = "page", defaultValue = "1") Integer pn,
+                          @RequestParam(value = "pagesize", defaultValue = "1") Integer pagesize) {
 
-        PageHelper.startPage(pn,10);
+        PageHelper.startPage(pn,pagesize);
         List<ArticleWithBLOBs> articles = articleService.getAll();
         PageInfo pageInfo = new PageInfo(articles,5);
 
-        return Msg.success().add("arts",pageInfo);
+
+        return dealArtsToJson(pageInfo.getList(),pageInfo.getTotal());
+    }
+
+    /**
+     * 处理pageInfo里面的数据 转化成Ligerui可接受的JSON
+     * @param arts
+     * @param total
+     * @return
+     */
+    private String dealArtsToJson(List arts,long total){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        JSONArray array = new JSONArray();
+        for (Object art : arts) {
+            Article a = (Article) art;
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("title", a.getArTitle());
+            jsonObject.put("subTitle", a.getArSubtitle());
+
+            jsonObject.put("publicTime", simpleDateFormat.format(a.getArPublictime()));
+            jsonObject.put("from", a.getArFrom());
+            jsonObject.put("status", a.getArStatus());
+            jsonObject.put("clickCount", a.getArClickarunt());
+            jsonObject.put("id", a.getArId());
+            jsonObject.put("coId", a.getArColumnid());
+            array.add(jsonObject);
+        }
+
+
+        JSONObject obj  = new JSONObject();
+        obj.put("Rows",array);
+        obj.put("Total",total);
+        System.out.println(obj.toString());
+        return obj.toString();
+
     }
 
     //获取对应ID的文章
@@ -56,6 +104,7 @@ public class ArticleController {
     @RequestMapping(value = "/art", method = RequestMethod.POST)
     public Msg newArt(ArticleWithBLOBs articleWithBLOBs) {
         boolean flag = false;
+        articleWithBLOBs.setArPublictime(new Date());
          flag = articleService.saveArt(articleWithBLOBs);
          if (flag){
              return Msg.success();

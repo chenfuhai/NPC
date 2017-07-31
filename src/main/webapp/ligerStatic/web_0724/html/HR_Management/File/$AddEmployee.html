@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="content-type" content="txt/html; charset=utf-8" />
+	<link href="../../../lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
+	<link href="../../../lib/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css">
+  <script src="../../../lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/core/base.js" type="text/javascript"></script>
+  <script src="../../..//lib/ligerUI/js/plugins/ligerForm.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerRadio.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerSpinner.js" type="text/javascript"></script>
+  <script src="../../../lib/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script>  
+  <script src="../../../lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>  
+  <script src="../../../lib/ligerUI/js/plugins/ligerMenu.js" type="text/javascript"></script>
+    <script src="../../../lib/json2.js" type="text/javascript"></script>
+    <script src="../../../demos/grid/EmployeeData.js" type="text/javascript"></script>
+    <script src="../../../demos/grid/DepartmentData.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerToolBar.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script> 
+	<script src="../../../lib/ligerUI/js/plugins/ligerFilter.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerDrag.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerResizable.js" type="text/javascript"></script>
+	<script src="../../../demos/filter/ligerGrid.showFilter.js" type="text/javascript"></script>
+	<script src="../../../demos/grid/CustomersData.js" type="text/javascript"></script>
+ 	 <style type="text/css">
+	 	<style type="text/css">
+* {
+    font-size:12px;
+    margin:0;
+    padding:0; 
+} 
+fieldset.myField {
+    padding:10px;
+    margin:10px;
+    width:50%;
+    color:#333; 
+    border:#06c solid 1px;
+	text-align:right;
+} 
+legend {
+    color:#06c;
+    padding:5px 10px;
+    font-weight:800; 
+    /*background:white;*/
+} 
+	 	/*页面左飘*/
+.c_f1_top{ 
+		width:100%
+		}
+.c_f1_bottom{ 
+		width:200px
+		}
+.c_f1_top_l{
+	float:left;
+	}
+.c_f1_top_r{
+	float:left;
+	}
+.c 
+.c_f1_top_l input{	margin:5px 5px 5px 5px;
+	   width:120px;}/*控制文本框的上下左右的边*/
+select{margin: 5px 5px 5px 5px;
+	   width:120px}
+b{font-family:Verdana, Geneva, sans-serif;
+	color:#999;
+	}
+	#f5_one{
+		height:50px;
+		width:100%;	
+		}
+.myText{
+			width:500px; 
+			height:50px;
+			margin: 5px 5px 5px 5px;
+		}
+.iType{
+		margin:5px 5px 5px 5px;	
+	}
+.iType2{
+		margin: 5px 5px 5px 5px;
+	    width:135px
+		}
+
+   	 </style>
+<title>添加员工</title>
+</head>
+
+<body>
+	<div class="all">
+    	<div class="top"></div>
+        <div class="center">
+        	<div class="domain">
+					<fieldset class="myField" style="margin:auto"> 
+					<legend>人员基本信息:</legend> 
+					
+<div class="c_f1_top">
+<div class="c_f1_top_l">
+                            	姓名:<input type="text" class="iType"></input><br>
+                				籍贯<select class="iType2">
+                   				 <option value="bj">北京</option>
+                				<option value ="tj">天津</option>
+                				<option value ="sd">山东</option>
+                				<option value ="sx">山西</option>
+								<option value ="hb">河北</option>
+                   				<option value ="hn">河南</option>
+                    			<option value ="ln">辽宁</option>
+                    			<option value ="hlj">黑龙江</option>
+                    			<option value ="jl">吉林</option>
+                    			<option value ="nmg">内蒙古</option>
+                   				 <option value ="xj">新疆</option>
+                    			<option value ="xz">西藏</option>
+                    			<option value ="hb">湖北</option>
+                    			<option value ="hn">湖南</option>
+                    			<option value ="ah">安徽</option>
+                    			<option value ="jx">江西</option>
+                    			<option value ="js">江苏</option>
+                    			<option value ="sh">上海</option>
+                    			<option value ="zj">浙江</option>
+                    			<option value ="cq">重庆</option>
+                    			<option value ="gx">广西</option>
+                    			<option value ="gz">贵州</option>
+                    			<option value ="nx">宁夏</option>
+                    			<option value ="qh">青海</option>
+                    			<option value ="sx">陕西</option>
+                    			<option value ="gd">广东省</option>
+                    			<option value ="fj">福建</option>
+                    			<option value ="fj">云南</option>
+               					 </select><br>
+                                 <input type="checkbox" style=" margin-left:5px">是否绑定OA<br>
+                所在部门:<input type="text" class="iType"></input><br>
+                在职状态:<select class="iType2">
+                	<option value="noValue">未分类</option>
+                	<option value ="A_Customer">企业客户</option>
+                	<option value ="A_Customer">个人客户</option>
+                	<option value ="A_Customer">供应商</option>
+					<option value ="A_Customer">A类客户</option>
+  					<option value ="B_Customer">B类客户</option>
+  					<option value="C_Customer">C类客户</option>
+  					<option value="D_Customer">D类客户</option>
+                </select><br>
+                编号:<input type="text" class="iType"></input><br>
+                身份证号码:<input type="text" class="iType"></input><br>
+                出生日期:<input type="text" class="iType"></input><br>
+                年龄:<input type="text" class="iType"></input><br>
+                
+                户口类型:<select>
+                			<option value="houseType1">城镇户口</option>
+                			<option value ="houseType1">农村户口</option>
+                        </select>
+                         <br>
+                政治面貌:<input class="iType" type="text"><br>
+                专业:<input type="text" class="iType"></input><br>
+                学历:<input type="text" class="iType"></input><br>
+                            </div>
+                            <div class="c_f1_top_r">
+                				性别:<select  class="iType2">
+                						<option value="male">男</option>
+                						<option value ="femal">女</option>
+                                     </select>
+                                     <br>
+                				民族:<input type="text" class="iType"></input><br>
+               					
+                				所在岗位:<select  class="iType2">
+                						<option value="station1">员工</option>
+                						<option value ="station2">主管</option>
+                                        <option value="station3">经理</option>
+                                        <option value="station4">总监</option>
+                                        <option value="station5">副总经理</option>
+                                        <option value="station6">总经理</option>
+                                        <option value="station7">主任</option>
+                                        <option value="station8">档案专员</option>
+                                     </select><br>
+                				员工类型:<select class="iType2">
+                						<option value="empType1">正式员工</option>
+                						<option value ="empType2">临时员工</option>
+                                        <option value="empType3">合同工</option>
+                                        <option value="empType4">兼职工</option>
+                                     </select><br>
+                				工号:<input type="text" class="iType"></input><br>
+                				
+                				婚姻状况:<select class="iType2">
+                						<option value="married">已婚</option>
+                						<option value =" unmarried">未婚</option>
+                                        <option value="divorce">离婚</option>
+                                     </select><br>
+                				健康状况:<input type="text"class="iType"></input><br>
+                                入团/党时间:<input type="text" class="iType"></input><br>
+                                毕业时间:<input type="text" class="iType"></input><br>
+                                学位:<select  class="iType2">
+                						<option value="degree1">学士</option>
+                						<option value =" degree2">双学士</option>
+                                        <option value="degree3">硕士</option>
+                                        <option value="degree4">博士</option>
+                						<option value =" degree5">MBA</option>
+                                        <option value="degree6">博士后</option>
+                                     </select><br>
+                            </div>
+                            <div class="c_f1_top_r">
+                            	<div style="height:50px"></div>
+                                <div style="height:30%; margin-left:50px" >
+                                	<table width="150px" height="150px"border="3">
+  											<tr>
+    										<th scope="col">&nbsp;</th>
+  											</tr>
+									</table>
+									<b>员工照片信息</b><button>添加</button>
+                                </div>
+                                <div style="height:50px"></div>
+                            </div>
+                        </div>
+                        <div class="c_f1_bottom">
+                        	户口所在地<input type="text"width="200px" id="longWidth"/>	
+                        </div>
+                        <div c_bottom></div>
+					</fieldset>
+                    <fieldset class="myField" style="margin:auto"> 
+					<legend>联系信息:</legend> 
+   						<div style="width:150; float:left">                      	
+                        	手机号码:<input type="text" width="100%" class="iType"></input><br>
+                            QQ号码:<input type="text" width="100%"class="iType"></input><br> 
+                            电子邮箱:<input type="text" width="100%" class="iType"></input><br> 
+                            家庭住址:<input type="text" width="100%" class="iType"></input><br>                  
+                        </div>
+                        <div style="width:150; float:left">
+                        	电话:<input type="text" width="100%" class="iType"></input><br>
+                            签合同时薪水:<input type="text" width="100%" class="iType"></input><br> 
+                            起薪时间:<input type="text" width="100%" class="iType"></input><br> 
+                            参加工作时间:<input type="text" width="100%" class="iType"></input><br>  
+                        </div>
+                        <div style="width:150; float:left">
+                        </div>
+					</fieldset>
+                    <fieldset class="myField" style="margin:auto"> 
+					<legend>人员拓展信息:</legend> 
+   						<div style="width:150; float:left">                      	
+                        	社保号<input type="text">                                          
+                        </div>
+                        <div style="width:150; float:left">
+                        	<b>请详细填写个人的信息</b>
+                        </div>
+                        <div style="width:150; float:left">
+                        </div>
+					</fieldset>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+        	<fieldset class="myField" style="margin:auto"> 
+					<legend>其他信息:</legend> 
+                    <div class="f4">
+                    	<div class="f4_top" style="float:none">
+                        	<div style="width:150; float:left">                      	
+                        	职务：<input type="text" class="iType">
+                                                                     
+                        </div>
+                        <div style="width:150; float:left">
+                        	职称：<input type="text" class="iType"> 
+                        </div>
+                        <br>
+                        <div style="width:150; float:left">
+                        <br>
+                        	特长;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="myText">                       
+                        </div>
+                          <div style="width:150; float:left">
+                        	职务情况：<input type="text" class="myText">                       
+                        </div>   
+                         <div style="width:150; float:left">
+                        	社保缴纳：<input type="text" class="myText">                       
+                        </div>              
+                       </div>
+					</fieldset>
+		</div>
+        </div>
+    </div>
+</body>
+</html>
+ <script type="text/javascript">
+ 	 $(f_initGrid);
+        var manager, g;
+        $(function(){
+                $("#txt2").ligerDateEditor();
+                  $("#txt1").ligerDateEditor();
+
+            
+            });
+        function f_initGrid()
+        { 
+           g =  manager = $("#maingrid").ligerGrid({
+                columns: [
+                { display: '计划标题', name: 'title',width:'10%',
+                    editor: { type: 'text' }
+                },
+                { display: '总结时间', width: '25%', name: 'date',
+                },
+                { display: '总结状态', name: '__status', width: '10%' }, 
+                { display: '最近更新', name: 'date2', width: '35%',
+                } , 
+                { display: '计划类型', name: '__status2', width: '10%' }, 
+                { display: '操作', isSort: false, width: '10%',render: function (rowdata, rowindex, value){
+                     var h = "";
+                    if (!rowdata._editing)
+                    {
+                        h += "<a  style='text-decoration : none' href='javascript:beginEdit(" + rowindex + ")'>修改</a> ";
+                        h += "<a style='text-decoration : none' href='javascript:deleteRow(" + rowindex + ")'>删除</a> "; 
+                    }
+                    else
+                    {
+                        h += "<a  style='text-decoration : none' href='javascript:endEdit(" + rowindex + ")'>提交</a> ";
+                        h += "<a style='text-decoration : none' href='javascript:cancelEdit(" + rowindex + ")'>取消</a> "; 
+                    }
+                    return h;
+
+                }}
+                ],
+                onSelectRow: function (rowdata, rowindex)
+                {
+                    $("#txtrowindex").val(rowindex);
+                },
+                enabledEdit: true, clickToEdit: false, isScroll: false,  
+                data:EmployeeData,
+                width: '80%',checkbox: true
+            });   
+        }
+        function beginEdit() {
+            var row = manager.getSelectedRow();
+            if (!row) { alert('请选择行'); return; }
+            manager.beginEdit(row);
+        }
+        function cancelEdit() {
+            var row = manager.getSelectedRow();
+            if (!row) { alert('请选择行'); return; }
+            manager.cancelEdit(row);
+        }
+        function cancelAllEdit()
+        {
+            manager.cancelEdit();
+        }
+        function endEdit()
+        {
+            var row = manager.getSelectedRow();
+            if (!row) { alert('请选择行'); return; }
+            manager.endEdit(row);
+        }
+        function endAllEdit()
+        {
+            manager.endEdit();
+        }
+        function deleteRow()
+        { 
+            manager.deleteSelectedRow();
+        }
+        var newrowid = 100;
+        function addNewRow()
+        {
+            manager.addEditRow();
+        } 
+          
+        function getSelected()
+        { 
+            var row = manager.getSelectedRow();
+            if (!row) { alert('请选择行'); return; }
+            alert(JSON.stringify(row));
+        }
+        function getData()
+        { 
+            var data = manager.getData();
+            alert(JSON.stringify(data));
+        } 
+</script>

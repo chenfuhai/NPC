@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>栏目属性</title>       
+
+  <style type="text/css">
+
+body
+{
+font-family : 微软雅黑,宋体;
+font-size : 	;
+}
+</style>
+</head>
+ <body>
+	<div style="margin-left: 35%;">
+
+<label  style=" float: left; font-weight: 100px; font-size: 20px;">栏目信息</label><br>
+	
+<table>
+
+<tr>
+<td><label>是否启用:</label>
+<input type="checkBox" name="1">
+</td>
+</tr>
+<tr><td><label>栏目名称:</label><input   style="width:200px;" type="text" name="2"></td></tr>
+<tr><td>
+
+
+<input name="1" type="radio" value="tuwen"/><label>视频栏目</label>
+<input name="1" type="radio" value="shipin"/><label>图文栏目</label>
+<input name="1" type="radio"  value="jiaodiantu"/><label>焦点图</label>
+</td></tr>
+<tr><td> <label>备注:</label><textarea rows="5" cols="28" style="resize:none;width: 280px"></textarea></td></tr>
+<tr><td>
+	<label>文章是否允许评论:</label>
+<input type="checkBox" checked name="1">
+</td></tr>
+<tr><td>
+	<label>文章是否需要审核:</label>
+<input type="checkBox" name="1">
+</td></tr>
+<tr><td>
+	<label>文章是否允许下载:</label>
+<input type="checkBox"  name="1">
+</td></tr>
+</table>
+<hr style="width:400px; float: left"><br>
+<label  style=" float: left; font-weight: 100px; font-size: 20px;">查看权限</label><br>
+<table>
+<tr>
+<td> 可查看部门:</td><td><textarea rows="5" cols="20" style="resize:none; color: grey ;width:230px">单机可进行部门选择</textarea></td></tr>
+	<tr><td> 查看人员:</td><td><textarea rows="5" cols="20" style="resize:none; color: grey;width: 230px">单机可进行部门选择</textarea></td></tr>
+</table>
+<hr style="width:400px; float: left"><br>
+<label  style=" float: left; font-weight: 100px; font-size: 20px;">发布权限</label><br>
+<table>
+<tr>
+<td width="90px">发布部门:</td><td><textarea rows="5" cols="20" style="resize:none; color: grey;width: 230px">单机可进行部门选择</textarea></td></tr>
+	<tr><td width="90px">发布人员:</td><td><textarea rows="5" cols="20" style="resize:none; color: grey;width: 230px">单机可进行部门选择</textarea></td></tr>
+	<tr><td></td><td width="30px"><label style="color: grey">注意:如果人员为空，默认允许所有人</label></td></tr>
+</table>
+<hr style="width:400px; float: left"><br>
+<label  style=" float: left; font-weight: 100px; font-size: 20px;">管理员权限</label><br>
+<table>
+	<tr><td>查看人员:</td><td><textarea rows="5" cols="20" style="resize:none; color: grey;width: 230px"></textarea></td></tr>
+	<tr><TD><input type="button" style="color: blue;width: 50px" name="1" value="保存"></TD><TD style="float: right;"><input style="color: red;width: 50px"  type="button" name="1" value="关闭"></TD></tr>
+</table>
+</div>
+</body>
+</html>

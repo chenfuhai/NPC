@@ -34,6 +34,12 @@ public class AuthorityController {
 
     }
 
+    @RequestMapping("/admin/main")
+    public String toMain(){
+        return "main";
+    }
+
+
     @RequestMapping("/admin/home")
     public String toHome(){
         return "home";
@@ -47,6 +53,23 @@ public class AuthorityController {
     @RequestMapping("/invalidAccess")
     public String toInvalidAccess(){
         return "invalidAccess";
+    }
+
+    //========================================ligerUI================
+    @RequestMapping("/admin/draftBox")
+    public String toDrftBox(){
+        return "DraftBox";
+    }
+
+    @RequestMapping("/admin/welcome_main")
+    public String toWelcome(){
+        return "welcome_main";
+    }
+
+    //=====================kindEditor===============
+    @RequestMapping("/admin/kindEditor")
+    public String toKindEditor(){
+        return "kindEditor";
     }
 
 

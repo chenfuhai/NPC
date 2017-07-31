@@ -29,6 +29,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.23" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.10" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.3.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.1" />

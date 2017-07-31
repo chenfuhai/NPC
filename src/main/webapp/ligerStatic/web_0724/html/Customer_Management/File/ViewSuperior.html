@@ -1,0 +1,140 @@
+<html>
+    <head>
+<title>上级查看</title>
+<meta http-equiv="content-type" content="txt/html; charset=utf-8" />
+<link href="../../../lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
+<link href="../../../lib/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css">
+<link href="../../../lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet">
+<!--<link href="../../../css/bootstrap.min.css" rel="stylesheet">-->
+<script src="../../../lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+<script src="../../../lib/ligerUI/js/core/base.js" type="text/javascript"></script>
+<script src="../../../lib/ligerUI/js/ligerui.all.js"></script>
+<script src="../../../lib/ligerUI/js/plugins/ligerResizable.js" type="text/javascript"></script>
+<script src="../../../lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+<script src="../../../lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+<script src="../../../lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
+<script src="../../../lib/ligerUI/js/plugins/ligerFilter.js"></script>
+<script src="../../../data/Data.js" type="text/javascript"></script>
+<style type="text/css">
+#all {
+	width:100%;
+	height:80%
+}
+#domain {
+	width:80%;
+	height:80%
+	
+}
+a{text-decoration:none;
+}
+</style>
+</head>
+    
+    <body>
+<div id="all">
+      <div id="top"></div>
+      <div id="center">
+    <div id="c_top" style="margin: 5px 5px 5px 5px">
+          <table>
+        <tr>
+              <td><a class="l-button" style="width:80px;float:left; margin-left:6px;  margin-top: 5px; color:blue; font-size:15px" onClick="refresh()">展开查询</a></td>
+              <td><a class="l-button" style="width:50px;float:left; margin-left:6px; margin-top: 5px; font-size:15px" onClick="help()">查询</a></td>
+              <td><a class="l-button" style="width:50px;float:left; margin-left:6px; margin-top: 5px; color:red; font-size:15px" onClick="addNewRow()">清空</a></td>
+              <td><label style="color: gray"> 双击可编辑数据 </label></td>
+            </tr>
+      </table>
+        </div>
+    <div id="domain"> </div>
+  </div>
+      <div id="bottom"></div>
+    </div>
+</body>
+    </html>
+<script type="text/javascript">
+		function itemclick(item)//弹出提示
+        {
+            alert(item.text);
+        }
+       $(function ()
+        {
+			$("#domain").ligerGrid({
+                  columns: [
+				  { display: ' ', isAllowHide: false,                     
+				  					render: function (row)                     
+									{              
+									 var html = '<a href="#" onclick="onedit(' + row.id + ')">查看</a>';
+									 return html;                     
+									 } ,
+									 width:100,align:'center'                
+									 } ,
+				  { display: '操作', isAllowHide: false,                     
+				  					render: function (row)                     
+									{              
+									 var html = '<a href="#" onclick="onedit(' + row.id + ')">锁定</a>';
+									 return html;                     
+									 } ,
+									 width:100,align:'center'                
+									 } ,
+                  { display: '客户名称', name: 'CustomerName',  width: 150,align: 'center' },
+                  { display: '所属行业', name: 'Industry', width: 100, align: 'center' },
+				  { display: '客户类别', name: 'CustomerClass',width: 100, align: 'center', },
+				  { display: '更进人', name: 'FollowPerson',width:100 , align: 'center', },
+				  { display: '建立时间', name: 'BuildTime',width:100, align: 'center', },
+				  { display: '程度', name: 'Level',width:100 , align: 'center', },
+       			  { display: '跟进次数', name: 'FollowNumber',width:100, align: 'center', },
+				  { display: '跟进内容', name: 'FollowContent',width:100, align: 'center', },
+				  { display: '所属大区域', name: 'BigArea',width:100, align: 'center', },
+				  { display: '所属地区', name: 'SmallArea',width:100, align: 'center', },
+				  { display: '联系人', name: 'Contacts',width:100, align: 'center', },
+				  { display: '手机', name: 'PhoneNumber',width:100, align: 'center', },
+				  { display: 'QQ', name: 'QQNumber',width:100, align: 'center', },
+				  { display: 'E-Mail', name: 'E-MailNumber',width:100, align: 'center', },
+				  { display: '法定人代笔', name: 'LegalPerson',width:100, align: 'center', },
+				  { display: '公司缩写', name: 'CompanyAB',width:100, align: 'center', },
+				  { display: '客户编号', name: 'CustomerID',width:100, align: 'center', },
+				  { display: '公司地址', name: 'CompanyAddress',width:100, align: 'center', },
+				  { display: '邮编', name: 'ZipCode',width:100, align: 'center', },
+				  { display: '传真', name: 'Fax',width:100, align: 'center', },
+				  { display: '公司网址', name: 'CompanyURL',width:100, align: 'center', },
+				  { display: '银行', name: 'BankName',width:100, align: 'center', },
+				  { display: '账号', name: 'AccountID',width:100, align: 'center', },
+				  { display: '账户名', name: 'AccountName',width:100, align: 'center', },
+				  { display: '收件公司', name: 'AddresseeComapany',width:100, align: 'center', },
+				  { display: '收件人', name: 'Consignee',width:100, align: 'center', },
+				  { display: '收件地址', name: 'ConsigneeAddress',width:100, align: 'center', },
+				  { display: '收件手机号', name: 'ConsigneePhone2',width:100, align: 'center', },
+				  { display: '收件电话', name: 'Consignee',width:100, align: 'center', },
+				  { display: '备注', name: 'Remark',width:100, align: 'center', },
+				  { display: '其他', name: 'Others',width:100, align: 'center', }
+				  
+                  ],  		
+				  data:Data,
+				  pageSize: 20,
+				  sortName: 'CustomerID',                  
+				  checkbox: true,
+				  rownumbers:true,
+				  fixedCellHeight:false	,				
+				  toolbar: { items: [
+                { text: '刷新', click: itemclick},
+                { line: true },
+                { text: '转移', click: itemclick },
+                { line: true }	
+                ]
+                }
+				 
+             });      
+			$("#pageloading").hide();
+			 
+            $("#sexChoose").ligerComboBox({
+                width : 100,
+                data: [
+                    { text: '男', id: 'male' },
+                    { text: '女', id: 'female' },
+                       ],
+			    valueFieldID: 'test3',
+                autocomplete: true,
+			    keySupport: true
+            }); 
+        }); 
+ 
+    </script>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html lang="utf-8">
+<head>
+	<meta charset="gb2312">
+	<title></title>
+	<script charset="utf-8" src="kindeditor/kindeditor-all.js"></script>
+	<script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
+	<script>
+       KindEditor.ready(function(K) {  
+             window.editor = K.create('#editor_id');  
+      });  
+
+
+	</script>
+	 
+</head>
+<body>
+	<style type="text/css">
+		html{
+			background-color:#E0EEEE;
+		}
+		.line{
+			height:40px;
+		}
+		#save{
+			background:	#6495ED;
+			line-height:34px;
+			width:70px;
+			border-radius:50px;
+			border:1px solid;
+			color:#fff;
+			font-size:8px;
+			position:relative;
+			left:40%;
+		}
+		#back{
+			background:	#FFA54F;
+			line-height:32px;
+			width:70px;
+			border-radius:50px;
+			border:1px solid;
+			color:#fff;
+			font-size:8px;
+			position:relative;
+			/* left:50%; */
+		}
+		#main{
+            width: 100%;
+            margin: 0 auto;
+        }
+		td{
+			padding:5px;
+		}
+		table{
+			margin:0 auto;
+		}
+		.btnt{
+			position:relative;
+			width:886px;
+		}
+		.content{
+			vertical-align:top;
+		}
+		.input{
+			width:800px;
+			height:30px;
+		}
+		.form-info{
+			margin:0 auto;
+		}
+	</style>
+				<form class="form-info" name="form-info" id="form-info">
+					<table align="center">
+						<tr>
+							<td class="content">接收人:</td>
+							<td><div class="1-text"><input type="text" name="Recipients_id" value="" class="input" /></div></td>
+						</tr>
+						<tr>
+							<td class="content">标题:</td>
+							<td><input type="text" name="Mail_title" value="" class="input"/></td>
+						</tr>
+						<tr>
+							<td class="content">附件:</td>
+							<td><input type="file" name="Mail_title" value="添加附件"/></td>
+						</tr>
+						<tr>
+							<td class="content">内容：</td>
+							<td>
+								<textarea id="editor_id" name="content" style="width:800px;height:300px;">
+							</td>
+						</tr>
+					</table>
+					<table align="center">
+		<tr>
+			<td style="border:none"><input type="submit" value="提交" class="l-button" style="width:70px;color:red;font-size:10px"></input></td>
+			<td style="width:20px;border:none"></td>
+			<td style="border:none"><input type="button" value="取消" class="l-button" style="width:70px;color:#BOBOBO;font-size:10px"></input></td>
+		</tr>
+	</table>
+				</form>
+		
+	
+	
+</body>
+</html>

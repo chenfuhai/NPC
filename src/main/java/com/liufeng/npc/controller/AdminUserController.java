@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,21 @@ import java.util.List;
 public class AdminUserController {
     @Autowired
     AdminUserService adminUserService;
+
+
+    //获取目前登录用户的信息
+    @ResponseBody
+    @RequestMapping(value = "/user/logined",method = RequestMethod.GET)
+    public Msg getLoginedUser(HttpServletRequest request){
+        AdminUser user = (AdminUser) request.getSession().getAttribute("loginedUser");
+        if (user==null){
+            //返回警告信息
+            return Msg.error().add("msg","您尚未登录或登录已过期，请重新登录");
+        }else{
+            return Msg.success().add("loginedUser",user);
+        }
+
+    }
 
 
     //获取所有的用户

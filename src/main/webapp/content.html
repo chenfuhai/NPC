@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>福建东侨政府网-走进东侨</title>
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<link href="css/index.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.sudoSlider.min.js"></script>
+</head>
+<body>
+<div class="yc_bg_flash flash-replaced" id="bgFlash" style="background:url(images/bg_sea.jpg) no-repeat center top">
+  <script type="text/javascript" src="js/content.js"></script>
+  <script type="text/javascript" src="js/jcarousellite_index.js"></script>
+  <div class="index_banner" id="banner_tabs">
+    <ul>
+      <li class="first"><a href="#" target="_blank"></a></li>
+      <li class="second"><a href="#" target="_blank"></a></li>
+      <!--    <li class="third"><a href="#" target="_blank"></a></li>
+    <li class="fourth"><a href="#" target="_blank"></a></li>
+    <li class="fifth"><a href="#" target="_blank"></a></li>      
+    <li class="sixth"><a href="#"></a></li>-->
+    </ul>
+    <cite style="display:none;"><span class="cur">1</span><span>2</span><!--<span>3</span><span>4</span><span>5</span><span>6</span>--></cite> </div>
+  <script type="text/javascript">
+			(function(){
+		        if(!Function.prototype.bind){
+		            Function.prototype.bind = function(obj){
+		                var owner = this,args = Array.prototype.slice.call(arguments),callobj = Array.prototype.shift.call(args);
+		                return function(e){e=e||top.window.event||window.event;owner.apply(callobj,args.concat([e]));};
+		            };
+		        }
+		    })();
+		    var banner_tabs = function(id){
+		        this.ctn = document.getElementById(id);
+		        this.adLis = null;
+		        this.btns = null;
+		        this.animStep = 0.1;//动画速度0.1～0.9
+		        this.switchSpeed =6;//自动播放间隔(s)
+		        this.defOpacity = 1;
+		        this.tmpOpacity = 1;
+		        this.crtIndex = 0;
+		        this.crtLi = null;
+		        this.adLength = 0;
+		        this.timerAnim = null;
+		        this.timerSwitch = null;
+		        this.init();
+		    };
+		    banner_tabs.prototype = {
+		        fnAnim:function(toIndex){
+		            if(this.timerAnim){window.clearTimeout(this.timerAnim);}
+		            if(this.tmpOpacity <= 0){
+		                this.crtLi.style.opacity = this.tmpOpacity = this.defOpacity;
+		                this.crtLi.style.filter = 'Alpha(Opacity=' + this.defOpacity*100 + ')';
+		                this.crtLi.style.zIndex = 0;
+		                this.crtIndex = toIndex;
+		                return;
+		            }
+		            this.crtLi.style.opacity = this.tmpOpacity = this.tmpOpacity - this.animStep;
+		            this.crtLi.style.filter = 'Alpha(Opacity=' + this.tmpOpacity*100 + ')';
+		            this.timerAnim = window.setTimeout(this.fnAnim.bind(this,toIndex),50);
+		        },
+		        fnNextIndex:function(){
+		            return (this.crtIndex >= this.adLength-1)?0:this.crtIndex+1;
+		        },
+		        fnSwitch:function(toIndex){
+		            if(this.crtIndex==toIndex){return;}
+		            this.crtLi = this.adLis[this.crtIndex];
+		            for(var i=0;i<this.adLength;i++){
+		                this.adLis[i].style.zIndex = 0;
+		            }
+		            this.crtLi.style.zIndex = 2;
+		            this.adLis[toIndex].style.zIndex = 1;
+		            for(var i=0;i<this.adLength;i++){
+		                this.btns[i].className = '';
+		            }
+		            this.btns[toIndex].className = 'cur'
+		            this.fnAnim(toIndex);
+		        },
+		        fnAutoPlay:function(){
+		            this.fnSwitch(this.fnNextIndex());
+		        },
+		        fnPlay:function(){
+		            this.timerSwitch = window.setInterval(this.fnAutoPlay.bind(this),this.switchSpeed*1000);
+		        },
+		        fnStopPlay:function(){
+		            window.clearTimeout(this.timerSwitch);
+		        },
+		        init:function(){
+		            this.adLis = this.ctn.getElementsByTagName('li');
+		            this.btns = this.ctn.getElementsByTagName('cite')[0].getElementsByTagName('span');
+		            this.adLength = this.adLis.length;
+		            for(var i=0,l=this.btns.length;i<l;i++){
+		                with({i:i}){
+		                    this.btns[i].index = i;
+		                    this.btns[i].onclick = this.fnSwitch.bind(this,i);
+		                    this.btns[i].onclick = this.fnSwitch.bind(this,i);
+		                }
+		            }
+		            this.adLis[this.crtIndex].style.zIndex = 2;
+		            this.fnPlay();
+		            this.ctn.onmouseover = this.fnStopPlay.bind(this);
+		            this.ctn.onmouseout = this.fnPlay.bind(this);
+		        }
+		    };
+		    var player1 = new banner_tabs('banner_tabs');
+		</script>
+  <div class="alt"></div>
+</div>
+<header class="yc_header">
+  <div class="yc_topBox"> </div>
+</header>
+<div class="yc_container">
+  <div class="yc_nav_top boxImg"><img src="images/img_nav_top.png" width="1000" height="6"></div>
+  <div class="yc_shadow">
+    <nav class="yc_nav">
+      <div class="yc_nav_menu">
+        <div class="yc_menu"><a class="yc_menu_link_first" href="#index.html" title="首页"></a></div>
+        <div class="yc_menu"><a class="yc_menu_link" href="about.html"></a>
+          <div class="yc_submenu yc_menu1" style="display: none;">
+            <div class="triangle"></div>
+            <div class="yc_sub_content">
+              <div class="yc_subleft fl">
+                <ul>
+                  <li><a href="#zjyc/ycgk/">东侨概况</a></li>
+                  <li><a href="#zjyc/jzyg/">建制沿革</a></li>
+                  <li><a href="#zjyc/xzqh">行政区划</a></li>
+                  <li><a href="#zjyc/dlhj">地理环境</a></li>
+                  <li><a href="#zjyc/zrzy">自然资源</a></li>
+                  <li><a href="#zjyc/rwls">人文历史</a></li>
+                  <li><a href="#zjyc/mfms">民风民俗</a></li>
+                  <li><a href="#zjyc/mytc">名优特产</a></li>
+                  <li><a href="#zjyc/jjfz">经济发展</a></li>
+                  <li><a href="#zjyc/yxyc">影像东侨</a></li>
+                </ul>
+              </div>
+              <div class="yc_subright fl"><a href="##"><img src="images/img_sub1.jpg" alt="" width="187" height="149"></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="yc_menu"><a class="yc_menu_link" href="info.html"></a>
+          <div class="yc_submenu yc_menu2">
+            <div class="triangle"></div>
+            <div class="yc_sub_content">
+              <div class="yc_sublist">
+                <ul>
+                  <li><a href="#zfxxgk.aspx">政府信息公开专栏</a></li>
+                  <li><a href="#xxgk/gzdt/">工作动态</a></li>
+                  <li><a href="#xxgk/tzgg/">通知公告</a></li>
+                  <li><a href="#ldzy.aspx">领导专页</a></li>
+                  <li><a href="#xxgk/jgsz/">机构设置</a></li>
+                  <li><a href="#xxgk/zcjd/">政策解读</a></li>
+                  <li><a href="#xxgk/ghjh/">规划计划</a></li>
+                  <li><a href="#xxgk/czzj/">财政资金</a></li>
+                  <li><a href="#xxgk/hjbh/">环境保护</a></li>
+                  <li><a href="#xxgk/aqsc/">安全生产</a></li>
+                  <li><a href="#xxgk/zdcq/">征地拆迁</a></li>
+                  <li><a href="#xxgk/ggzy/">公共资源</a></li>
+                  <li><a href="#xxgk/zdxm/">重点项目</a></li>
+                  <li><a href="#xxgk/yjgl/">应急管理</a></li>
+                  <li><a href="#xxgk/zfwj/">政府文件</a></li>
+                  <li><a href="#xxgk/zfhy/">政府会议</a></li>
+                  <li><a href="#xxgk/cxjs/">城乡建设</a></li>
+                  <li><a href="#xxgk/rsxx/">人事信息</a></li>
+                  <li><a href="#xxgk/tjxx/">统计信息</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="yc_menu"><a class="yc_menu_link" href="#wsbs/index.html"></a>
+          <div class="yc_submenu yc_menu3">
+            <div class="triangle"></div>
+            <div class="yc_sub_content">
+              <div class="yc_subleft fl">
+                <ul>
+                  <li><a href="#wsbslist.aspx?pid=814844&cid=835787">办事指南</a></li>
+                  <li><a href="#bsznlist.aspx?pid=741427&cid=451587">行政职权</a></li>
+                  <li><a href="#ggfwlist.aspx?pid=378623">公共服务中心</a></li>
+                  <li><a href="#bmfw/syxx/">便民服务</a></li>
+                  <li><a href="#cjsfw">场景服务</a></li>
+                  <li><a href="#lstd/lr/">绿色通道</a></li>
+                  <li><a href="#bgxz.aspx">表格下载</a></li>
+                  <li><a target="_blank" href="http://xzfw.fjyc.gov.cn/apas/portal/main/zxzx.jsp">在线查询</a></li>
+                  <li><a target="_blank" href="http://xzfw.fjyc.gov.cn/apas/www2/main/index.jsp">东侨行政服务中心</a></li>
+                </ul>
+              </div>
+              <div class="yc_subright fl"><a href="#"><img src="images/img_sub2.jpg" alt="" width="187" height="149"></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="yc_menu"><a class="yc_menu_link" href="#"></a>
+          <div class="yc_submenu yc_menu4" style="display:none;">
+            <div class="triangle"></div>
+            <div class="yc_sub_content">
+              <div class="yc_subleft4 fl">
+                <ul>
+                  <li><a href="#">走进社区</a></li>
+                  <li><a href="#">东侨书画</a></li>
+                  <li><a href="#">游在东侨</a></li>
+                  <li><a href="#">住在东侨</a></li>
+                  <li><a href="#">东侨美食</a></li>
+                </ul>
+              </div>
+              <div class="yc_subright fl"><a href="#"><img src="images/img_sub3.jpg" alt="" width="187" height="149"></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="yc_menu"> <a class="yc_menu_link" href="#"></a>
+          <div class="yc_submenu yc_menu5" style="display: none;">
+            <div class="triangle"></div>
+            <div class="yc_sub_content">
+              <div class="yc_subleft4 fl">
+                <ul>
+                  <li><a href="#">招商动态</a></li>
+                  <li><a href="#">优惠政策</a></li>
+                  <li><a href="#">投资环境</a></li>
+                  <li><a href="#">审批公告</a></li>
+                  <li><a href="#">项目推荐</a></li>
+                </ul>
+              </div>
+              <div class="yc_subright fl"><a href="#"><img src="images/img_sub3.jpg" alt="" width="187" height="149"></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--yc_nav_menu-->
+      <form name="f1" action="http://www.baidu.com/baidu">
+        <div class="yc_search">
+          <input type="text" name="word" class="yc_s_input fl" value="请输入关键字" onfocus="if(this.value==&#39;请输入关键字&#39;)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=&#39;请输入关键字&#39;">
+          <input class="yc_btn_Asearch fl" type="image" value="搜索">
+          <input name="tn" type="hidden" value="bds">
+          <input name="cl" type="hidden" value="3">
+          <input name="ct" type="hidden" value="2097152">
+          <input name="si" type="hidden" value="www.nddq.gov.cn/">
+        </div>
+        <!--search-->
+      </form>
+    </nav>
+			  
+ <div class="yc_location">当前位置：<a href="/">首页</a> &gt; <a href="/ycxzz">东侨县主站</a> &gt; <a href="/xxgk">信息公开</a> &gt; <a href="/xxgk/jgsz">机构设置</a> &gt; 东侨县人民政府部门管理机构</div>
+		<div class="yc_content_inner">
+        <section class="showCon">
+		<h1 id="ar_title">东侨县行政执法局</h1>
+          <h3 id="ar_subTitle"></h3>
+          <h3 id="ar_time_from_count">时间：2012-06-13&nbsp;&nbsp;来源：东侨县人民政府机构编制办公室 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 阅读：237 次</h3>
+			 <article id="zoom">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			 </article>
+
+			<script>
+			 function doZoom(size){
+			  document.getElementById('zoom').style.fontSize=size+'px'
+			  }
+			</script>
+			 <div class="aboutLink">
+			  <h4>相关链接</h4>
+			  <div class="aboutList">
+			   <ul>
+				     <li><span>2012-06-13</span><a target="_blank" title="东侨县行政执法局" href="showxxgk.aspx?ctlgid=585587&amp;Id=112629">东侨县行政执法局</a></li>
+<li><span>2012-06-13</span><a target="_blank" title="东侨县科学技术局" href="showxxgk.aspx?ctlgid=585587&amp;Id=112628">东侨县科学技术局</a></li>
+
+			   </ul>
+			  </div>
+			  <div class="boxImg"><img src="images/img_radius_bot1.gif" width="900" height="4"></div>
+			 </div>
+        </section>
+		</div><!--yc_content_inner-->
+
+         
+	  </div><!--shadow-->
+	  <div class="yc_shadow_bot boxImg"><img src="images/img_shadow_bot.png" width="1014" height="6"></div>
+	</div>
+<!--container-->
+
+<footer class="yc_footer">
+  <div class="yc_flinks"> <a href="#">关于本站</a> | <a href="#">使用帮助</a> | <a href="#">联系我们</a> | <a href="#">网站声明</a> | <a href="#">设为首页</a> | <a href="#">收藏本站</a></div>
+  <div class="yc_copyright"> 版权所有&copy;<a href="http://www.nddq.gov.cn/">东侨经济开发区</a> Copyright&copy;2008-2014 <a href="http://www.nddq.gov.cn/">www.fjdq.gov.cn</a> All Rights Reserved<br>
+    主办：东侨经济开发区  技术支持：<a href="http://www.ndwww.cn/" target="_blank">宁德市新媒体网络传媒有限公司</a><br>
+    您是本站第<span>111111111</span>位访客  闽ICP备05019134号 </div>
+</footer>
+<script src="js/jquery.flash.js"></script> 
+<script>
+$(document).ready(function(){
+  $(".yc_menu").on("mouseenter",function(){
+    $(this).find(".yc_submenu").slideDown(300);
+  });
+  $(".yc_menu").on("mouseleave",function(){
+    $(this).find(".yc_submenu").slideUp(200);
+  });
+  
+  /*启用动画背景请删除此注释并修改相关文件名*
+   $('#bgFlash').flash(
+        { 
+		  src: '/swf/bg.swf',
+          width: '100%',
+          height: 400,
+		  flashvars: { foo: 'bar', baz: 'zoo' },
+		  wmode: 'transparent'
+		},
+	     { version: 9}    
+	 );
+  */
+});
+</script> 
+
+<!--[if IE 6]>
+	 <script src="/js/DD_belatedPNG.js"></script>
+	 <script>DD_belatedPNG.fix('.yc_logo img,.yc_shadow,.yc_shadow_bot img,.sub_content,.img_mark,.yc_gzcy_left_menu li span img');</script>
+	 <script>
+	  document.execCommand("BackgroundImageCache", false, true);
+	 </script>
+<![endif]-->
+
+</body>
+</html>

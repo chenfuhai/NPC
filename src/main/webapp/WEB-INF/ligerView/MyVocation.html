@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="utf-8">
+<head>
+	<meta charset="gb2312">
+	<title></title>
+	<link href="lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css"> 
+    <link href="lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css"> 
+	<link href="css/style-item.css" rel="stylesheet" media="all" />
+    <script src="lib/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>    
+    <script src="lib/ligerUI/js/ligerui.min.js" type="text/javascript"></script> 
+    <script src="lib/ligerUI/js/plugins/ligerForm.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+	<script src="lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerRadio.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerSpinner.js" type="text/javascript"></script>
+    <script src="lib/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script> 
+	<script src="lib/ligerUI/js/plugins/ligerToolBar.js" type="text/javascript"></script> 
+    <script src="lib/ligerUI/js/plugins/ligerTip.js" type="text/javascript"></script>
+    <script src="lib/jquery-validation/jquery.validate.min.js" type="text/javascript"></script> 
+    <script src="lib/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
+    <script src="lib/jquery-validation/messages_cn.js" type="text/javascript"></script>
+	
+	<script type="text/javascript"> 
+		  
+		  $(function(){
+			var griddata = [ 
+			{ Employee_id: '员工', Vocation: '3',Vocation_done: '2',Vocation_undone:'1', Vocation_remain: '100'},
+			]; 
+			$("form-info").ligerForm();
+              $("#MyVocation").ligerGrid({
+                 width:'100%', 
+				height:'100%',
+				rowHeight:30,
+				headerRowHeight:30,
+				rownumbers: true,
+			columns: [ 
+				{ name: 'Employee_id', display: '姓名', width: 80 }, 
+				{ name: 'Vocation', display: '年假', width: 80 } ,
+				{ name: 'Vocation_done', display: '已休年假', width: 80 }, 
+				{ name: 'Vocation_undone', display: '未休年假', width: 80 },
+				{ name: 'Vocation_remain', display: '剩余调休小时', width: 80 }
+				
+				
+			], 
+			data: { Rows: griddata },
+			toolbar:{ items:[
+				{ text: '<div><input type="button" value="刷新" style="background:#71C671;line-height:20px;width:50px;border-radius:50px;border:1px solid;color:#fff;font-size:8px;"></input></div>'}		
+			]}
+              });
+          });
+</script> 
+
+</head>
+<body>
+	<style type="text/css">
+		html{
+			background-color:#E0EEEE;
+		}
+		#Mail{
+			margin:0 auto;
+		}
+		.block{
+			height:20px;
+		}
+		.line{
+			height:40px;
+		}
+	</style>
+	
+	<div class="item-main">
+		<div class="container" align="center">
+			<div class="block"></div>
+			<div id="MyVocation"></div> 
+		</div>
+	</div>
+	
+</body>
+</html>

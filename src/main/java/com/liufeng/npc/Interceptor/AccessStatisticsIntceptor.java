@@ -1,7 +1,10 @@
 package com.liufeng.npc.Interceptor;
 
 import com.liufeng.npc.bean.AdminUser;
+import com.liufeng.npc.bean.EditorMsg;
+import com.liufeng.npc.bean.Msg;
 import com.liufeng.npc.utils.Log;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,6 +50,9 @@ public class AccessStatisticsIntceptor implements HandlerInterceptor {
                 if (url.startsWith("/login")||url.startsWith("/admin")||url.startsWith("/invalidAccess")||url.startsWith("/error")){
                     return  true;
                 }else{
+//                    httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
+                   // httpServletResponse.getWriter().print(EditorMsg.getError("非法访问，可能登陆已过期"));
 //                    httpServletResponse.sendRedirect(invalidAccessUrl);
 //                    return false;
                     return true;

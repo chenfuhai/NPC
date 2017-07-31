@@ -1,12 +1,12 @@
 package com.liufeng.npc.controller;
 
-import com.liufeng.npc.bean.Msg;
+import com.liufeng.npc.bean.EditorMsg;
 import com.liufeng.npc.utils.Log;
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +26,8 @@ public class FileController {
     //文件上传
     @RequestMapping("/uploadFile")
     @ResponseBody
-    public Msg uploadFile(@RequestParam(value = "file", required = false) MultipartFile file,
-                          HttpServletRequest request) {
+    public EditorMsg uploadFile(@RequestParam(value = "file", required = false) MultipartFile file,
+                                HttpServletRequest request) {
         Log.logI("文件开始保存");
         //服务器项目所在的实际地址
         String path = request.getServletContext().getRealPath("/");
@@ -53,13 +53,13 @@ public class FileController {
             System.out.println(path + saveFolder + fileName);
             String fileUrl = request.getContextPath() + saveFolder + fileName;
             System.out.println(fileUrl);
-            return Msg.success().add("url", fileUrl);
+            return EditorMsg.getSuccessWithUrl(fileUrl);
         } catch (IOException e) {
             e.printStackTrace();
-            return Msg.error();
+            return EditorMsg.getError("服务器IO错误");
         } catch (Exception e) {
             e.printStackTrace();
-            return Msg.error();
+            return EditorMsg.getError("服务器错误");
         }
 
     }
@@ -151,6 +151,8 @@ public class FileController {
         } else {
             Collections.sort(fileList, new NameComparator());
         }
+
+
         JSONObject result = new JSONObject();
         result.put("moveup_dir_path", moveupDirPath);
         result.put("current_dir_path", currentDirPath);
@@ -158,12 +160,26 @@ public class FileController {
         result.put("total_count", fileList.size());
         result.put("file_list", fileList);
 
-        System.out.println(result.toJSONString() + result.toString());
+        System.out.println(result.toString() + result.toString());
         response.setContentType("application/json; charset=UTF-8");
-        response.getWriter().print(result.toJSONString());
+        response.getWriter().print(result.toString());
     }
 
+
+    @ResponseBody
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public EditorMsg handleException(MaxUploadSizeExceededException ex){
+            long max = ex.getMaxUploadSize();
+            long kb = 1024;
+            long mb = 1024*1024;
+
+            return EditorMsg.getError("上传的文件大小应不大于"+max/kb+"KB"+"("+max/mb+"MB"+")");
+    }
+
+
 }
+
 
 class NameComparator implements Comparator {
     public int compare(Object a, Object b) {

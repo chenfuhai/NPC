@@ -60,7 +60,18 @@
 	<!--上传文件的支持-->
 
 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="maxUploadSizePerFile" value="10485760"/>
+		<property name="maxUploadSize" value="209715200"/>
+		<!--resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常-->
+		<property name="resolveLazily" value="true"/>
+
+	</bean>
+
+
+
+
 	<!-- 开启基于注解的事物吗，使用xml形式的事物（主要使用的事配置试） -->
 	<aop:config>
 		<!-- 切入点表达式  -->

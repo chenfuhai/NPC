@@ -1,0 +1,698 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>江西师范大学软件学院Web程序设计</title>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link href="css/middle.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="js/jqueryPlugIn/jquery.blockUI.js"></script>
+<script type="text/javascript" src="js/frontNav.js"></script>
+<script src="js/tab.js" type="text/javascript"></script>
+<script src="js/js.js"></script>
+<script>
+window.onload = function(){
+	var oSearch = document.getElementById("main1_left");
+	var aDiv = oSearch.getElementsByTagName("*");
+	var aSslct = getClass(aDiv,"sslct");
+	var aTxt_sslct = getClass(aDiv,"txt_sslct");
+	var aList_sslct = getClass(aDiv,"list_sslct");
+	var target = new Array();
+	for(i=0;i<aList_sslct.length;i++){
+		aList_sslct[i].style.height = "auto";
+		target[i] = aList_sslct[i].offsetHeight;
+		aList_sslct[i].style.height = "0px";
+	}
+	for(i=0;i<aSslct.length;i++){
+		aSslct[i].index = i;
+		aSslct[i].onclick = function(){
+			var cur = this.index;
+			for(i=0;i<aSslct.length;i++){
+				move(aList_sslct[i],{height:0});
+			}
+			move(aList_sslct[cur],{height:target[cur]});
+			var aLi = aList_sslct[cur].getElementsByTagName("li");
+			for(i=0;i<aLi.length;i++){
+				aLi[i].onclick = function(){
+					aTxt_sslct[cur].innerHTML = this.getElementsByTagName("a")[0].innerHTML;
+				}
+			}
+			document.onclick = function(){
+				for(i=0;i<aSslct.length;i++){
+					if(aList_sslct[i].style.height != "0px"){
+						move(aList_sslct[i],{height:0});
+					}
+				}
+			}
+		}
+	}
+}
+</script>
+<script>
+$(document).ready(function(){
+        $.post("/webs/webnav_checkNewAddTime.action",null,function(data){
+                             var jsonobj=eval('('+data+')'); 
+                             if(jsonobj.cataid57==1){
+                                    $("#icon57").append("<b></b>");
+                             }
+                             if(jsonobj.cataid56==1){
+                                     $("#icon56").append("<b></b>");
+                             }
+                             if(jsonobj.cataid58==1){
+                                      $("#icon58").append("<b></b>");
+                             }     
+         });
+		$(".search .tit a").hover(function(){
+			var searchIndex = $(".search .tit li").index($(this).parent());
+			$(this).addClass("cur").parent().siblings().children("a").removeClass("cur");
+			$(".search .con .sCon").eq(searchIndex).show().siblings(".sCon").hide();
+		})
+		
+		$(".bulletin .tit ul li").hover(function(){
+			var bulletinIndex = $(".bulletin .tit ul li").index($(this));
+			$(this).addClass("cur").siblings().removeClass("cur");
+			$(".bulletin .con ul").eq(bulletinIndex).show().siblings().hide();
+		})
+		$(".popwin .tit a").click(function(){
+			var popwinIndex = $(".popwin .tit li").index($(this).parent());
+			$(this).addClass("cur").parent().siblings().children("a").removeClass("cur");
+			$(".popwin .popCnt .sCon").eq(popwinIndex).show().siblings(".sCon").hide();
+		})
+	
+	  $("#edit").click(function(){
+		  $(".Fast_channel").addClass("fastCur");
+		  })
+	  $("#back").click(function(){
+		  $(".Fast_channel").removeClass("fastCur");
+editJsonStr();		  
+		  })
+	  $(".Fast_channel .nav_area li").hover(function(){
+		  $(this).addClass("borderCur");
+		  },function(){
+		$(this).removeClass("borderCur");
+		})	
+	  $(".Fast_channel .nav_area li .nav-close").click(function(){
+		 $(this).parent().hide();
+		  $(this).parent().empty();
+		  editJsonStr();
+		  })	
+	   
+	   $(".Fast_channel .nav_area li .nav-rename").click(function(){
+		  $(this).siblings(".box").show();
+		  })
+		  	
+	   $(".Fast_channel .nav_area li .box p .close").click(function(){
+		  $(this).parents(".box").hide();
+		  })	
+	  
+$.post("/webs/user_checkLoginopac.action",
+		
+function(data){
+				if(data!="0"){			
+					$("#a1").hide();
+				        $("#a2").show();
+                                        //$("#a3").hide();
+				        //$("#a4").hide();
+                                        $("#a5").show();
+                                        $("#a6").show();
+				}
+				else
+				{
+					$("#a1").show();
+					$("#a2").hide();
+                                        //$("#a3").show();
+					//$("#a4").show();
+                                        $("#a5").hide();
+                                        $("#a6").hide();
+				}
+			}
+		);
+
+$("#seleNod").one("click",function(){
+		getSelecTag();
+	})
+
+	})
+
+function editJsonStr() {
+		var jsonStr = "[";
+		  jQuery("#list .nav-name").each(function(i) {
+             	var hrefVal = $.trim($(this).attr("href"));
+             	var txtVal = $.trim($(this).text());
+             	jsonStr = jsonStr + "{\"name\":\"" + txtVal +"\",\"link\":\"" + hrefVal + "\",\"order\":\"" +(i+1)+ "\"},";
+          });
+		  jsonStr = jsonStr.substr(0,jsonStr.length-1)+"]";
+		  if(jsonStr == "]") {
+		  	 jsonStr="";
+		  }
+		  $.post("/webs/nav_changeMyLinkOrder.action",{"jsonString":jsonStr},function(data){
+				 
+			}
+		  );
+	}
+
+function changeNL(aid,nid,lid) {
+		var nval = $("#"+nid).val();
+		var lval = $("#"+lid).val();
+		$("#"+aid).attr("href",lval);
+		$("#"+aid).html("<b class='icons'></b><em>"+$.trim(nval)+"</em>");
+		$(".Fast_channel .nav_area li .box p .close").parents(".box").hide();
+		editJsonStr();
+	}
+</script>
+<!--弹出框-->
+<script type="text/javascript">
+function alertinfo(id){//显示弹出层
+        $('#navName').val("");
+	$('#navUrl').val("");
+	$('#flag').val("add");
+	clearcata(0);
+	$('#cata_0').val(-1);
+
+var obj = document.getElementById(id);
+var W = screen.width;//取得屏幕分辨率宽度
+var H = screen.height;//取得屏幕分辨率高度
+var yScroll;//取滚动条高度
+if (self.pageYOffset) {
+yScroll = self.pageYOffset;
+} else if (document.documentElement && document.documentElement.scrollTop){
+yScroll = document.documentElement.scrollTop;
+} else if (document.body) {
+yScroll = document.body.scrollTop;
+}
+
+//obj.style.marginLeft= (W/2 - 200) + "px";
+//obj.style.top= (H/2 -90 - 225　+　yScroll) + "px";
+document.getElementById("popWin_bg").style.display="block";
+obj.style.display="block";
+
+var scrollstyle = scrolls();
+scrollstyle.style.overflowX = "hidden";
+scrollstyle.style.overflowY = "hidden";
+}
+function closediv(id){//关闭弹出层
+document.getElementById(id).style.display="none";
+document.getElementById("popWin_bg").style.display="none";
+
+var scrollstyle = scrolls();
+scrollstyle.style.overflowY = "auto";
+scrollstyle.style.overflowX = "hidden";
+}
+function scrolls(){//取浏览器类型
+var temp_h1 = document.body.clientHeight;
+var temp_h2 = document.documentElement.clientHeight;
+var isXhtml = (temp_h2<=temp_h1&&temp_h2!=0)?true:false;
+var htmlbody = isXhtml?document.documentElement:document.body;
+return htmlbody;
+}
+</script>
+<!--拖拽-->
+<script type="text/javascript" src="js/jquery-ui.js"></script> 
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+
+            //保存常用选择器
+            var list = jQuery("#list"); //ul
+            var show = jQuery("#show"); //输出提示
+            var orderlist = jQuery("#orderlist");   //原顺序
+            var check = jQuery("#check");   //是否更新到数据库
+
+            //保存原来的排列顺序
+            var order = [];
+            list.children("li").each(function() {
+                order.push(this.title); //原排列顺序保存在title，得到后更改title
+                jQuery(this).attr("title", "你可以拖动进行排序");
+            });
+            orderlist.val(order.join(','));
+
+            //ajax更新
+            var Update = function(itemid, itemorder) {
+                jQuery.ajax({
+                    type: "post",
+                    url: "update.aspx",
+                    data: { id: itemid, order: orderlist.val() },   //id:新的排列对应的ID,order：原排列顺序
+                    beforeSend: function() {
+                        show.html("正在更新");
+                    },
+                    success: function(req) {
+                        if (req == "100") {
+                            show.html("更新成功");
+                        }
+                        else if (req == "001") {
+                            show.html("失败，请稍后再试");
+                        }
+                        else {
+                            show.html("参数不全");
+                        }
+                    }
+                });
+            };
+
+            //调用ajax更新方法
+            var Submit = function(update) {
+                var order = [];
+                list.children("li").each(function() {
+                    order.push(this.id);
+                });
+                var itemid = order.join(',');
+                //如果单选框选中，则更新表中排列顺序
+                if (update) {
+                    Update(itemid);
+                }
+                else {
+                    show.html("");
+                }
+            };
+
+
+            //执行排列操作
+            list.sortable({
+                opacity: 0.7,
+                update: function() {
+                    Submit(check.attr("checked"));
+                }
+            });
+
+        });
+</script>
+<!--2013-12-11add-->
+<script type="text/javascript">
+function g(){
+    	if(document.documentElement&&document.documentElement.scrollTop){
+		    a=document.documentElement.scrollTop
+		}
+		else if(document.body){
+		      a=document.body.scrollTop
+		}
+		document.getElementById("div1").style.top=305+a+"px"
+}
+setInterval("g()",1)
+</script>
+<!--2013-12-11end-->
+</head>
+
+<body>
+
+
+<div class="top">
+      <div align="right">
+		<a href="javascript:showDiv();" id="a1">登录 |</a>
+        <a href="#">联系我们 |</a> 
+        <a href="#">设为首页 |</a> 
+        <a href="#">加入收藏</a>
+             
+      </div>
+</div>
+
+
+<!-- 登录弹出层 -->
+<div id="loginDiv" style="display:none; text-align:left; margin-left:20px; cursor: default;width: 400px; height: 180px;">
+					<br/><br/>
+				         <span style="margin-left:65px;">账号：</span><input type="text" id="username" style="margin-left:15px;width: 150px;font:16px/1.5 宋体,Arial,Helvetica,sans-serif;"/>
+				    <br/><br/>
+				         <span style="margin-left:65px;"> 密码：</span><input type="password" id="password" style="margin-left:15px;width: 150px;font:16px/1.5 宋体,Arial,Helvetica,sans-serif;"/>
+				    <br/><br/>
+				<input type="button" value="确&nbsp;&nbsp;认" id="loginBt" onclick="loginSub();" style="margin-left:130px;"/>
+        		        <input type="button" value="取&nbsp;&nbsp;消" onclick="can();"/>
+</div>
+
+
+<script>
+function loginSub(){
+        $("#loginBt").attr("disabled", true);
+	var userName = $.trim($("#username").val());
+	var passWord = $.trim($("#password").val());
+	
+	$.post("/webs/user_logonopac.action",{userName:userName,passWord:passWord},function(data){
+		if(data == "1"){
+			can();
+			alert("登录成功！");
+			window.location.reload();
+		}else{
+			alert("账号或密码错误！");
+ $("#loginBt").attr("disabled", false);
+		}
+	});
+}
+
+function quitLib(){
+	$.post("/webs/user_quitLibopac.action",
+			function(data){
+window.location.href=window.location.href;
+                  //    $("#loginUser").val("");
+		  //  window.location.reload();      
+			}
+		);	
+}
+
+function showDiv(){
+	$.blockUI( {
+		message : $('#loginDiv'),
+		css : {
+			width : '430'
+		}
+	});
+}
+function can() {
+	$.unblockUI();
+}
+</script> 
+<div class="banner wrap">
+
+
+ <div class="logo"><img src="images/logo.png" width="500" height="70" /></div> 
+</div>
+<div class="search">
+
+
+<div class="wrap">
+       <div class="tit">
+           <ul>
+              <li><a href="http://ss.zhizhen.com" target="_blank" class="cur">教学案例</a></li>
+              <li><a href="http://ss.zhizhen.com" target="_blank">教学课件</a></li>
+              <li><a href="http://ss.zhizhen.com" target="_blank">上机实验</a></li>
+              <li><a href="http://ss.zhizhen.com" target="_blank">教学视频</a></li>
+              <li><a href="http://ss.zhizhen.com" target="_blank">作品展示</a></li>
+ <li><a href="http://ss.zhizhen.com" target="_blank"  style="background-position: -279px -94px;width: 88px;">学习资源</a></li>
+              
+           </ul>
+
+       </div>
+
+
+       <div class="con">
+	   <!-- ================================教学案例======================================== -->
+
+          <div class="sCon" style="display:block;">
+             <div class="quick">
+			 <form name="searchform" method="post" action="http://ss.zhizhen.com/" target="_blank">
+                 <input type="text" class="txt" name="searchdata1" id="p"/>
+                  <input type="submit" value="检索" class="icons btn" />
+			 </form>
+                  <div class="clear"></div>
+             </div>
+              
+         </div>
+		  <!-- ================================教学课件======================================== -->
+          <div class="sCon">
+             <div class="quick clearfix">
+			 <form action="http://ss.zhizhen.com/s.do" target="_blank">
+                 <input type="text" class="txt" name="sw"/>
+				 <input name = "go" value = "q" type = "hidden">
+				 <input type="submit" value="检索" class="icons btn" />
+			 </form>
+             </div>
+          </div>
+		  <!-- ================================上机实验======================================== -->	  
+          <div class="sCon">
+             <div class="quick clearfix">
+			 <form action="http://ss.zhizhen.com/s.do" target="_blank">
+                 <input type="text" class="txt" name="sw"/>
+				 <input name = "go" value = "q" type = "hidden">
+				 <input type="submit" value="检索" class="icons btn" />
+			 </form>
+             </div>
+          </div>
+		  <!-- ================================教学视频======================================== -->
+          <div class="sCon">
+             <div class="quick clearfix">
+			 <form action="http://www.lib.ruc.edu.cn/webs/res_resWeb.action" method="post">
+                 <input type="text" class="txt" name="sw" id="txtsw"/><input type="submit" value="检索" class="icons btn" />
+			 </form>
+             </div>
+          </div>
+		  <!-- ================================作品展示======================================== -->
+          <div class="sCon">
+             <div class="quick clearfix">
+			 <form action="http://www.lib.ruc.edu.cn/webs/res_resWeb.action" method="post">
+                 <input type="text" class="txt" name="sw" id="txtsw"/><input type="submit" value="检索" class="icons btn" />
+			 </form>
+             </div>
+          </div>
+       </div>
+   </div> 
+</div>
+   <div class="middle-wrap">
+  <div class="ser1">
+    <ul class="snav" style="margin: 0 auto;">
+      <li class="snav_current" id="snav1" onMouseOver="javascript:doClick(this)">
+        <a href="webs/show/notice/65/50.html" class=" icons icon1" style="clear: both;display: block;"></a>
+        <a href="webs/show/notice/65/50.html" class="icon2" style="clear: both;display: block;">学习指南</a>
+      </li>
+      <li class="snav_link" id="snav2" onMouseOver="javascript:doClick(this)" >
+        <a href="#" class=" icons icon2" style="clear: both;display: block;"></a>
+        <a href="#" class="icon2" style="clear: both;display: block;">课程教学</a>
+      </li>
+      <li class="snav_link" id="snav3"onMouseOver="javascript:doClick(this)">
+        <a href="#" class=" icons icon3" style="clear: both;display: block;"></a>
+        <a href="#" class="icon2" style="clear: both;display: block;">课程概况</a>
+      </li>
+      <li class="snav_link" style="margin-right:0;" id="snav4" onMouseOver="javascript:doClick(this)">
+        <a href="#" class=" icons icon4" style="clear: both;display: block;"></a>
+        <a href="#" class="icon2" style="clear: both;display: block;">教学效果</a>
+      </li>
+    </ul>
+    <div class="clear"></div>
+    <div class="snav_down">
+      
+
+<div id="ssub1" class="dis" style="display:block">
+<ul>
+<li><span class="icons"></span><a href="webs/list/notice/53.html" target="_blank" title="课程状况">课程状况</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="考试考核">考试考核</a></li>
+<li><span class="icons"></span><a href="webs/list/notice/57.html" target="_blank" title="学习资源">学习资源</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="就业前景">就业前景</a></li>
+</ul>
+</div> 
+      
+
+<div id="ssub2" class="dis">
+<ul>
+<li><span class="icons"></span><a href="#" target="_blank" title="教学课件">教学课件</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="上机实验">上机实验</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="教学视频">教学视频</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="教学案例">教学案例</a></li>
+</ul>
+</div> 
+      
+
+<div id="ssub3" class="dis">
+<ul>
+<li><span class="icons"></span><a href="#" target="_blank" title="课程简介">课程简介</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="内容纲要">内容纲要</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="教师队伍">教师队伍</a></li>
+</ul>
+</div> 
+      
+
+<div id="ssub4" class="dis">
+<ul>
+<li><span class="icons"></span><a href="#" target="_blank" title="学生心得">学生心得</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="学校评价">学校评价</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="专家评价">专家评价</a></li>
+<li><span class="icons"></span><a href="#" target="_blank" title="领导评价">领导评价</a></li>
+</ul>
+</div> 
+    </div><!--snav_down-->
+  </div><!--ser1-->
+  
+  <div class="ser2">
+    <ul class="s2nav" style="margin: 0;">
+      <li class="s2nav_current" id="s2nav1" onMouseOver="javascript:doClick2(this)">
+        <a href="#" class=" icons icon1" style="clear: both;display: block;"></a>
+        <a href="#" class="icon2" style="clear: both;display: block;">新闻/公告</a>
+      </li>
+      <li class="s2nav_link" id="s2nav2" onMouseOver="javascript:doClick2(this)" >
+        <a href="#" class=" icons icon2" style="clear: both;display: block;"></a>
+        <a href="#" class="icon2" style="clear: both;display: block;">相关网站</a>
+      </li>
+      <li class="s2nav_link" id="s2nav3" onMouseOver="javascript:doClick2(this)">
+        <a href="#" class=" icons icon3" style="clear: both;display: block;"></a>
+        <a href="#" class="icon2" style="clear: both;display: block;">辅助平台</a>
+      </li>
+      <li class="s2nav_link" id="s2nav4" onMouseOver="javascript:doClick2(this)">
+        <a href="#" class=" icons icon4" style="clear: both;display: block;"></a>
+        <a href="#" class="icon2" style="clear: both;display: block;">本站简介</a>
+      </li>
+    </ul>
+    <div class="clear"></div>
+    <div class="s2nav_down">
+     
+
+<div id="s2sub1" class="dis" style="display:block;">
+<ul>     
+	<li><span class="icons"></span><a href="#" title="江西师大多功能厅2015年5月8-31日观影·活动">江西师大多功 [05-08]</a>
+<img src="images/new.gif"/>
+</li>
+	<li><span class="icons"></span><a href="#" title="第十届“贝恩杯” 咨询启航案例大赛">第十届“贝恩杯.. [05-07]</a>
+
+</li>
+	<li><span class="icons"></span><a href="#" title="免费获取CASHL30家高校图书馆外文书的通知">免费获取CASHL30.. [05-04]</a>
+
+</li>
+	<li><span class="icons"></span><a href="#" title="“江西师大讲座”开讲啦！">“江西师大讲座”开.. [04-02]</a>
+
+</li>
+	<li><span class="icons"></span><a href="#" title="江西师大通知">江西师大通知 [04-24]</a>
+
+</li>
+	<li><span class="icons"></span><a href="#" title="江西师大“春假”“五一”开馆时间通知">江西师大“春假”.. [04-23]</a>
+
+</li>
+	<li><span class="icons"></span><a href="#" title="图书馆多功能厅2015年4月16-30日观影·活动——用心微服务·爱在图书馆">图书馆多功能厅2.. [04-16]</a>
+
+</li>
+      </ul>
+</div> 
+      
+
+<div id="s2sub2" class="dis" >
+<ul>     
+	<li><span class="icons"></span><a href="#" title="信息媒体">信息媒体</a></li>
+	<li><span class="icons"></span><a href="#" title="网页设计">网页设计</a></li>
+	<li><span class="icons"></span><a href="#" title="数据库">数据库</a></li>
+	<li><span class="icons"></span><a href="#" title="软件工程">软件工程</a></li>
+	<li><span class="icons"></span><a href="#" title="web前端">web前端</a></li>
+	<li><span class="icons"></span><a href="#" title="UI设计">UI设计</a></li>
+	<li><span class="icons"></span><a href="#" title="PHP开发">PHP开发</a></li>
+      </ul>
+</div> 
+      
+
+<div id="s2sub3" class="dis">
+<ul>     
+	<li><span class="icons"></span><a href="#" title="网络课件">网络课件</a> <img src="images/new.gif"/></li>
+	<li><span class="icons"></span><a href="#" title="课程管理">课程管理</a> <img src="images/new.gif"/></li>
+	<li><span class="icons"></span><a href="#" title="作品展示">作品展示</a> <img src="images/new.gif"/></li>
+	<li><span class="icons"></span><a href="#" title="答疑留言">答疑留言</a> <img src="images/new.gif"/></li>
+	<li><span class="icons"></span><a href="#" title="学习日志">学习日志</a> <img src="images/new.gif"/></li>
+      </ul>
+</div> 
+      
+
+<div id="s2sub4" class="dis">
+<ul>
+<li style="width:131px;"><span class="icons"></span><a href="#" target="_blank" title="站长寄语">站长寄语</a></li>
+<li style="width:131px;"><span class="icons"></span><a href="#" target="_blank" title="Web程序设计">Web程序设计</a></li>
+</ul>
+</div> 
+    </div><!--s2nav_down-->
+  </div><!--ser1-->
+</div><!--wrap-->
+<div style="clear:both;"></div>
+<div class="popWin_bg" id="popWin_bg"></div>
+<div id="popWin" class="popwin">
+    <div class="tit">
+       <ul>
+          <li><a href="javascript:void(0);" id="seleNod">添加分类导航</a></li>
+          <li><a href="javascript:void(0);" class="cur">添加自定义链接</a></li>
+       </ul>
+    </div>
+    <div class="popCnt">
+       <div class="sCon">
+           <p><span  id="selRoot"></span></p>
+			    <input type="hidden" id="flag"/>
+				<input type="hidden" id="dlgcataid"/>
+				<input type="hidden" id="dlgcataname"/>
+           <p align="center" class="p"><input type="button" class="btn" value="确定" onclick="addNav(1)"/> <a class="popClose" href="javascript: closediv('popWin')" title="关闭">取消</a></p>
+       </div>
+       <div class="sCon" style="display:block;">
+           <p><label>导航名称</label> <input type="text" class="txt" id="navName" name = "navName"/></p>
+           <p><label>导航链接</label> <input type="text" class="txt" id="navUrl" name = "navUrl"/></p>
+           <p align="center"><input type="button" class="btn" value="确定" onclick="addNav(2)"/> <a class="popClose" href="javascript: closediv('popWin')" title="关闭">取消</a></p>
+       </div>
+    </div>
+</div>
+
+<div class="Fast_channel">
+ <!-- 未登录状态 start -->
+   <div class="tit" id="a3">
+      <p class="fr"></p>
+      <span>快捷通道</span>
+   </div>
+   <div class="nav_area" id="a4">
+       <ul>
+           <li title="江西师范大学" style="z-index:2;">
+             <a class="nav-name" href="http://www.jxnu.edu.cn/" target="_blank"><b class="icons"></b><em>江西师范大学</em></a>
+           </li>
+           <li title="专题讲座" style="z-index:2;">
+             <a class="nav-name" href="webs/show/notice/55/40.html" target="_blank"><b class="icons"></b><em>专题讲座</em></a>
+           </li>
+           <li title="江西师大图书馆" style="z-index:2;">
+            <a class="nav-name" href="http://219.229.249.138/" target="_blank"><b class="icons"></b><em>江西师大图书馆</em></a>
+           </li>
+           <li title="W3school" style="z-index:2;">
+             <a class="nav-name" href="http://www.w3school.com.cn/" target="_blank"><b class="icons"></b><em>W3school</em></a>
+           </li>
+           <li title="博客园" style="z-index:2;">
+             <a class="nav-name" href="http://www.cnblogs.com/" target="_blank"><b class="icons"></b><em>博客园</em></a>
+           </li>  
+           <li title="江西师大精品课程" style="z-index:2;">
+             <a class="nav-name" href="http://jwc.jxnu.edu.cn:8080/" target="_blank"><b class="icons"></b><em>江西师大精品课程</em></a>
+           </li>
+           <li title="江西师大软件学院" style="z-index:1;">
+             <a class="nav-name" href="http://www.jxnuss.net/gov/index.asp" target="_blank"><b class="icons"></b><em>江西师大软件学院</em></a>
+           </li>
+           <li title="意见与建议" style="z-index:1;">
+             <a class="nav-name" href="http://202.112.118.40/old/yijian/titlelist.php" target="_blank"><b class="icons"></b><em>意见与建议</em></a>
+           </li> 
+           <li title="jQuery-School" style="z-index:1;">
+             <a class="nav-name" href="http://www.jq-school.com/" target="_blank"><b class="icons"></b><em>jQuery-School</em></a>
+           </li>
+           <li title="W3Cfuns" style="z-index:1;">
+             <a class="nav-name" href="http://www.w3cfuns.com/portal.php" target="_blank"><b class="icons"></b><em>W3Cfuns</em></a>
+           </li>  
+           <li title="统一教学网" style="z-index:1;">
+             <a class="nav-name" href="http://www.51cto.com/" target="_blank"><b class="icons"></b><em>统一教学网</em></a>
+           </li>
+            <li title="国家精品课程资源库" style="z-index:1;">
+             <a class="nav-name" href="http://jpkc.seu.edu.cn/lib/seu/default.do" target="_blank"><b class="icons"></b><em>国家精品课程资源库</em></a>
+           </li> 
+        </ul>
+        <div class="clear"></div>    
+   </div>
+   <!-- 未登录状态 end -->
+   <!-- 登录状态 start -->
+   <div class="tit" id="a5" style="display:none;">
+      <p class="fr"><a href="javascript: alertinfo('popWin');" class="add"><b class="icons"></b> 添加</a> <a href="javascript:void(0);" class="edit" id="edit"><b class="icons"></b> 编辑</a> <a href="javascript:void(0);" class="back" id="back"><b class="icons"></b> 返回</a></p>
+      <span>我的导航</span>
+   </div>
+   <div class="nav_area" id="a6" style="display:none;">
+
+
+ <ul id="list">
+         
+        </ul>
+         
+    <div class="clear"></div>    
+   </div>
+   <!-- 登录状态 end -->
+</div>
+
+
+<div class="foot" align="center">
+   <p> 
+   <a href="#">江西师范大学(Jiangxi Normal University) ICP备案编号：赣洪备 2-4-3-2002018</a>
+   <a href="#" target="_blank">关于我们</a>
+   <a href="#" target="_blank">相关链接</a>
+   <a href="#" target="_blank">相关声明</a>
+</p>
+   <p>版权所有 &copy; 江西师范大学--12数媒工作室<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5127394'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5127394%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+
+</div> 
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?btn=r4.gif" charset="utf-8"></script>
+
+</body>
+
+
+<script type="text/javascript">
+    document.write("<img src='webs/pv_addview.action?fromUrl=" + escape(top.document.referrer)
++ "&toUrl=" + escape(top.document.URL) + "&cataid=' style='display:none'/>");
+</script>
+
+
+
+</html>

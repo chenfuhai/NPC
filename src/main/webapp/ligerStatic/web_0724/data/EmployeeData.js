@@ -1,0 +1,161 @@
+var EmployeeData = {
+    Rows: [
+        {
+            "__status":"在职",
+            "ID": 1,
+            "DepartmentID": 3,
+            "RealName": "张三",
+            "DepartmentName": "销售部",
+            "Sex":"男",
+            "Age": 33,
+            "IncomeDay": "2011-5-2",
+            "Phone": "159244332",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status":"在职",
+            "ID": 2,
+            "DepartmentID": 1,
+            "RealName": "李三",
+            "DepartmentName": "财务部",
+            "Sex": "男",
+            "Age": 23,
+            "IncomeDay": "2012-1-2",
+            "Phone": "2323232323",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status": "在职",
+            "ID": 3,
+            "DepartmentID": 3,
+            "RealName": "吴彬",
+            "DepartmentName": "销售部",
+            "Sex": "男",
+            "Age": 26,
+            "IncomeDay": "2011-5-2",
+            "Phone": "159244332",
+            "Address": "江西省赣州市"
+        },
+        {
+            "__status": "在职",
+            "ID": 5,
+            "DepartmentID": 2,
+            "RealName": "吴久",
+            "DepartmentName": "研发中心",
+            "Sex": "男",
+            "Age": 29,
+            "IncomeDay": "2012-5-2",
+            "Phone": "159244332",
+            "Address": "江西省宜春市"
+        },
+        {
+            "__status": "在职",
+            "ID": 6,
+            "DepartmentID": 3,
+            "RealName": "陈民",
+            "DepartmentName": "销售部",
+            "Sex": "男",
+            "Age": 21,
+            "IncomeDay": "2014-1-1",
+            "Phone": "2323232323",
+            "Address": "江西省抚州市"
+        },
+        {
+            "__status": "在职",
+            "ID": 7,
+            "DepartmentID": 3,
+            "RealName": "陈留",
+            "DepartmentName": "销售部",
+            "Sex": "男",
+            "Age": 32,
+            "IncomeDay": "2013-5-6",
+            "Phone": "232352554",
+            "Address": "江西省赣州市"
+        },
+        {
+            "__status": "在职",
+            "ID": 8,
+            "DepartmentID": 1,
+            "RealName": "谢甜",
+            "DepartmentName": "财务部",
+            "Sex": "女",
+            "Age": 23,
+            "IncomeDay": "2011-1-2",
+            "Phone": "232352554",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status":"在职",
+            "ID": 10,
+            "DepartmentID": 2,
+            "RealName": "陈元为",
+            "DepartmentName": "研发中心",
+            "Sex": "男",
+            "Age": 26,
+            "IncomeDay": "2011-6-2",
+            "Phone": "232352554",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status": "在职",
+            "ID": 11,
+            "DepartmentID": 1,
+            "RealName": "大为",
+            "DepartmentName": "主席",
+            "Sex": "男",
+            "Age": 19,
+            "IncomeDay": "2014-5-2",
+            "Phone": "232352554",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status": "在职",
+            "ID": 21,
+            "DepartmentID": 4,
+            "RealName": "小明",
+            "DepartmentName": "市场部",
+            "Sex": "男",
+            "Age": 20,
+            "IncomeDay": "2014-5-2",
+            "Phone": "232352554",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status": "在职",
+            "ID": 22,
+            "DepartmentID": 1,
+            "RealName": "小张",
+            "DepartmentName": "财务部",
+            "Sex": "男",
+            "Age": 20,
+            "IncomeDay": "2012-5-2",
+            "Phone": "232352554",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status": "在职",
+            "ID": 23,
+            "DepartmentID": 2,
+            "RealName": "小罗",
+            "DepartmentName": "研发中心",
+            "Sex": "男",
+            "Age": 20,
+            "IncomeDay": "2014-5-1",
+            "Phone": "232352554",
+            "Address": "江西省南昌市"
+        },
+        {
+            "__status": "在职",
+            "ID": 26,
+            "DepartmentID": 4,
+            "RealName": "小郭",
+            "DepartmentName": "市场部",
+            "Sex": "男",
+            "Age": 35,
+            "IncomeDay": "2014-5-2",
+            "Phone": "232352554",
+            "Address": "江西省抚州市"
+        }
+    ],
+    Total: 13
+};// JavaScript Document

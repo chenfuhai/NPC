@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>人事待办</title>
+	<meta http-equiv="content-type" content="txt/html; charset=utf-8" />
+	<link href="../../../lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
+	<link href="../../../lib/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css">
+	<link href="../../../lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet">
+	<script src="../../../lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/core/base.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/ligerui.all.js"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerResizable.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
+	<script src="../../../lib/ligerUI/js/plugins/ligerFilter.js"></script>
+    <script src="../../../data/EmployeeData.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="all">
+	<div class="top"></div>
+    <div class="center">
+    	
+    </div>
+    <div class="bottom"></div>
+</div>
+	<div class="top">
+    
+    </div>
+    <div class="center">
+    	<div>
+		<table width="600" border="0">
+  <tr>
+    <th scope="col"><nobr>性别:<nobr><input type="text" size="10"></th>
+    <th scope="col"><nobr>部门:<nobr><input type="text" size="10"></th>
+    <th scope="col">
+    <nobr>性别：<nobr>
+    <select>
+  	<option value ="male">男</option>
+  	<option value ="femal">女</option>
+	</select>
+    </th>
+    <th scope="col"><nobr>年龄从:<nobr><input type="text" size="10"></th>
+    <th scope="col"><nobr>至:<nobr><input type="text" size="10"></th>
+    <th scope="col"><nobr>出生日期<nobr><input type="text" size="10"></th>
+     <th scope="col"><nobr>至：<nobr><input type="text" size="10"></th>
+  </tr>
+</table>
+<div>
+	<div style="margin:5px 5px 5px 5px;">
+    	<table>
+   			<tr>
+				<td>
+                	<a class="l-button" style="width:50px;float:left; margin-left:6px;  margin-top: 5px; color:green;font-size:15px" onClick="refresh()">刷新
+                    </a>
+                </td>
+				<td>  
+                	<a class="l-button" style="width:100px;float:left; margin-left:6px; margin-top: 5px; font-size:15px" onClick="help()">本月生产员工</a>
+                </td>
+				<td>
+                	<a class="l-button" style="width:100px;float:left; margin-left:6px; margin-top: 5px; font-size:15px" onClick="addNewRow()">下月生产员工
+                    </a>
+				</td>
+				<td>  
+                	<a class="l-button" style="width:100px;float:left; margin-left:6px; margin-top: 5px; font-size:15px" onClick="endEdit()">短信内容设置
+                    </a>
+</td>
+				<td>
+                	<a class="l-button" style="width:80px;float:left; margin-left:6px; margin-top: 5px; color: red; font-size:15px" onClick="deleteRow()">发送设置
+                    </a>
+                <td>
+                <td>
+                	<label style="color: gray">双击可修改记录,按住Ctrl或Shift键可以一次选择多条记录</label>
+                </td>
+</td>
+
+
+ 
+ </tr>
+
+ 
+ </table>
+  
+    </div>
+	<div id="domain" style="height:80%"></div>
+    </div>
+     
+    <div class="bottom"></div>  
+</div>
+</body>
+</html>
+<script type="text/javascript">
+		function itemclick(item)//弹出提示
+        {
+            alert(item.text);
+        }
+       $(function ()
+        {
+			$("#domain").ligerGrid({
+                  columns: [
+                  { display: '姓名', name: 'RealName',  width: 100,align: 'center' },
+                  { display: '部门', name: 'DepartmentName', width: 100, align: 'center' },   
+				  { display: '性别', name: 'Sex', width: 100,align: 'center' },
+				  { display: '年龄', name: 'Age',width: 100, align: 'center', },
+				  { display: '状态', name: '__status',width:100 , align: 'center', },
+				  { display: '手机', name: 'Phone',width:100, align: 'center', }			 
+                  ],  		
+				  data: EmployeeData,
+				  pageSize: 20,
+				  sortName: 'CustomerID',                 
+				  width: '98%', 
+				  height: '60%', 
+				  checkbox: true,
+				  rownumbers:true,
+				  fixedCellHeight:false	,				
+			
+				 
+             });      
+			$("#pageloading").hide();
+			 
+            $("#sexChoose").ligerComboBox({
+                width : 100,
+                data: [
+                    { text: '男', id: 'male' },
+                    { text: '女', id: 'female' },
+                       ],
+			    valueFieldID: 'test3',
+                autocomplete: true,
+			    keySupport: true
+            }); 
+        }); 
+ 
+    </script>

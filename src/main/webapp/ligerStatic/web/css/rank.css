@@ -1,0 +1,40 @@
+﻿@charset "utf-8";
+*{padding:0; margin:0;}
+li{ list-style:none; }
+a{ color:#585858; text-decoration:none;}
+a:hover{ color:#FD302D; text-decoration:none; }
+img { border:0; vertical-align:middle;}
+.clear { clear:both; font-size:0; height:0; line-height:0; overflow:hidden;}
+input{ background:none; border:none; vertical-align:middle;}
+body{ font-size:12px;}
+.wrap{ width:850px; margin:0 auto;overflow: hidden;}
+
+.rank_title{ font-family:"Microsoft YaHei",微软雅黑; margin-bottom:8px;}
+.rank_title h2{ font-size:16px; color:#8c1514; display:inline-block;*display:inline;}
+.rank_title span{ display:inline-block; color:#989595; padding-left:8px;}
+.bookRank{ width:510px; float:left;}
+.bookRank .rank_bor{ border:1px solid #ddd; background:#fff; overflow:hidden;}
+.bookRank .rank_nav{ height:32px; line-height:32px; background:#ddd; font:14px "Microsoft YaHei",微软雅黑;}
+.bookRank .rank_nav li{ float:left;  line-height:32px; padding:0 10px; margin:0 5px;}
+.bookRank .rank_nav li.navR_current{ background:#8c1514;}
+.bookRank .rank_nav li.navR_current a{ color:#fff; font-weight:bold;}
+.bookRank .book_pic{ width:67px; height:101px; border:1px solid #ccc; float:left; margin:10px;_margin-left:5px;}
+.bookRank .bR_list{ min-width:485px; float:left; margin:8px 0 0 5px;}
+.bookRank .bR_list dl dt{  font:bold 14px "Microsoft YaHei",微软雅黑;}
+.bookRank .bR_list dl dt span{ float:right;}
+.bookRank .bR_list dl dd{ line-height:28px; border-bottom:1px dashed #d1d1d1;}
+.bookRank .bR_list dl dd span{ color:#878787; }
+
+.readerRank{width:265px;float:left;margin-left: 28px;}
+.readerRank .rank_title{ border-bottom:1px solid #ddd; padding-bottom:8px;}
+.readerRank ul{ margin-left:10px;}
+.readerRank ul li{ height:28px; line-height:28px; border-bottom:1px dashed #d1d1d1;padding-left: 5px;}
+.readerRank ul li span{ display:inline-block; width:18px; height:18px; text-align:center; line-height:18px; margin-right:5px; background:url(../images/readerRank_icon2.html) no-repeat center;}
+.readerRank ul li a{ display:inline-block;}
+.readerRank ul li span.red{ background:url(../images/readerRank_icon1.html) no-repeat; color:#fff;}
+
+
+
+
+
+

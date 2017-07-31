@@ -41,6 +41,7 @@ public class ArticleController {
         return dealArtsToJson(pageInfo.getList(),pageInfo.getTotal());
     }
 
+
     //获取所有文章
     @ResponseBody
     @RequestMapping(value = "/arts",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
@@ -75,6 +76,8 @@ public class ArticleController {
             jsonObject.put("from", a.getArFrom());
             jsonObject.put("status", a.getArStatus());
             jsonObject.put("clickCount", a.getArClickarunt());
+            jsonObject.put("isHot", a.getArIshot());
+            jsonObject.put("isNew", a.getArIsnew());
             jsonObject.put("id", a.getArId());
             jsonObject.put("coId", a.getArColumnid());
             array.add(jsonObject);
@@ -88,6 +91,7 @@ public class ArticleController {
         return obj.toString();
 
     }
+
 
     //获取对应ID的文章
     @ResponseBody
@@ -121,6 +125,7 @@ public class ArticleController {
     @RequestMapping(value = "/art/{arId}" ,method = RequestMethod.PUT)
     public Msg updateArt(ArticleWithBLOBs articleWithBLOBs){
         boolean flag =false;
+
         flag= articleService.updateArt(articleWithBLOBs);
         if (flag){
             return Msg.success();

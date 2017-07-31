@@ -42,7 +42,7 @@ public class AccessStatisticsIntceptor implements HandlerInterceptor {
 //        }
 
         if(httpServletRequest.getRequestURI().contains("/admin")){
-            String url = httpServletRequest.getRequestURI().substring(httpServletRequest.getRequestURI().lastIndexOf("/"));
+            String url = httpServletRequest.getRequestURI().substring(httpServletRequest.getRequestURI().lastIndexOf("/admin")+6);
             Log.logI(url);
             AdminUser user = (AdminUser) httpServletRequest.getSession().getAttribute("loginedUser");
             if (user == null){

@@ -16,7 +16,7 @@
     .l-link2{text-decoration:underline; color:white; margin-left:2px;margin-right:2px;}
     .l-layout-top{background:#102A49; color:black;}
     .l-layout-bottom{ background:#E5EDEF; text-align:center;}
-    #pageloading{position:absolute; left:0px; top:0px; background:white url('/ligerStatic/loading.gif') no-repeat center; width:100%; height:100%;z-index:99999;}
+    #pageloading{position:absolute; left:0px; top:0px; background:white url('/loading.gif') no-repeat center; width:100%; height:100%;z-index:99999;}
     .l-link{ display:block; line-height:22px; height:22px; padding-left:16px;border:1px solid white; margin:4px;}
     .l-link-over{ background:#FFEEAC; border:1px solid #DB9F00;} 
     .l-winbar{ background:#2B5A76; height:30px; position:absolute; left:0px; bottom:0px; width:100%; z-index:99999;}
@@ -121,7 +121,7 @@
         var height = $(".l-layout-center").height();
 
         //Tab
-        $("#framecenter").ligerTab({ height: height });
+        $("#framecenter").ligerTab({ height: height,contextmenu:false });
 
         //面板
         $("#accordion1").ligerAccordion({ height: height - 24, speed: null });
@@ -141,6 +141,7 @@
             checkbox: false,
             slide: false,
             nodeWidth: 120,
+
             btnClickToToggleOnly:false,
             attribute: ['nodename', 'url'],
             onSelect: function (node)

@@ -28,6 +28,11 @@
         var grid;
         var menu;
         var dlgedit = null;
+        var dlgchangfrom = null;
+        var dlgchangtime = null;
+        var dlgcopy = null;
+        var dlgmove = null;
+        var coId = 0;
         $(function () {
             var s = decodeURIComponent(getPar("coName"));
             s = s.substring(1, s.length - 1);
@@ -36,6 +41,7 @@
             if (coName !== null && coName !== "") {
                 //根据栏目名获取文章ID
                 init(coName);
+                initPlugins();
                 initListener();
             } else {
                 $.ligerDialog.warn("地址URL参数错误,coName缺失或者错误");
@@ -44,7 +50,7 @@
 
         //请求所有栏目名 请求成功和本栏目名对应 得到栏目ID  根据栏目ID获得文章列表
         function init(mcoName) {
-            var coId = 0;
+
             $.ajax({
                 url: "/admin/cols",
                 type: 'get',
@@ -96,7 +102,7 @@
                     {name: 'coId', display: '栏目ID', hide: true, width: 70},
                     {name: 'title', display: '文章标题', align: 'left', width: 300},
                     {name: 'subTitle', display: '副标题', align: 'left', width: 200},
-                    {name: 'publicTime', display: '更新时间'},
+                    {name: 'publicTime', display: '更新时间',width: 170},
                     {
                         name: 'status', display: '审核状态', type: 'int', width: 70,
                         render: function (rowData) {
@@ -154,6 +160,33 @@
 
         }
 
+        function initPlugins() {
+            //将一些比如日期选择器等的东西初始化
+            $("#txtTime").ligerDateEditor({ showTime: true });
+
+            $.ajax({
+                url:"/admin/cols",
+                type:'get',
+                dataType:"json",
+                success:function (result) {
+                    var cols = result.extend.cols;
+                    var jsonCols =[];
+                    $.each(cols,function (index,col) {
+                        jsonCols.push($.parseJSON('{"name":"'+col.coName+'","id":'+col.coId+',"info":"'+col.coInfo+'"}'));
+                    });
+                    console.log(jsonCols);
+                    $("#txtCopy").ligerComboBox({
+                        data:jsonCols,
+                        textField:'name'
+
+                    });
+                    $("#txtMove").ligerComboBox({
+                        data:jsonCols,
+                        textField:'name'
+                    });
+                }
+            });
+        }
 
         /**
          * 注册按钮监听器
@@ -163,6 +196,11 @@
             top.tab.bind('AfterRemoveTabItem', function (tabID) {
                 grid.loadData();
             });
+
+
+
+
+
 
             $("#btnAdd").click(function () {
                 var tabId = "Tab" + new Date().getTime();
@@ -181,9 +219,16 @@
                     $.each(rows, function (index, row) {
                         var id = row.id;
                         ids = ids + id + "-";
+
+                        var status='';
+                        switch (row.status){
+                            case 0:status="起草";break;
+                            case 1:status="审核中";break;
+                            case 2:status="已发布";break;
+                        }
                         rowmsg += '文章标题： ' + row.title + "  " + "文章副标题   " + row.subTitle + "  "
                             + "更新时间  " + row.publicTime + "  " + "来源  " + row.from + "  " + "点击数 "
-                            + row.clickCount + "  " + "状态 " + row.status + "<br>";
+                            + row.clickCount + "  " + "状态 " +status + "<br>";
                     });
                     ids = ids.substring(0, ids.length - 1);
 
@@ -194,6 +239,7 @@
                         dlgedit = $.ligerDialog.open({
                             buttons: [{
                                 text: '确认', onclick: function (i, d) {
+                                    d.hide();
                                     delBatch();
                                 }
                             },
@@ -234,6 +280,15 @@
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                $.ligerDialog.confirm('确定要发布吗？',function (yes) {
+                    if (yes){
+                        if(row.status==2){
+                            $.ligerDialog.warn("该文章已经发布，无需再次发布");
+                            return;
+                        }
+                        simpleUpdateArt('arStatus=2',row.id);
+                    }
+                })
 
             });
             $("#btnCheck").click(function () {
@@ -241,48 +296,160 @@
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                $.ligerDialog.confirm('确定要送审吗？',function (yes) {
+                    if (yes){
+                        if(row.status>=2){
+                            $.ligerDialog.warn("该文章已经发布，无需送审");
+                            return;
+                        }
+                        simpleUpdateArt('arStatus=1',row.id);
+
+
+                    }
+                })
             });
             $("#btnBack").click(function () {
                 if (!selectedRowCheck()) {
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                $.ligerDialog.confirm('确定要退回吗？',function (yes) {
+                    if (yes){
+                        if(row.status==0){
+                            $.ligerDialog.warn("该文章已经是起草状态，无需退回");
+                            return;
+                        }
+                        simpleUpdateArt('arStatus=0',row.id);
+                    }
+                })
             });
-            $("#btnsethot").click(function () {
+            $("#btnSetHot").click(function () {
                 if (!selectedRowCheck()) {
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                $.ligerDialog.confirm('确定要设置/取消成HOT文章吗？',function (yes) {
+                    if (yes){
+                        if(row.isHot==='T'){
+                            simpleUpdateArt('arIshot=F',row.id);
+                        }else{
+                            simpleUpdateArt('arIshot=T',row.id);
+                        }
+                    }
+                })
             });
             $("#btnSetNew").click(function () {
                 if (!selectedRowCheck()) {
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                $.ligerDialog.confirm('确定要设置/取消成NEW文章吗？',function (yes) {
+                    if (yes){
+                        if(row.isNew==='T'){
+                            simpleUpdateArt("arIsnew=F",row.id);
+                        }else{
+                            simpleUpdateArt("arIsnew=T",row.id);
+                        }
+                    }
+                })
             });
             $("#btnFrom").click(function () {
                 if (!selectedRowCheck()) {
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                if(dlgchangfrom===null){
+                    dlgchangfrom = $.ligerDialog.open({
+                        buttons:[{text:'确定',onclick:function (i,d) {
+                            //取得数据,提交保存
+                            d.hide();
+                            simpleUpdateArt('arFrom='+$("#txtFrom").val(),row.id);
+                            $("#txtFrom").val("");
+                        }},{text:'取消',onclick:function (i,d) {
+                            //清空输入框
+                            $("#txtFrom").val("");
+                            d.hide();
+                        }}],
+                        content:'修改文章来源<br>',
+                        width: 350,
+                        target:$("#divfrom")
+                    });
+                }else{
+                    dlgchangfrom.show();
+                }
             });
-            $("#btntime").click(function () {
+            $("#btnTime").click(function () {
                 if (!selectedRowCheck()) {
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                if(dlgchangtime===null){
+                    dlgchangtime = $.ligerDialog.open({
+                        buttons:[{text:'确定',onclick:function (i,d) {
+                            //取得数据,提交保存
+                            d.hide();
+                            //拼接字符串注意 'abc'+"sdfd" 和 'abc'+'sdfd' 不是同一个东西
+                            simpleUpdateArt('arPublictime='+$("#txtTime").val()+':00',row.id);
+                            $("#txtTime").val("");
+                        }},{text:'取消',onclick:function (i,d) {
+                            //清空输入框
+                            $("#txtTime").val("");
+                            d.hide();
+                        }}],
+                        content:'修改更新时间<br>',
+                        width: 350,
+                        target:$("#divtime")
+                    });
+                }else{
+                    dlgchangtime.show();
+                }
             });
             $("#btnCopy").click(function () {
                 if (!selectedRowCheck()) {
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                if(dlgcopy===null){
+                    dlgcopy=$.ligerDialog.open({
+                        buttons:[{text:'确定',onclick:function (i,d) {
+                            //取得数据,提交保存
+                            d.hide();
+                            //simpleUpdateArt('arPublictime='+$("#txtTime").val(),row.id);
+                        }},{text:'取消',onclick:function (i,d) {
+                            //不要清空了输入框
+                            d.hide();
+                        }}],
+                        width: 350,
+                        target:$("#divcopy")
+
+                    });
+                }else{
+                    dlgcopy.show();
+                }
+
             });
-            $("#btnmove").click(function () {
+            $("#btnMove").click(function () {
                 if (!selectedRowCheck()) {
                     return;
                 }
                 var row = grid.getSelectedRows()[0];
+                if(dlgmove===null){
+                    dlgmove=$.ligerDialog.open({
+                        buttons:[{text:'确定',onclick:function (i,d) {
+                            //取得数据,提交保存
+                            d.hide();
+                            //simpleUpdateArt('arPublictime='+$("#txtTime").val(),row.id);
+                        }},{text:'取消',onclick:function (i,d) {
+                            //不要清空了输入框
+                            d.hide();
+                        }}],
+                        width: 350,
+                        target:$("#divmove")
+
+                    });
+                }else{
+                    dlgmove.show();
+                }
             });
 
         }
@@ -290,7 +457,7 @@
         //需要更新的属性
         function simpleUpdateArt(data, atrId) {
             $.ajax({
-                url: "/admin/art" + atrId,
+                url: "/admin/art/" + atrId,
                 type: "put",
                 data: data,
                 dataType: "json",
@@ -299,8 +466,8 @@
                     //刷新列表
                     grid.loadData();
                 },
-                error: function (code, result) {
-                    $.ligerDialog.warn("发生错误，返回代码: " + code + "信息:  " + result.msg);
+                error: function (request,textStatus,errorThrown) {
+                    $.ligerDialog.warn("发生错误，返回代码: " + request.status + "信息:  " + textStatus.status);
                 }
 
             });
@@ -484,65 +651,92 @@
 <div class="item-main">
     <table>
         <tr>
-            <td style="width:5px"></td>
+
             <td><input id="btnAdd" type="button" value="新增" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
+                       style="color:#57b255;"></td>
 
-            <td style="width:5px"></td>
+
             <td><input id="btnUpdate" type="button" value="编辑" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
+                       style="color:#57b255;"></td>
 
-            <td style="width:5px"></td>
+
             <td><input id="btnDel" type="button" value="删除" class="l-button"
-                       style="width:100px;color:#778899;"></input></td>
+                       style="color:red;"></td>
 
-            <td style="width:5px"></td>
-            <td><span>双击或右键选择查看</span></td>
 
-            <td style="width:5px"></td>
             <td><input id="btnRefresh" type="button" value="刷新" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
+                       style="color:#57b255;"></td>
 
-            <td style="width:5px"></td>
+
+            <td><span style="display:inline-block;">双击或右键选择查看</span></td>
+
+        </tr>
+        <tr>
+
             <td><input id="btnPublic" type="button" value="发布" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
+                       style="color:#57b255;"></td>
 
-            <td style="width:5px"></td>
-            <td><input id="btnExamine" type="button" value="送审" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
 
-            <td style="width:5px"></td>
+            <td><input id="btnCheck" type="button" value="送审" class="l-button"
+                       style="color:#57b255;"></td>
+
+
             <td><input id="btnBack" type="button" value="退回" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
+                       style="color:#57b255;"></td>
 
-            <td style="width:5px"></td>
-            <td><input id="btnSetHot" type="button" value="标记HOT" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
 
-            <td style="width:5px"></td>
-            <td><input id="btnSetNew" type="button" value="标记NEW" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
-
-            <td style="width:5px"></td>
-            <td><input id="btnFrom" type="button" value="编辑来源" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
-
-            <td style="width:5px"></td>
-            <td><input id="btnTime" type="button" value="修改时间" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
-
-            <td style="width:5px"></td>
             <td><input id="btnCopy" type="button" value="复制到" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
+                       style="color:#57b255;"></td>
 
-            <td style="width:5px"></td>
+
             <td><input id="btnMove" type="button" value="移动到" class="l-button"
-                       style="width:100px;color:#57b255;"></input></td>
+                       style="color:#57b255;"></td>
+
+        </tr>
+        <tr>
+            <td><input id="btnSetHot" type="button" value="标记HOT" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnSetNew" type="button" value="标记NEW" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnFrom" type="button" value="编辑来源" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnTime" type="button" value="修改时间" class="l-button"
+                       style="color:#57b255;"></td>
+
 
         </tr>
     </table>
     <div class="container" align="center" style="width: 100%">
         <div id="articleList" style="width: 100%"></div>
+    </div>
+
+    <div style=" display:none">
+        <div id="divfrom">
+            来源<input id="txtFrom" />
+        </div>
+    </div>
+    <div style=" display:none">
+        <div id="divtime">
+            更新时间<input id="txtTime" />
+        </div>
+    </div>
+
+    <div style=" display:none">
+        <div id="divcopy">
+            复制文章到栏目<input id="txtCopy" />
+        </div>
+    </div>
+
+    <div style=" display:none">
+        <div id="divmove">
+            移动文章到栏目<input id="txtMove" />
+        </div>
     </div>
 
 

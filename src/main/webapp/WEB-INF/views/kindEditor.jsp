@@ -81,7 +81,6 @@
             if ((coId == null && artId == null ) || (coId != null && artId != null)) {
                 $.ligerDialog.warn("地址URL参数错误,不存在coId或artId");
             } else if (coId != null) {
-                $.ligerDialog.warn("地址URL参数错误,不存在coId或artId");
                 //新增文章页面
                 fillCoName(coId, "/admin/cols");
 
@@ -299,8 +298,14 @@
         text-align: center;
     }
 
+    /*居中*/
     .ke-container {
         margin: 0 auto;
+
+    }
+    /*修复排版bug*/
+    .ke-dialog-row label{
+        display:inline;
 
     }
 </style>

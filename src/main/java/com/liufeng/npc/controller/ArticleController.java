@@ -126,6 +126,8 @@ public class ArticleController {
     public Msg updateArt(ArticleWithBLOBs articleWithBLOBs){
         boolean flag =false;
 
+        System.out.println("dddd"+articleWithBLOBs.toString());
+
         flag= articleService.updateArt(articleWithBLOBs);
         if (flag){
             return Msg.success();

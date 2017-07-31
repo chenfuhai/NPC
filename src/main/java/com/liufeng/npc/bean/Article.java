@@ -1,5 +1,8 @@
 package com.liufeng.npc.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 import java.util.Date;
 
 public class Article {
@@ -9,6 +12,8 @@ public class Article {
 
     private String arSubtitle;
 
+    //这里一个符号也不能差 查了就报400错 比如传过来的事2017-02-11 12:25 就不行
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date arPublictime;
 
     private String arIshot;

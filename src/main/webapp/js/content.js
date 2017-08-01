@@ -2,7 +2,6 @@
     //获取地址栏文章ID
     //根据ID获取文章信息
     //更改页面标题，更改时间，内容等
-   alert('id='+getPar("id"));
     var id = getPar("id");
     if (id!==null ||id!==""){
         //获取文章ID的详细
@@ -23,7 +22,7 @@ function addClickCount(art) {
     $.ajax({
         url:"/admin/art/"+art.arId,
         type:'put',
-        data:'arClickarunt='+(art.arClickarunt+1),
+        data:'arClickCount='+(art.arClickCount+1),
         dataType:"json",
         success:function (result) {
 
@@ -39,7 +38,7 @@ function addClickCount(art) {
 function fill(art) {
     $("#ar_title").empty().append(art.arTitle);
     $("#ar_subTitle").empty().append(art.arSubtitle);
-    $("#ar_time_from_count").empty().append("发布时间："+art.arPublictime+"\t来源："+art.arFrom+"\t阅读:"+art.arClickarunt+"次");
+    $("#ar_time_from_count").empty().append("发布时间："+art.arPublictime+"\t来源："+art.arFrom+"\t阅读:"+art.arClickCount+"次");
     $("#zoom").empty().append(art.arContent);
 
 }

@@ -22,20 +22,20 @@ public class Article {
 
     private String arFrom;
 
-    private Integer arClickarunt;
+    private Integer arClickCount;
 
     private Integer arColumnid;
 
     private Integer arStatus;
 
-    public Article(String arTitle, String arSubtitle, Date arPublictime, String arIshot, String arIsnew, String arFrom, Integer arClickarunt, Integer arColumnid, Integer arStatus) {
+    public Article(String arTitle, String arSubtitle, Date arPublictime, String arIshot, String arIsnew, String arFrom, Integer arClickCount, Integer arColumnid, Integer arStatus) {
         this.arTitle = arTitle;
         this.arSubtitle = arSubtitle;
         this.arPublictime = arPublictime;
         this.arIshot = arIshot;
         this.arIsnew = arIsnew;
         this.arFrom = arFrom;
-        this.arClickarunt = arClickarunt;
+        this.arClickCount = arClickCount;
         this.arColumnid = arColumnid;
         this.arStatus = arStatus;
     }
@@ -50,7 +50,7 @@ public class Article {
                 ", arIshot='" + arIshot + '\'' +
                 ", arIsnew='" + arIsnew + '\'' +
                 ", arFrom='" + arFrom + '\'' +
-                ", arClickarunt=" + arClickarunt +
+                ", arClickCount=" + arClickCount +
                 ", arColumnid=" + arColumnid +
                 ", arStatus=" + arStatus +
                 '}';
@@ -116,12 +116,12 @@ public class Article {
         this.arFrom = arFrom == null ? null : arFrom.trim();
     }
 
-    public Integer getArClickarunt() {
-        return arClickarunt;
+    public Integer getArClickCount() {
+        return arClickCount;
     }
 
-    public void setArClickarunt(Integer arClickarunt) {
-        this.arClickarunt = arClickarunt;
+    public void setArClickCount(Integer arClickCount) {
+        this.arClickCount = arClickCount;
     }
 
     public Integer getArColumnid() {

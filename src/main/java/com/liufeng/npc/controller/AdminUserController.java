@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class AdminUserController {
     //登录
     @ResponseBody
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public Msg login(@RequestParam("userName")String userName ,@RequestParam("userPwd") String pwd ,Model model){
+    public Msg login(@RequestParam("userName")String userName , @RequestParam("userPwd") String pwd , Model model, HttpSession session){
 
         String regx = "(^[a-zA-Z0-9_-]{6,16}$)";
         if(!userName.matches(regx)){
@@ -83,6 +84,7 @@ public class AdminUserController {
                 AdminUser user = adminUserService.getUserByNameAndPwd(userName,pwd);
                 if (user!=null){
                     model.addAttribute("loginedUser",user);
+                    session.setMaxInactiveInterval(30*60);
                     return msg2;
                 }
             default:return Msg.error();

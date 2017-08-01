@@ -16,8 +16,8 @@ public class ArticleWithBLOBs extends Article {
     private String ar5;
 
     public ArticleWithBLOBs(String arTitle, String arSubtitle, Date arPublictime, String arIshot, String arIsnew,
-                            String arFrom, Integer arClickarunt, Integer arColumnid, Integer arStatus, String arContent) {
-        super(arTitle, arSubtitle, arPublictime, arIshot, arIsnew, arFrom, arClickarunt, arColumnid, arStatus);
+                            String arFrom, Integer arClickCount, Integer arColumnid, Integer arStatus, String arContent) {
+        super(arTitle, arSubtitle, arPublictime, arIshot, arIsnew, arFrom, arClickCount, arColumnid, arStatus);
         this.arContent = arContent;
     }
 

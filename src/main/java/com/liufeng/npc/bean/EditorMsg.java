@@ -1,5 +1,7 @@
 package com.liufeng.npc.bean;
 
+import org.json.simple.JSONObject;
+
 /**
  * 匹配kindEditor的数据返回
  */
@@ -16,6 +18,13 @@ public class EditorMsg {
                 ", url='" + url + '\'' +
                 ", message='" + message + '\'' +
                 '}';
+    }
+    public String toJson(){
+        JSONObject object = new JSONObject();
+        object.put("error",error);
+        object.put("url",url);
+        object.put("message",message);
+        return object.toString();
     }
 
     public static EditorMsg getError(String message){

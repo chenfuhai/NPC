@@ -9,7 +9,7 @@
     <result column="Ar_IsHot" jdbcType="CHAR" property="arIshot" />
     <result column="Ar_IsNew" jdbcType="CHAR" property="arIsnew" />
     <result column="Ar_From" jdbcType="VARCHAR" property="arFrom" />
-    <result column="Ar_ClickArunt" jdbcType="INTEGER" property="arClickarunt" />
+    <result column="Ar_ClickCount" jdbcType="INTEGER" property="arClickCount" />
     <result column="Ar_ColumnID" jdbcType="INTEGER" property="arColumnid" />
     <result column="Ar_Status" jdbcType="INTEGER" property="arStatus" />
   </resultMap>
@@ -80,7 +80,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    Ar_ID, Ar_Title, Ar_SubTitle, Ar_PublicTime, Ar_IsHot, Ar_IsNew, Ar_From, Ar_ClickArunt, 
+    Ar_ID, Ar_Title, Ar_SubTitle, Ar_PublicTime, Ar_IsHot, Ar_IsNew, Ar_From, Ar_ClickCount,
     Ar_ColumnID, Ar_Status
   </sql>
   <sql id="Blob_Column_List">
@@ -137,13 +137,13 @@
   <insert id="insert" parameterType="com.liufeng.npc.bean.ArticleWithBLOBs">
     insert into NPC_Article (Ar_ID, Ar_Title, Ar_SubTitle, 
       Ar_PublicTime, Ar_IsHot, Ar_IsNew, 
-      Ar_From, Ar_ClickArunt, Ar_ColumnID, 
+      Ar_From, Ar_ClickCount, Ar_ColumnID,
       Ar_Status, Ar_Content, Ar_1, 
       Ar_2, Ar_3, Ar_4, 
       Ar_5)
     values (#{arId,jdbcType=INTEGER}, #{arTitle,jdbcType=VARCHAR}, #{arSubtitle,jdbcType=VARCHAR}, 
       #{arPublictime,jdbcType=TIMESTAMP}, #{arIshot,jdbcType=CHAR}, #{arIsnew,jdbcType=CHAR}, 
-      #{arFrom,jdbcType=VARCHAR}, #{arClickarunt,jdbcType=INTEGER}, #{arColumnid,jdbcType=INTEGER}, 
+      #{arFrom,jdbcType=VARCHAR}, #{arClickCount,jdbcType=INTEGER}, #{arColumnid,jdbcType=INTEGER},
       #{arStatus,jdbcType=INTEGER}, #{arContent,jdbcType=LONGVARCHAR}, #{ar1,jdbcType=LONGVARCHAR}, 
       #{ar2,jdbcType=LONGVARCHAR}, #{ar3,jdbcType=LONGVARCHAR}, #{ar4,jdbcType=LONGVARCHAR}, 
       #{ar5,jdbcType=LONGVARCHAR})
@@ -172,8 +172,8 @@
       <if test="arFrom != null">
         Ar_From,
       </if>
-      <if test="arClickarunt != null">
-        Ar_ClickArunt,
+      <if test="arClickCount != null">
+        Ar_ClickCount,
       </if>
       <if test="arColumnid != null">
         Ar_ColumnID,
@@ -222,8 +222,8 @@
       <if test="arFrom != null">
         #{arFrom,jdbcType=VARCHAR},
       </if>
-      <if test="arClickarunt != null">
-        #{arClickarunt,jdbcType=INTEGER},
+      <if test="arClickCount != null">
+        #{arClickCount,jdbcType=INTEGER},
       </if>
       <if test="arColumnid != null">
         #{arColumnid,jdbcType=INTEGER},
@@ -281,8 +281,8 @@
       <if test="record.arFrom != null">
         Ar_From = #{record.arFrom,jdbcType=VARCHAR},
       </if>
-      <if test="record.arClickarunt != null">
-        Ar_ClickArunt = #{record.arClickarunt,jdbcType=INTEGER},
+      <if test="record.arClickCount != null">
+        Ar_ClickCount = #{record.arClickCount,jdbcType=INTEGER},
       </if>
       <if test="record.arColumnid != null">
         Ar_ColumnID = #{record.arColumnid,jdbcType=INTEGER},
@@ -322,7 +322,7 @@
       Ar_IsHot = #{record.arIshot,jdbcType=CHAR},
       Ar_IsNew = #{record.arIsnew,jdbcType=CHAR},
       Ar_From = #{record.arFrom,jdbcType=VARCHAR},
-      Ar_ClickArunt = #{record.arClickarunt,jdbcType=INTEGER},
+      Ar_ClickCount = #{record.arClickCount,jdbcType=INTEGER},
       Ar_ColumnID = #{record.arColumnid,jdbcType=INTEGER},
       Ar_Status = #{record.arStatus,jdbcType=INTEGER},
       Ar_Content = #{record.arContent,jdbcType=LONGVARCHAR},
@@ -344,7 +344,7 @@
       Ar_IsHot = #{record.arIshot,jdbcType=CHAR},
       Ar_IsNew = #{record.arIsnew,jdbcType=CHAR},
       Ar_From = #{record.arFrom,jdbcType=VARCHAR},
-      Ar_ClickArunt = #{record.arClickarunt,jdbcType=INTEGER},
+      Ar_ClickCount = #{record.arClickCount,jdbcType=INTEGER},
       Ar_ColumnID = #{record.arColumnid,jdbcType=INTEGER},
       Ar_Status = #{record.arStatus,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -372,8 +372,8 @@
       <if test="arFrom != null">
         Ar_From = #{arFrom,jdbcType=VARCHAR},
       </if>
-      <if test="arClickarunt != null">
-        Ar_ClickArunt = #{arClickarunt,jdbcType=INTEGER},
+      <if test="arClickCount != null">
+        Ar_ClickCount = #{arClickCount,jdbcType=INTEGER},
       </if>
       <if test="arColumnid != null">
         Ar_ColumnID = #{arColumnid,jdbcType=INTEGER},
@@ -410,7 +410,7 @@
       Ar_IsHot = #{arIshot,jdbcType=CHAR},
       Ar_IsNew = #{arIsnew,jdbcType=CHAR},
       Ar_From = #{arFrom,jdbcType=VARCHAR},
-      Ar_ClickArunt = #{arClickarunt,jdbcType=INTEGER},
+      Ar_ClickCount = #{arClickCount,jdbcType=INTEGER},
       Ar_ColumnID = #{arColumnid,jdbcType=INTEGER},
       Ar_Status = #{arStatus,jdbcType=INTEGER},
       Ar_Content = #{arContent,jdbcType=LONGVARCHAR},
@@ -429,7 +429,7 @@
       Ar_IsHot = #{arIshot,jdbcType=CHAR},
       Ar_IsNew = #{arIsnew,jdbcType=CHAR},
       Ar_From = #{arFrom,jdbcType=VARCHAR},
-      Ar_ClickArunt = #{arClickarunt,jdbcType=INTEGER},
+      Ar_ClickCount = #{arClickCount,jdbcType=INTEGER},
       Ar_ColumnID = #{arColumnid,jdbcType=INTEGER},
       Ar_Status = #{arStatus,jdbcType=INTEGER}
     where Ar_ID = #{arId,jdbcType=INTEGER}

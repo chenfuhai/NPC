@@ -1,13 +1,13 @@
 ﻿var indexdatal = 
 [
 	{ text: '文章管理',icon:"/ligerStatic/icon/email.png",isexpand:true,children: [
-		{url:"draftBox?coName='领导致词'",text:"领导致词"},
-        {url:"draftBox?coName='公告通知'",text:"公告通知"},
-        {url:"draftBox?coName='图片新闻'",text:"图片新闻"},
-        {url:"draftBox?coName='代表风采'",text:"代表风采"},
-        {url:"draftBox?coName='工作动态'",text:"工作动态"},
-        {url:"draftBox?coName='议事决定'",text:"议事决定"},
-        {url:"kindEditor?coName='人大信箱'",text:"人大信箱"}
+		{url:"manager?coName='领导致词'",text:"领导致词"},
+        {url:"manager?coName='公告通知'",text:"公告通知"},
+        {url:"manager?coName='图片新闻'",text:"图片新闻"},
+        {url:"manager?coName='代表风采'",text:"代表风采"},
+        {url:"manager?coName='工作动态'",text:"工作动态"},
+        {url:"manager?coName='议事决定'",text:"议事决定"},
+        {url:"manager?coName='人大信箱'",text:"人大信箱"}
 
 	]}
 ];

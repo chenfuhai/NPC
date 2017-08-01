@@ -13,23 +13,14 @@ public class ArticleService {
     @Autowired
     ArticleMapper articleMapper;
 
-    public List<ArticleWithBLOBs> getAll(){
-        List<ArticleWithBLOBs> articles = articleMapper.selectByExampleWithBLOBs(null);
-
-        return articles;
-
-    }
-
-
-    public List<ArticleWithBLOBs> getAllByColId(Integer coId) {
-
-        ArticleExample example = new ArticleExample();
-        example.createCriteria().andArColumnidEqualTo(coId);
-
+    public List<ArticleWithBLOBs> getAll(ArticleExample example){
         List<ArticleWithBLOBs> articles = articleMapper.selectByExampleWithBLOBs(example);
 
         return articles;
+
     }
+
+
 
     public ArticleWithBLOBs getArtById(Integer artId) {
         ArticleWithBLOBs article = articleMapper.selectByPrimaryKey(artId);
@@ -60,7 +51,7 @@ public class ArticleService {
  */
     public int deleteBatch(List<Integer> del_ids) {
         ArticleExample example = new ArticleExample();
-        example.createCriteria().andArIdIn(del_ids);
+        example.or().andArIdIn(del_ids);
         int i = articleMapper.deleteByExample(example);
         if (i == del_ids.size()){
             return 100;

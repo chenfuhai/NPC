@@ -56,9 +56,9 @@ public class AuthorityController {
     }
 
     //========================================ligerUI================
-    @RequestMapping("/admin/draftBox")
+    @RequestMapping("/admin/manager")
     public String toDrftBox(){
-        return "DraftBox";
+        return "ManagerArt";
     }
 
     @RequestMapping("/admin/welcome_main")

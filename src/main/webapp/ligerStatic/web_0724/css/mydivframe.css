@@ -1,7 +1,0 @@
-@charset "utf-8";
-/* CSS Document */
-<!--这个是我自己定义的框架布局-->
-.div_above{ width:100%; height:700px;}<!--这个是整体-->
-.div_top{ width:100%; height:50px; background-color:#CCC;}<!--这个是头-->
-.div_center{ width:100%; height:550px; background-color:#999;}<!--这个是主体部分-->
-.div_bottom{ width:100%; height:50px; background-color:#CCC;}<!--这个是底下的部分-->

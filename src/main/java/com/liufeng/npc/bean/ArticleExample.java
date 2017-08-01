@@ -575,63 +575,63 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntIsNull() {
-            addCriterion("Ar_ClickArunt is null");
+        public Criteria andArClickCountIsNull() {
+            addCriterion("Ar_ClickCount is null");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntIsNotNull() {
-            addCriterion("Ar_ClickArunt is not null");
+        public Criteria andArClickCountIsNotNull() {
+            addCriterion("Ar_ClickCount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntEqualTo(Integer value) {
-            addCriterion("Ar_ClickArunt =", value, "arClickarunt");
+        public Criteria andArClickCountEqualTo(Integer value) {
+            addCriterion("Ar_ClickCount =", value, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntNotEqualTo(Integer value) {
-            addCriterion("Ar_ClickArunt <>", value, "arClickarunt");
+        public Criteria andArClickCountNotEqualTo(Integer value) {
+            addCriterion("Ar_ClickCount <>", value, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntGreaterThan(Integer value) {
-            addCriterion("Ar_ClickArunt >", value, "arClickarunt");
+        public Criteria andArClickCountGreaterThan(Integer value) {
+            addCriterion("Ar_ClickCount >", value, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntGreaterThanOrEqualTo(Integer value) {
-            addCriterion("Ar_ClickArunt >=", value, "arClickarunt");
+        public Criteria andArClickCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Ar_ClickCount >=", value, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntLessThan(Integer value) {
-            addCriterion("Ar_ClickArunt <", value, "arClickarunt");
+        public Criteria andArClickCountLessThan(Integer value) {
+            addCriterion("Ar_ClickCount <", value, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntLessThanOrEqualTo(Integer value) {
-            addCriterion("Ar_ClickArunt <=", value, "arClickarunt");
+        public Criteria andArClickCountLessThanOrEqualTo(Integer value) {
+            addCriterion("Ar_ClickCount <=", value, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntIn(List<Integer> values) {
-            addCriterion("Ar_ClickArunt in", values, "arClickarunt");
+        public Criteria andArClickCountIn(List<Integer> values) {
+            addCriterion("Ar_ClickCount in", values, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntNotIn(List<Integer> values) {
-            addCriterion("Ar_ClickArunt not in", values, "arClickarunt");
+        public Criteria andArClickCountNotIn(List<Integer> values) {
+            addCriterion("Ar_ClickCount not in", values, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntBetween(Integer value1, Integer value2) {
-            addCriterion("Ar_ClickArunt between", value1, value2, "arClickarunt");
+        public Criteria andArClickCountBetween(Integer value1, Integer value2) {
+            addCriterion("Ar_ClickCount between", value1, value2, "arClickCount");
             return (Criteria) this;
         }
 
-        public Criteria andArClickaruntNotBetween(Integer value1, Integer value2) {
-            addCriterion("Ar_ClickArunt not between", value1, value2, "arClickarunt");
+        public Criteria andArClickCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("Ar_ClickCount not between", value1, value2, "arClickCount");
             return (Criteria) this;
         }
 

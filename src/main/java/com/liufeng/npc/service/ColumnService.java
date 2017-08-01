@@ -41,7 +41,7 @@ public class ColumnService {
 
     public int deleteBatch(List<Integer> del_ids) {
         ColumnExample example = new ColumnExample();
-        example.createCriteria().andCoIdIn(del_ids);
+        example.or().andCoIdIn(del_ids);
         int i = columnMapper.deleteByExample(example);
         if (i == del_ids.size()){
             return 100;

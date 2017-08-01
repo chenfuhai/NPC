@@ -32,7 +32,7 @@ public class AdminUserService {
     public AdminUser getUserByNameAndPwd(String userName,String pwd){
         pwd = Md5Tool.getMd5(pwd);
         AdminUserExample example = new AdminUserExample();
-        example.createCriteria().andAdPwdEqualTo(pwd).andAdNameEqualTo(userName);
+        example.or().andAdPwdEqualTo(pwd).andAdNameEqualTo(userName);
 
         List<AdminUser> adminUsers = adminUserMapper.selectByExample(example);
         if (adminUsers.size()>0){
@@ -58,7 +58,7 @@ public class AdminUserService {
     //批量删除用户
     public void deleteBatch(List<Integer> del_ids) {
         AdminUserExample example = new AdminUserExample();
-        example.createCriteria().andAdIdIn(del_ids);
+        example.or().andAdIdIn(del_ids);
 
         int i = adminUserMapper.deleteByExample(example);
 
@@ -74,7 +74,7 @@ public class AdminUserService {
 
         //判断是否已经存在这个用户了
         AdminUserExample e = new AdminUserExample();
-        e.createCriteria().andAdNameEqualTo(userName);
+        e.or().andAdNameEqualTo(userName);
         List<AdminUser> adminUsers = adminUserMapper.selectByExample(e);
         if (adminUsers.size()>0){
             //已存在用户
@@ -94,7 +94,7 @@ public class AdminUserService {
         if (i>0){
             //c插入成功
             AdminUserExample example = new AdminUserExample();
-            example.createCriteria().andAdNameEqualTo(adminUserWithBLOBs.getAdName());
+            example.or().andAdNameEqualTo(adminUserWithBLOBs.getAdName());
 
             List<AdminUser> users = adminUserMapper.selectByExample(example);
             if (users.size()>0){
@@ -115,7 +115,7 @@ public class AdminUserService {
         String pwdMd5 = Md5Tool .getMd5(pwd);
 
         AdminUserExample example = new AdminUserExample();
-        example.createCriteria().andAdNameEqualTo(userName).andAdPwdEqualTo(pwdMd5);
+        example.or().andAdNameEqualTo(userName).andAdPwdEqualTo(pwdMd5);
         List<AdminUser> adminUsers = adminUserMapper.selectByExample(example);
         if (adminUsers.size()>0){
             return 2;

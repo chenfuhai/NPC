@@ -47,15 +47,14 @@ public class AccessStatisticsIntceptor implements HandlerInterceptor {
             AdminUser user = (AdminUser) httpServletRequest.getSession().getAttribute("loginedUser");
             if (user == null){
 
-                if (url.startsWith("/login")||url.startsWith("/admin")||url.startsWith("/invalidAccess")||url.startsWith("/error")){
+                if (url.startsWith("/login")||url.equals("")||url.startsWith("/invalidAccess")||url.startsWith("/error")){
                     return  true;
                 }else{
-//                    httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 
-                   // httpServletResponse.getWriter().print(EditorMsg.getError("非法访问，可能登陆已过期"));
-//                    httpServletResponse.sendRedirect(invalidAccessUrl);
-//                    return false;
-                    return true;
+                    httpServletResponse.getWriter().print(EditorMsg.getError("非法访问，可能登陆已过期"));
+                    httpServletResponse.sendRedirect(invalidAccessUrl);
+                    return false;
                 }
             }else {
                 //用户不为空 正常访问 可以添加日志 或者在这里检查权限

@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html lang="utf-8">
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+
+    <title>管理文章</title>
+    <link href="/ligerStatic/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
+    <link href="/ligerStatic/lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css">
+    <link href="/ligerStatic/css/style-item.css" rel="stylesheet" media="all"/>
+    <script src="/ligerStatic/lib/jquery/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/ligerui.min.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerForm.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerGrid.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerRadio.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerSpinner.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerTip.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
+    <script src="/ligerStatic/lib/jquery-validation/messages_cn.js" type="text/javascript"></script>
+
+    <script src="/ligerStatic/myjs/manager.js" type="text/javascript"></script>
+
+</head>
+<body>
+<style type="text/css">
+
+    #Mail {
+        margin: 0 auto;
+    }
+
+    .block {
+        height: 20px;
+    }
+
+    .line {
+        height: 40px;
+    }
+
+    .btn {
+        background: #FF3030;
+        line-height: 20px;
+        width: 50px;
+        border-radius: 50px;
+        border: 1px solid;
+        color: #fff;
+        font-size: 8px;
+    }
+
+    .back {
+        background: #fff;
+        line-height: 30px;
+        width: 50px;
+        border-radius: 50px;
+        border: 1px solid;
+        color: #999;
+        font-size: 8px;
+    }
+
+    #refresh {
+        background: #71C671;
+        line-height: 20px;
+        width: 50px;
+        border-radius: 50px;
+        border: 1px solid;
+        color: #fff;
+        font-size: 8px;
+    }
+
+    #delete {
+        background: #778899;
+        line-height: 20px;
+        width: 50px;
+        border-radius: 50px;
+        border: 1px solid;
+        color: #fff;
+        font-size: 8px;
+    }
+
+    #unread {
+        background: #FFA54F;
+        line-height: 20px;
+        width: 70px;
+        border-radius: 50px;
+        border: 1px solid;
+        color: #fff;
+        font-size: 8px;
+    }
+
+    .labels {
+        width: 50px;
+        display: inline-block;
+    }
+
+    .operate {
+        margin: 0 auto;
+    }
+
+    .select {
+        position: absolute;
+        left: 55px;
+    }
+</style>
+
+<div class="item-main">
+    <table>
+        <tr>
+
+            <td><input id="btnAdd" type="button" value="新增" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnUpdate" type="button" value="编辑" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnDel" type="button" value="删除" class="l-button"
+                       style="color:red;"></td>
+
+
+            <td><input id="btnRefresh" type="button" value="刷新" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><span style="display:inline-block;">双击或右键选择查看</span></td>
+
+        </tr>
+        <tr>
+
+            <td><input id="btnPublic" type="button" value="发布" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnCheck" type="button" value="送审" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnBack" type="button" value="退回" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnCopy" type="button" value="复制到" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnMove" type="button" value="移动到" class="l-button"
+                       style="color:#57b255;"></td>
+
+        </tr>
+        <tr>
+            <td><input id="btnSetHot" type="button" value="标记HOT" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnSetNew" type="button" value="标记NEW" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnFrom" type="button" value="编辑来源" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+            <td><input id="btnTime" type="button" value="修改时间" class="l-button"
+                       style="color:#57b255;"></td>
+
+
+        </tr>
+    </table>
+    <div class="container" align="center" style="width: 100%">
+        <div id="articleList" style="width: 100%"></div>
+    </div>
+
+    <div style=" display:none">
+        <div id="divfrom">
+            来源<input id="txtFrom" />
+        </div>
+    </div>
+    <div style=" display:none">
+        <div id="divtime">
+            更新时间<input id="txtTime" />
+        </div>
+    </div>
+
+    <div style=" display:none">
+        <div id="divcopy">
+            复制文章到栏目<input id="txtCopy" />
+        </div>
+    </div>
+
+    <div style=" display:none">
+        <div id="divmove">
+            移动文章到栏目<input id="txtMove" />
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

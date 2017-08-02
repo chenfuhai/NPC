@@ -244,9 +244,6 @@ function initListener() {
                         $.ligerDialog.success(result.msg);
                         //刷新列表
                         grid.loadData();
-                    },
-                    error: function (code, result) {
-                        $.ligerDialog.warn("发生错误，返回代码: " + code + "信息:  " + result.msg);
                     }
                 });
 
@@ -471,9 +468,6 @@ function simpleCopyArt(artId,coId) {
             $.ligerDialog.success(result.msg);
             //刷新列表
             grid.loadData();
-        },
-        error: function (request,textStatus,errorThrown) {
-            $.ligerDialog.warn("发生错误，返回代码: " + request.status + "信息:  " + textStatus.status);
         }
 
     });
@@ -489,9 +483,6 @@ function simpleUpdateArt(data, atrId) {
             $.ligerDialog.success(result.msg);
             //刷新列表
             grid.loadData();
-        },
-        error: function (request,textStatus,errorThrown) {
-            $.ligerDialog.warn("发生错误，返回代码: " + request.status + "信息:  " + textStatus.status);
         }
 
     });

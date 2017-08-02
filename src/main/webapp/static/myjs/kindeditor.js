@@ -118,6 +118,10 @@ function fillAll(ajaxUrl) {
                 success: function (result) {
                     var col = result.extend.col;
                     $("#ar_coname").val(col.coName);
+                },
+                error:function (result) {
+                    alert("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
+                    console.log("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
                 }
 
             });
@@ -154,6 +158,10 @@ function fillCoName(coId, ajaxUrl) {
             } else {
                 $.ligerDialog.warn("地址URL参数错误,不存在栏目");
             }
+        },
+        error:function (result) {
+            alert("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
+            console.log("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
         }
 
     });
@@ -185,9 +193,21 @@ function saveArt() {
             dataType: "json",
             data: $("#saveForm").serialize(),
             success: function (result) {
-                $.ligerDialog.success(result.msg);
-                //top.tab.removeTabItem('addArtTab');
-                closeSelf();
+                if (result.code==200){
+                    $.ligerDialog.warn(result.msg);
+                    return;
+                }else if(result.code==100){
+                    $.ligerDialog.success(result.msg,function () {
+                        closeSelf();
+                    });
+
+                    //top.tab.removeTabItem('addArtTab');
+
+                }
+            },
+            error:function (result) {
+                alert("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
+                console.log("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
             }
         });
     }
@@ -205,9 +225,19 @@ function updateArt() {
             dataType: "json",
             data: $("#saveForm").serialize(),
             success: function (result) {
-                $.ligerDialog.success(result.msg);
-                //top.tab.removeTabItem('addArtTab');
-                closeSelf();
+                if (result.code==200){
+                    $.ligerDialog.warn(result.msg);
+                    return;
+                }else if(result.code==100){
+                    $.ligerDialog.success(result.msg);
+
+                    //top.tab.removeTabItem('addArtTab');
+                    closeSelf();
+                }
+            },
+            error:function (result) {
+                alert("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
+                console.log("发生错误，可能是网络连接失败或登录过期，请重新登录或检查网络 "+"状态码"+result.status+"错误信息"+result.statusText);
             }
         });
     }

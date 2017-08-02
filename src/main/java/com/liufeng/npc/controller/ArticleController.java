@@ -147,6 +147,12 @@ public class ArticleController {
     @RequestMapping(value = "/art", method = RequestMethod.POST)
     public Msg newArt(ArticleWithBLOBs articleWithBLOBs) {
         boolean flag = false;
+        System.out.println("ddd"+articleWithBLOBs.getArTitle()+"adddd");
+        if(articleWithBLOBs.getArTitle()==null || articleWithBLOBs.getArTitle().trim().equals("")){
+            Msg msg = Msg.error();
+            msg.msg = "标题为空，保存失败";
+            return msg;
+        }
         articleWithBLOBs.setArPublictime(new Date());
         flag = articleService.saveArt(articleWithBLOBs);
         if (flag) {
@@ -164,9 +170,11 @@ public class ArticleController {
     @RequestMapping(value = "/art/{arId}", method = RequestMethod.PUT)
     public Msg updateArt(ArticleWithBLOBs articleWithBLOBs) {
         boolean flag = false;
-
-        System.out.println("dddd" + articleWithBLOBs.toString());
-
+        if(articleWithBLOBs.getArTitle()==null || articleWithBLOBs.getArTitle().trim().equals("")){
+            Msg msg = Msg.error();
+            msg.msg = "标题为空，更新失败";
+            return msg;
+        }
         flag = articleService.updateArt(articleWithBLOBs);
         if (flag) {
             return Msg.success();

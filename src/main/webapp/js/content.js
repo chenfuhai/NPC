@@ -12,6 +12,10 @@
                 var art = result.extend.art;
                 fill(art);
                 addClickCount(art);
+            },
+            error:function (result) {
+                alert("发生错误，请联系管理员： "+"状态码"+result.status+"错误信息"+result.statusText+"服务器返回信息"+result.responseText);
+                console.log("发生错误，请联系管理员： "+"状态码"+result.status+"错误信息"+result.statusText+"服务器返回信息"+result.responseText);
             }
         });
 
@@ -28,7 +32,8 @@ function addClickCount(art) {
 
         },
         error:function (result) {
-            alert(result);
+            alert("发生错误，请联系管理员： "+"状态码"+result.status+"错误信息"+result.statusText+"服务器返回信息"+result.responseText);
+            console.log("发生错误，请联系管理员： "+"状态码"+result.status+"错误信息"+result.statusText+"服务器返回信息"+result.responseText);
         }
 
 

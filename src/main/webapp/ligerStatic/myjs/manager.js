@@ -475,7 +475,7 @@ function simpleCopyArt(artId,coId) {
 //需要更新的属性
 function simpleUpdateArt(data, atrId) {
     $.ajax({
-        url: "/admin/art/" + atrId,
+        url: "/admin/art/su/" + atrId,
         type: "put",
         data: data,
         dataType: "json",

@@ -86,11 +86,19 @@
   <sql id="Blob_Column_List">
     Ar_Content, Ar_1, Ar_2, Ar_3, Ar_4, Ar_5
   </sql>
+
+
+
   <select id="selectByExampleWithBLOBs" parameterType="com.liufeng.npc.bean.ArticleExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
     </if>
+
+    <if test="topNum != null">
+      top ${topNum}
+    </if>
+
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -107,6 +115,12 @@
     <if test="distinct">
       distinct
     </if>
+
+    <if test="topNum != null">
+      top ${topNum}
+    </if>
+
+
     <include refid="Base_Column_List" />
     from NPC_Article
     <if test="_parameter != null">

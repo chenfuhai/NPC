@@ -10,6 +10,16 @@ public class ArticleExample {
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+    //新增一个top 用来筛选前N项
+    protected Integer topNum;
+
+    public Integer getTopNum() {
+        return topNum;
+    }
+
+    public void setTopNum(Integer topNum) {
+        this.topNum = topNum;
+    }
 
     public ArticleExample() {
         oredCriteria = new ArrayList<Criteria>();

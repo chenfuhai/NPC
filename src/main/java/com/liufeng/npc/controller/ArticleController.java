@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liufeng.npc.bean.*;
 import com.liufeng.npc.service.ArticleService;
+import com.liufeng.npc.utils.ArtImgHunter;
 import com.liufeng.npc.utils.Log;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -25,6 +27,38 @@ public class ArticleController {
 
     @Autowired
     ArticleService articleService;
+
+
+
+    //获取图片新闻栏目 栏目图片文章信息
+    @ResponseBody
+    @RequestMapping(value = "/arts/img/{coId}", method = RequestMethod.GET)
+    public Msg getImgArtsByCol(@PathVariable("coId") Integer coId){
+        ArticleExample articleExample = new ArticleExample();
+        //默认5个 并且需要是已发布的 还要按照时间倒序排序
+        articleExample.setTopNum(5);
+        articleExample.setOrderByClause("Ar_PublicTime desc");
+        articleExample.createCriteria().andArStatusEqualTo(2);
+        articleExample.or().andArColumnidEqualTo(coId);
+
+       JSONArray jsonArray = new JSONArray();
+        List<ArticleWithBLOBs> articles = articleService.getAll(articleExample);
+        for (ArticleWithBLOBs a:articles
+             ) {
+            Map<String, String> map = ArtImgHunter.getImgUrlFromArt(a);
+
+            //需要的数据有 文章id 图片src 图片alt
+            JSONObject object = new JSONObject();
+            object.put("id",a.getArId());
+            object.put("src",map.get("src"));
+            object.put("alt",map.get("alt"));
+            jsonArray.add(object);
+
+            System.out.println(map.get("src")+"   "+map.get("alt"));
+        }
+        return  Msg.success().add("data",jsonArray);
+
+    }
 
 
     //获取某个栏目的所有文章  produces = "application/json;charset=utf-8" 使用ResponseBody并且返回时String的时候加 其他不要
@@ -132,6 +166,7 @@ public class ArticleController {
     }
 
 
+
     //获取对应ID的文章
     @ResponseBody
     @RequestMapping(value = "/art/{artId}", method = RequestMethod.GET)
@@ -175,6 +210,21 @@ public class ArticleController {
             msg.msg = "标题为空，更新失败";
             return msg;
         }
+        flag = articleService.updateArt(articleWithBLOBs);
+        if (flag) {
+            return Msg.success();
+        } else {
+            return Msg.error();
+
+        }
+    }
+
+    //更新文章状态，发布 送审 标记等 simpleUpdata 不用判断标题是否为空
+    //Spring自动封装 URL上的占位符加上原生map中的值以及自己封装的emap中的值
+    @ResponseBody
+    @RequestMapping(value = "/art/su/{arId}", method = RequestMethod.PUT)
+    public Msg updateArtStatus(ArticleWithBLOBs articleWithBLOBs) {
+        boolean flag = false;
         flag = articleService.updateArt(articleWithBLOBs);
         if (flag) {
             return Msg.success();

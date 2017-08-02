@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery仿百度新闻首页焦点图 - 代码者</title>
+
+<link rel="stylesheet" type="text/css" href="css/yx_rotaion.css"/>
+
+</head>
+<body>
+<!--UL标签class属性必需，图片alt属性值即标题文字-->
+<div id="div1" style="width:500px;height:350px;">
+	
+</div>
+
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/yx_rotaion.js"></script>
+<script type="text/javascript">
+   $(function () {
+       $.ajax({
+           url:"/admin/arts/img/2017",
+           dataType:"json",
+           type: 'get',
+           success:function (result) {
+               if (result.code===100){
+                   var data = result.extend.data;
+                   var jsonData =[];
+                   $.each(data,function (i,d) {
+
+                       jsonData.push($.parseJSON('{"href":"/content.html?id='+d.id+'","src":"'+d.src+'","title":"'+d.alt+'"}'));
+                   });
+
+                   $("#div1").yx_rotaion({data:jsonData});
+               }else{
+                   alert(result.msg);
+               }
+           }
+       });
+   });
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

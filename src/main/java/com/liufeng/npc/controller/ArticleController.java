@@ -37,8 +37,7 @@ public class ArticleController {
         ArticleExample articleExample = new ArticleExample();
         //默认5个 并且需要是已发布的 还要按照时间倒序排序
         articleExample.setTopNum(5);
-        articleExample.or().andArColumnidEqualTo(coId);
-        articleExample.or().andArStatusEqualTo(2);
+        articleExample.or().andArColumnidEqualTo(coId).andArStatusEqualTo(2);
         articleExample.setOrderByClause("Ar_PublicTime desc");
 
        JSONArray jsonArray = new JSONArray();

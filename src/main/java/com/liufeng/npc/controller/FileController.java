@@ -76,9 +76,9 @@ public class FileController {
 //图片扩展名
         String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        String dirName = sdf.format(new Date());
-        rootPath += dirName + "/";
-        rootUrl += dirName + "/";
+//        String dirName = sdf.format(new Date());
+        //rootPath += dirName + "/";
+        //rootUrl += dirName + "/";
         File saveDirFile = new File(rootPath);
         if (!saveDirFile.exists()) {
             saveDirFile.mkdirs();

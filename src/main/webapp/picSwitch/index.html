@@ -19,9 +19,9 @@
 <script type="text/javascript" src="js/yx_rotaion.js"></script>
 <script type="text/javascript">
    $(function () {
+       var id = getPar("id");
        $.ajax({
-           url:"/admin/arts/img/2017",
-           dataType:"json",
+           url:"/admin/arts/img/"+id,
            type: 'get',
            success:function (result) {
                if (result.code===100){
@@ -40,7 +40,16 @@
        });
    });
 
+   function getPar(par) {
+       var localUrl = document.location.href;
+       var get = localUrl.indexOf(par+"=");
+       if(get === -1){
+           return false;
+       }
 
+       var get_par  = localUrl.slice(par.length+get+1);
+       return get_par;
+   }
 
 
 

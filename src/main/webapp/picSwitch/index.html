@@ -29,7 +29,7 @@
                    var jsonData =[];
                    $.each(data,function (i,d) {
 
-                       jsonData.push($.parseJSON('{"href":"/content.html?id='+d.id+'","src":"'+d.src+'","title":"'+d.alt+'"}'));
+                       jsonData.push($.parseJSON('{"href":"/content.html?id='+d.id+'","src":"'+d.src+'","title":"'+d.title+'"}'));
                    });
 
                    $("#div1").yx_rotaion({data:jsonData});

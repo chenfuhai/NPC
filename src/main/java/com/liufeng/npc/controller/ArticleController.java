@@ -37,24 +37,26 @@ public class ArticleController {
         ArticleExample articleExample = new ArticleExample();
         //默认5个 并且需要是已发布的 还要按照时间倒序排序
         articleExample.setTopNum(5);
-        articleExample.setOrderByClause("Ar_PublicTime desc");
-        articleExample.createCriteria().andArStatusEqualTo(2);
         articleExample.or().andArColumnidEqualTo(coId);
+        articleExample.or().andArStatusEqualTo(2);
+        articleExample.setOrderByClause("Ar_PublicTime desc");
 
        JSONArray jsonArray = new JSONArray();
         List<ArticleWithBLOBs> articles = articleService.getAll(articleExample);
         for (ArticleWithBLOBs a:articles
              ) {
+            System.out.println(a.toString());
             Map<String, String> map = ArtImgHunter.getImgUrlFromArt(a);
 
-            //需要的数据有 文章id 图片src 图片alt
+            //需要的数据有 文章id 图片src 文章标题
             JSONObject object = new JSONObject();
             object.put("id",a.getArId());
             object.put("src",map.get("src"));
             object.put("alt",map.get("alt"));
+            object.put("title",a.getArTitle());
             jsonArray.add(object);
 
-            System.out.println(map.get("src")+"   "+map.get("alt"));
+
         }
         return  Msg.success().add("data",jsonArray);
 

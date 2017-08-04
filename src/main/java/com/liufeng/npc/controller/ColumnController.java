@@ -35,9 +35,9 @@ public class ColumnController {
     @ResponseBody
     @RequestMapping(value = "/col/{coId}",method = RequestMethod.GET)
     public Msg getCol(@PathVariable("coId") Integer coId){
-        Column allByCol = columnService.getAllByCol(coId);
+        Column col = columnService.getColByCol(coId);
 
-        return Msg.success().add("col",allByCol);
+        return Msg.success().add("col",col);
     }
     //更新对应的栏目信息
     @ResponseBody

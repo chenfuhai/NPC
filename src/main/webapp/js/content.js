@@ -10,7 +10,12 @@
             type:"get",
             success:function (result) {
                 var art = result.extend.art;
+
+
+
+
                 fill(art);
+                fillPosition(art);
                 addClickCount(art);
             },
             error:function (result) {
@@ -41,10 +46,31 @@ function addClickCount(art) {
 }
 
 function fill(art) {
-    $("#ar_title").empty().append(art.arTitle);
-    $("#ar_subTitle").empty().append(art.arSubtitle);
-    $("#ar_time_from_count").empty().append("发布时间："+art.arPublictime+"\t来源："+art.arFrom+"\t阅读:"+art.arClickCount+"次");
-    $("#zoom").empty().append(art.arContent);
+    $("#art_title").empty().append(art.arTitle);
+    $("#art_subtitle").empty().append(art.arSubtitle);
+    $("#art_time").empty().append("发布时间："+art.arPublictime);
+    $("#art_from").empty().append("来源："+art.arFrom);
+    $("#art_count").empty().append("点击："+art.arClickCount+"次");
+    $("#art_content").empty().append(art.arContent);
+}
+function fillPosition(art){
+    var col_id = art.arColumnid;
+    $.ajax({
+        url:"/admin/col/"+col_id,
+        dataType:"json",
+        type:"get",
+        success:function (result) {
+            var col = result.extend.col;
+            var colName = col.coName;
+            $("#col_name").empty().append("<span >您现在的位置: 东乡人大网>>"+colName+"</span >"+colName);
+        },
+        error:function (result) {
+        alert("发生错误 "+"状态码"+result.status+"错误信息"+result.statusText);
+        console.log("发生错误 "+"状态码"+result.status+"错误信息"+result.statusText);
+    }
+
+
+    });
 
 }
 

@@ -22,7 +22,7 @@ public class ColumnService {
         return columns;
     }
 
-    public Column getAllByCol(Integer colId) {
+    public Column getColByCol(Integer colId) {
 
         ColumnWithBLOBs column = columnMapper.selectByPrimaryKey(colId);
 

@@ -229,10 +229,12 @@ function updateArt() {
                     $.ligerDialog.warn(result.msg);
                     return;
                 }else if(result.code==100){
-                    $.ligerDialog.success(result.msg);
+                    $.ligerDialog.success(result.msg,function () {
+                        closeSelf();
+                    });
 
                     //top.tab.removeTabItem('addArtTab');
-                    closeSelf();
+
                 }
             },
             error:function (result) {

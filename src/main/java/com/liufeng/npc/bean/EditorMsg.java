@@ -20,6 +20,7 @@ public class EditorMsg {
                 '}';
     }
     public String toJson(){
+
         JSONObject object = new JSONObject();
         object.put("error",error);
         object.put("url",url);

@@ -2,6 +2,8 @@ package com.liufeng.npc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.liufeng.npc.bean.*;
 import com.liufeng.npc.service.ArticleService;
 import com.liufeng.npc.utils.ArtImgHunter;
@@ -9,12 +11,10 @@ import com.liufeng.npc.utils.Log;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 
-import javax.print.attribute.Attribute;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,12 +33,18 @@ public class ArticleController {
     //获取图片新闻栏目 栏目图片文章信息
     @ResponseBody
     @RequestMapping(value = "/arts/img/{coId}", method = RequestMethod.GET)
-    public Msg getImgArtsByCol(@PathVariable("coId") Integer coId){
+    public Msg getImgArtsByCol(@PathVariable("coId") Integer coId,HttpSession session){
         ArticleExample articleExample = new ArticleExample();
         //默认5个 并且需要是已发布的 还要按照时间倒序排序
         articleExample.setTopNum(5);
-        articleExample.or().andArColumnidEqualTo(coId).andArStatusEqualTo(2);
+        ArticleExample.Criteria or = articleExample.or();
+        or.andArColumnidEqualTo(coId).andArStatusEqualTo(2);
         articleExample.setOrderByClause("Ar_PublicTime desc");
+
+        AdminUser user = (AdminUser)session.getAttribute("loginedUser");
+        if (user == null){
+            or.andArStatusEqualTo(2);
+        }
 
        JSONArray jsonArray = new JSONArray();
         List<ArticleWithBLOBs> articles = articleService.getAll(articleExample);
@@ -69,7 +75,8 @@ public class ArticleController {
                                @RequestParam(value = "page", defaultValue = "1") Integer pn,
                                @RequestParam(value = "pagesize", defaultValue = "1") Integer pagesize,
                                @RequestParam(value = "sortname", defaultValue = "publicTime") String sortname,
-                               @RequestParam(value = "sortorder", defaultValue = "desc") String sortorder
+                               @RequestParam(value = "sortorder", defaultValue = "desc") String sortorder,
+                               HttpSession session
     ) {
 
         String d_sortname = ArticleNameMap.Out2Data(sortname);
@@ -91,15 +98,21 @@ public class ArticleController {
 
 
         ArticleExample example = new ArticleExample();
-        example.or().andArColumnidEqualTo(coId);
+        ArticleExample.Criteria or = example.or();
+        or.andArColumnidEqualTo(coId);
         example.setOrderByClause(defaultSortStatus + userSort + defaultSortTime);
+
+        AdminUser user = (AdminUser)session.getAttribute("loginedUser");
+        if (user == null){
+            or.andArStatusEqualTo(2);
+        }
 
         PageHelper.startPage(pn, pagesize);
         List<ArticleWithBLOBs> articles = articleService.getAll(example);
         PageInfo pageInfo = new PageInfo(articles, 5);
 
 
-        return dealArtsToJson(pageInfo.getList(), pageInfo.getTotal());
+        return dealArtsToJson(pageInfo);
     }
 
 
@@ -109,8 +122,10 @@ public class ArticleController {
     public String getArts(@RequestParam(value = "page", defaultValue = "1") Integer pn,
                           @RequestParam(value = "pagesize", defaultValue = "1") Integer pagesize,
                           @RequestParam(value = "sortname", defaultValue = "publicTime") String sortname,
-                          @RequestParam(value = "sortorder", defaultValue = "desc") String sortorder
+                          @RequestParam(value = "sortorder", defaultValue = "desc") String sortorder,
+                          HttpSession session
     ) {
+
 
         String d_sortname = ArticleNameMap.Out2Data(sortname);
         if (d_sortname == null) {
@@ -120,24 +135,31 @@ public class ArticleController {
         ArticleExample example = new ArticleExample();
         example.setOrderByClause(d_sortname + " " + sortorder);
 
+        AdminUser user = (AdminUser)session.getAttribute("loginedUser");
+        if (user == null){
+            example.or().andArStatusEqualTo(2);
+        }
 
         PageHelper.startPage(pn, pagesize);
         List<ArticleWithBLOBs> articles = articleService.getAll(example);
         PageInfo pageInfo = new PageInfo(articles, 5);
 
 
-        return dealArtsToJson(pageInfo.getList(), pageInfo.getTotal());
+        return dealArtsToJson(pageInfo);
     }
 
     /**
      * 处理pageInfo里面的数据 转化成Ligerui可接受的JSON
      *
-     * @param arts
-     * @param total
+
      * @return
      */
-    private String dealArtsToJson(List arts, long total) {
+    private String dealArtsToJson( PageInfo pageInfo) {
+        List arts = pageInfo.getList();
+        long total = pageInfo.getTotal();
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 
         JSONArray array = new JSONArray();
         for (Object art : arts) {
@@ -157,10 +179,12 @@ public class ArticleController {
             array.add(jsonObject);
         }
 
-
+        Gson gson = new GsonBuilder().create();
+        pageInfo.setList(null);
         JSONObject obj = new JSONObject();
         obj.put("Rows", array);
         obj.put("Total", total);
+        obj.put("pageInfo",gson.toJsonTree(pageInfo));
         System.out.println(obj.toString());
         return obj.toString();
 
@@ -171,8 +195,18 @@ public class ArticleController {
     //获取对应ID的文章
     @ResponseBody
     @RequestMapping(value = "/art/{artId}", method = RequestMethod.GET)
-    public Msg getArtById(@PathVariable("artId") Integer artId) {
+    public Msg getArtById(@PathVariable("artId") Integer artId,HttpSession  session) {
+
         ArticleWithBLOBs art = articleService.getArtById(artId);
+
+        AdminUser user = (AdminUser)session.getAttribute("loginedUser");
+        if (user == null){
+            if (art.getArStatus()!=2){
+                art = null;
+                return Msg.error();
+            }
+        }
+
 
         return Msg.success().add("art", art);
     }
@@ -227,6 +261,34 @@ public class ArticleController {
     public Msg updateArtStatus(ArticleWithBLOBs articleWithBLOBs) {
         boolean flag = false;
         flag = articleService.updateArt(articleWithBLOBs);
+        if (flag) {
+            return Msg.success();
+        } else {
+            return Msg.error();
+
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/art/addCount/{arId}", method = RequestMethod.GET)
+    public Msg addArtCount(@PathVariable("arId") Integer arId,HttpSession session) {
+        ArticleWithBLOBs art = articleService.getArtById(arId);
+        if (art==null){
+            return Msg.error();
+        }
+
+        AdminUser user = (AdminUser)session.getAttribute("loginedUser");
+        if (user == null){
+            if (art.getArStatus()!=2){
+                art = null;
+                return Msg.error();
+            }
+        }
+
+
+        art.setArClickCount(art.getArClickCount()+1);
+        boolean flag = false;
+        flag = articleService.updateArt(art);
         if (flag) {
             return Msg.success();
         } else {

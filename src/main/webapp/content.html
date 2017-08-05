@@ -9,6 +9,7 @@
 <link href="css/main.css" rel="stylesheet">
     <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="js/content.js"></script>
+    <script type="text/javascript" src="js/navInit.js"></script>
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
@@ -29,7 +30,7 @@
 	 <div class="topcontent"><img src="images/banner.jpg"></div>
 
    <div class="menu_box" id="Menu"><ul>
-<li class="menu_style"  name="MenuItem"><a href="#" class="menu">首页</a></li>
+<li class="menu_style"  name="MenuItem"><a href="/index.html" class="menu">首页</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_ldzc">领导致词</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_ysjd">议事决定</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_dbfc">代表风采</a></li>
@@ -37,7 +38,7 @@
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_gzdt">工作动态</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_jdgz">监督工作</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_rsrm">人事任免</a></li>
-<li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_rdxx">人大信箱</a></li>
+<li class="menu_style"  name="MenuItem"><a href="/email.html" class="menu" id="nav_rdxx">人大信箱</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" >联系我们</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" >使用帮助</a></li>
 </ul></div>
@@ -57,9 +58,10 @@
       <p class="p_title" id="art_subtitle"></p>
       <p class="box_p" ><span id="art_time">发布时间：</span><span id="art_from">来源：本站原创</span><span id="art_count">点击：0</span></p>
 
-        <div  id="art_content" style="padding:10px;margin: 0 auto">
+        <iframe  id="art_content"  frameborder="0" scrolling="no" style="padding:10px;margin: 0 auto;display: block;width: 98%;font-family:'sans serif',tahoma,verdana,helvetica;font-size: 12px">
 
-        </div>
+        </iframe>
+
 
     </ul>
   </div>
@@ -73,13 +75,13 @@
 <footer>
   <div class="footnav">
     <ul>
-      <li><a href="#">网站首页</a></li>
+      <li><a href="/index.html">网站首页</a></li>
       <li><a href="#" id="fnav_ldzc">领导致词</a></li>
       <li><a href="#" id="fnav_dbfc">代表风采</a></li>
       <li><a href="#" id="fnav_ggtz">公告通知</a></li>
-      <li><a href="#" id="fnav_jsgz">监督工作</a></li>
+      <li><a href="#" id="fnav_jdgz">监督工作</a></li>
       <li><a href="#" id="fnav_rsrm">人事任免</a></li>
-      <li><a href="#" id="fnav_rdxx">人大信箱</a></li>
+      <li><a href="/email.html" id="fnav_rdxx">人大信箱</a></li>
 	  <li><a href="#" >联系我们</a></li>
 	  <li><a href="#" >使用帮助</a></li>
     </ul>

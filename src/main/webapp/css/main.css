@@ -28,8 +28,8 @@
 .info_text { width: 1000px; margin: 10px auto; background: #fff }
 .info_text h2 { font-size: 14px; background: url(../images/listbg.png) no-repeat #D9F6FC; line-height: 26px; height: 26px; color: #fff; padding: 0 10px 0 40px; border-top: 1px #0383D9 solid }
 .info_text h2 span { float: right; font-size: 12px; font-weight: normal; color: #000; }
-.info_text h2 span a { color: #777; padding: 0 3px }
-.info_text h2 span a:hover { color: #000; text-decoration: underline }
+.info_text h2 span a { color: #000; padding: 0 3px }
+.info_text h2 span a:hover { color: #F27F21; text-decoration: underline }
 .info_text>ul { padding: 10px 30px }
 .a_title { text-align: center; font-size: 26px; font-weight: bold; color: #000; line-height: 50px }
 .p_title { text-align: center; font-size: 16px; color: #333; line-height: 50px; }
@@ -37,7 +37,11 @@
 .box_p { border: #ccc 1px dashed; text-align: center; padding: 5px 0; margin: 0 30px 10px 30px; color: #999; }
 .box_p a { color: #999 }
 .box_p span { margin: 0 10px }
-
+.disabled{
+    color:gray;
+    cursor:pointer;
+    pointer-events: none;
+}
 /* 投诉举报 */
 .tsjb { margin: 10px auto; overflow: hidden; background: url(../images/mainbg.jpg) repeat-x #fff;padding-left:10px;padding-right:10px;  }
 .tsjb h2 { background: url(../images/webicon.gif) no-repeat left center; font-size: 14px; line-height: 46px; height: 46px; padding-left: 20px; color: #069 }

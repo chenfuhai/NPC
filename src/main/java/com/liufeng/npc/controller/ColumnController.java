@@ -28,7 +28,7 @@ public class ColumnController {
         List<Column> columns = columnService.getAll();
         return Msg.success().add("cols",columns);
     }
-    //获取栏目名对应的栏目信息
+    //获取栏目名对应的栏目信息 栏目不多 获取所有栏目 然后对比
 
 
     //获取对应ID的栏目信息

@@ -9,8 +9,9 @@
     <link href="css/index.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/yx_rotaion.css"/>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="js/yx_rotaion.js"></script>
+    <script type="text/javascript" src="js/navInit.js"></script>
     <!--[if lt IE 9]>
     <script src="js/modernizr.js"></script>
     <![endif]-->
@@ -86,7 +87,7 @@
 
         <div class="menu_box" id="Menu">
             <ul>
-                <li class="menu_style" name="MenuItem"><a href="#" class="menu">首页</a></li>
+                <li class="menu_style" name="MenuItem"><a href="/index.html" class="menu">首页</a></li>
                 <li class="menu_style" name="MenuItem"><a href="#" class="menu" id="nav_ldzc">领导致词</a></li>
                 <li class="menu_style" name="MenuItem"><a href="#" class="menu" id="nav_ysjd">议事决定</a></li>
                 <li class="menu_style" name="MenuItem"><a href="#" class="menu" id="nav_dbfc">代表风采</a></li>
@@ -149,7 +150,7 @@
 
         <div id="module_180" style="width:394px;margin:0px 0px 0px 0px;" class="module_box_layout_left">
             <div class="module_box_inner">
-                <div class="module_title"><span class="module_sign">综合要闻</span><span class="module_more"></span></div>
+                <div class="module_title"><span class="module_sign">综合要闻</span><span class="module_more" ><a href="#"  id="more_zhyw">更多</a></span></div>
                 <div id="module_content_180" style="padding:3px 7px 3px 7px;border:0px;" class="module_content">
                     <div class="article">
                         <ul id="ul_zhyw">
@@ -172,11 +173,11 @@
 <div class="box">
 
     <div class="blank"></div>
-    <div class="ad left"><img src="images/ad01.jpg"></div>
-    <div class="ad right"><img src="images/ad01.jpg"></div>
+    <div class="ad left"><img src="images/pic01.jpg"></div>
+    <div class="ad right"><img src="images/pic01.jpg"></div>
     <div class="blank"></div>
     <div class="linews left">
-        <h3><span><a href="#" class="more">更多..</a></span>领导致词</h3>
+        <h3><span ><a href="#" class="more" id="more_ldzc">更多..</a></span>领导致词</h3>
         <div class="article">
 
             <ul id="ul_ldzc">
@@ -190,7 +191,7 @@
         </div>
     </div>
     <div class="linews left ln">
-        <h3><span><a href="#" class="more">更多..</a></span>代表风采</h3>
+        <h3><span ><a href="#" class="more" id="more_dbfc">更多..</a></span>代表风采</h3>
         <div class="article">
 
             <ul id="ul_dbfc">
@@ -204,7 +205,7 @@
         </div>
     </div>
     <div class="linews right">
-        <h3><span><a href="#" class="more">更多..</a></span>工作动态</h3>
+        <h3><span ><a href="#" class="more" id="more_gzdt">更多..</a></span>工作动态</h3>
         <div class="article">
 
             <ul id="ul_gzdt">
@@ -219,7 +220,7 @@
     </div>
     <div class="blank"></div>
     <div class="linews left">
-        <h3><span><a href="#" class="more">更多..</a></span>议事决定</h3>
+        <h3><span ><a href="#" class="more" id="more_ysjd">更多..</a></span>议事决定</h3>
         <div class="article">
 
             <ul id="ul_ysjd">
@@ -233,7 +234,7 @@
         </div>
     </div>
     <div class="linews left ln">
-        <h3><span><a href="#" class="more">更多..</a></span>人事任免</h3>
+        <h3><span><a href="#" class="more" id="more_rsrm">更多..</a></span>人事任免</h3>
         <div class="article">
 
             <ul id="ul_rsrm">
@@ -261,7 +262,7 @@
         </div>
     </div>
     <div class="blank"></div>
-    <div class="ad"><img src="images/ad03.jpg"></div>
+    <div class="ad"><img src="images/pic03.jpg"></div>
     <div class="blank"></div>
 
 </div>
@@ -269,13 +270,13 @@
 <footer>
     <div class="footnav">
         <ul>
-            <li><a href="#">网站首页</a></li>
+            <li><a href="/index.html">网站首页</a></li>
             <li><a href="#" id="fnav_ldzc">领导致词</a></li>
             <li><a href="#" id="fnav_dbfc">代表风采</a></li>
             <li><a href="#" id="fnav_ggtz">公告通知</a></li>
-            <li><a href="#" id="fnav_jsgz">监督工作</a></li>
+            <li><a href="#" id="fnav_jdgz">监督工作</a></li>
             <li><a href="#" id="fnav_rsrm">人事任免</a></li>
-            <li><a href="#" id="fnav_rdxx">人大信箱</a></li>
+            <li><a href="/email.html" id="fnav_rdxx">人大信箱</a></li>
             <li><a href="#">联系我们</a></li>
             <li><a href="#">使用帮助</a></li>
         </ul>

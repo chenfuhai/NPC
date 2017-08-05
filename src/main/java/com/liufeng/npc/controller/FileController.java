@@ -153,6 +153,7 @@ public class FileController {
         }
 
 
+
         JSONObject result = new JSONObject();
         result.put("moveup_dir_path", moveupDirPath);
         result.put("current_dir_path", currentDirPath);

@@ -36,7 +36,7 @@ hello:function(){alert('hello');}
 			     /**轮换间隔时间，单位毫秒*/
                  during:3000,
 				 /**是否显示左右按钮*/
-                 btn:true,
+                 btn:false,
 				 /**是否显示焦点按钮*/
                  focus:true,
 				 /**是否显示标题*/
@@ -156,10 +156,10 @@ hello:function(){alert('hello');}
 			 
 				$(".yx-rotation-focus span").css("margin-top",(0.1*o.height/2-6)+"px");
 				$(".yx-rotation-focus span").css("vertical-align","middle");
-               // 兼容IE6透明图片   
+               // 兼容IE6透明图片
                if($.browser.msie && $.browser.version == "6.0" ){
                   $btn.add($focus.children("span")).css({backgroundImage:'url("images/ico.gif")'});
-               }		
+               }
                var $f = $focus.children("span");
                $f.first().addClass("hover");
                // 鼠标覆盖左右按钮设置透明度
@@ -190,11 +190,11 @@ hello:function(){alert('hello');}
 	             if(curr_index >= li_count) curr_index = 0;
 	             if(curr_index < 0) curr_index = li_count-1;
                  $li.eq(curr_index).fadeIn(300);
-	             $li.not($li.eq(curr_index)).fadeOut(300);	
+	             $li.not($li.eq(curr_index)).fadeOut(300);
 	             $f.eq(curr_index).addClass("hover");
 	             $f.not($f.eq(curr_index)).removeClass("hover");
 	             $title.text($li.eq(curr_index).find("img").attr("alt"));
-				 $title.attr("href",$li.eq(curr_index).find("a").attr("href"));	
+				 $title.attr("href",$li.eq(curr_index).find("a").attr("href"));
                });
 
 			//======this.each(function(){=====

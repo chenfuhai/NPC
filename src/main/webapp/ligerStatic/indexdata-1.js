@@ -2,6 +2,7 @@
 [
 	{ text: '文章管理',icon:"/ligerStatic/icon/email.png",isexpand:true,children: [
         {url:"manager?coName='图片新闻'",text:"图片新闻"},
+        {url:"manager?coName='综合要闻'",text:"综合要闻"},
         {url:"manager?coName='领导致词'",text:"领导致词"},
         {url:"manager?coName='公告通知'",text:"公告通知"},
         {url:"manager?coName='工作动态'",text:"工作动态"},

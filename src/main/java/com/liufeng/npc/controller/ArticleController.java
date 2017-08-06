@@ -211,6 +211,44 @@ public class ArticleController {
         return Msg.success().add("art", art);
     }
 
+    //依据列ID和标题名获取文章
+    @ResponseBody
+    @RequestMapping(value = "/art/coIdTitle", method = RequestMethod.GET)
+    public Msg getArtByCoIdAndName(@RequestParam(value = "coId",defaultValue = "0") Integer coId,
+                                   @RequestParam(value = "title",defaultValue = "") String title,HttpSession  session) {
+
+        if (coId==null || coId==0){
+            Msg msg = Msg.error();
+            msg.msg = "没有设置列ID，coId缺失";
+            return msg;
+        }
+        if (title==null || title.equals("")){
+            Msg msg = Msg.error();
+            msg.msg = "没有设置标题，title缺失";
+            return msg;
+        }
+        ArticleExample articleExample = new ArticleExample();
+        articleExample.or().andArColumnidEqualTo(coId).andArTitleEqualTo(title);
+        List<ArticleWithBLOBs> articles = articleService.getAll(articleExample);
+        if (articles.size()==0){
+            Msg msg = Msg.error();
+            msg.msg = "没有此文章";
+            return msg;
+        }
+        ArticleWithBLOBs articleWithBLOBs = articles.get(0);
+        AdminUser user = (AdminUser)session.getAttribute("loginedUser");
+        if (user == null){
+            if (articleWithBLOBs.getArStatus()!=2){
+                articleWithBLOBs = null;
+                return Msg.error();
+            }
+        }
+
+
+        return Msg.success().add("art", articleWithBLOBs);
+    }
+
+
     //保存文章
 
     @ResponseBody
@@ -225,6 +263,49 @@ public class ArticleController {
         }
         articleWithBLOBs.setArPublictime(new Date());
         flag = articleService.saveArt(articleWithBLOBs);
+        if (flag) {
+            return Msg.success();
+        } else {
+            Msg msg = Msg.error();
+            msg.msg = "保存失败";
+            return msg;
+        }
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/addMessage", method = RequestMethod.POST)
+    public Msg newMessage(@RequestParam(value = "title",defaultValue = "") String title,
+                          @RequestParam(value = "name",defaultValue = "匿名") String name,
+                          @RequestParam(value = "addr",defaultValue = "未填写") String addr,
+                          @RequestParam(value = "phone",defaultValue = "未填写") String phone,
+                          @RequestParam(value = "lytext",defaultValue = "") String message,
+                          @RequestParam(value = "coId")Integer coId) {
+        boolean flag = false;
+
+        if(title==null || title.trim().equals("")){
+            Msg msg = Msg.error();
+            msg.msg = "主题为空，提交失败";
+            return msg;
+        }
+        if(message==null || message.trim().equals("")){
+            Msg msg = Msg.error();
+            msg.msg = "内容为空，提交失败";
+            return msg;
+        }
+        if (coId==null || coId==0){
+            Msg msg = Msg.error();
+            msg.msg = "空的栏目ID，提交失败";
+            return msg;
+        }
+
+        message="<br><b>留言内容：</b><br>"+message+"<br><b>其他信息：</b><br>姓名: "+name+"<br>地址: "+addr+"<br>联系电话: "+phone;
+        ArticleWithBLOBs article = new ArticleWithBLOBs();
+        article.setArPublictime(new Date());
+        article.setArContent(message);
+        article.setArTitle(title);
+        article.setArColumnid(coId);
+        flag = articleService.saveArt(article);
         if (flag) {
             return Msg.success();
         } else {

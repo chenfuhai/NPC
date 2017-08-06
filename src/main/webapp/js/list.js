@@ -1,5 +1,6 @@
-var id_ldzc,id_ysjd,id_dbfc,id_ggtz,id_gzdt,id_jdgz,id_rsrm,id_rdxx,coId;
+
 $(function () {
+    var id_ldzc,id_ysjd,id_dbfc,id_ggtz,id_gzdt,id_jdgz,id_rsrm,id_rdxx,coId;
     //获取地址栏的栏目ID
     //根据ID获取去栏目的所有文章
     //获取对应的栏目 并加入到左边的栏目表中

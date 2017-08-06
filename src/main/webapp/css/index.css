@@ -45,7 +45,10 @@ font-weight:bold;font-size:14px;background:url(../images/title_bg_icon.png) no-r
 .module_footer .l{float:left;}
 .module_footer .r{float:right}
 
+.linews .article{
 
+    height: 215px;
+}
 
 
 .article .date {

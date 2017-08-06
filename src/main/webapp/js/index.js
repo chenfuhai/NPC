@@ -81,7 +81,7 @@ $(function () {
     function fillLdzc() {
         $.ajax({
             url:"/admin/arts/"+id_ldzc,
-            data:"pagesize=5",
+            data:"pagesize=8",
             dataType:"json",
             type:"get",
             success:function (result) {
@@ -152,7 +152,7 @@ $(function () {
                         .attr("href","/content.html?id="+art.id).attr("target","_blank").attr("title",art.title);
 
                     e_spanTitle.append(e_a).addClass("title");
-                    e_spanDate.append(art.publictime.substring(5,10)).addClass("date");
+                    e_spanDate.append(art.publicTime.substring(5,10)).addClass("date");
                     e_spanClear.addClass("clear");
                     e_li.append(e_spanTitle).append(e_spanDate).append(e_spanClear);
                     ul.append(e_li);
@@ -194,7 +194,7 @@ $(function () {
                         .attr("href","/content.html?id="+art.id).attr("target","_blank").attr("title",art.title);
 
                     e_spanTitle.append(e_a).addClass("title");
-                    e_spanDate.append(art.publictime.substring(5,10)).addClass("date");
+                    e_spanDate.append(art.publicTime.substring(5,10)).addClass("date");
                     e_spanClear.addClass("clear");
                     e_li.append(e_spanTitle).append(e_spanDate).append(e_spanClear);
                     ul.append(e_li);
@@ -236,7 +236,7 @@ $(function () {
                         .attr("href","/content.html?id="+art.id).attr("target","_blank").attr("title",art.title);
 
                     e_spanTitle.append(e_a).addClass("title");
-                    e_spanDate.append(art.publictime.substring(5,10)).addClass("date");
+                    e_spanDate.append(art.publicTime.substring(5,10)).addClass("date");
                     e_spanClear.addClass("clear");
                     e_li.append(e_spanTitle).append(e_spanDate).append(e_spanClear);
                     ul.append(e_li);
@@ -278,7 +278,7 @@ $(function () {
                         .attr("href","/content.html?id="+art.id).attr("target","_blank").attr("title",art.title);
 
                     e_spanTitle.append(e_a).addClass("title");
-                    e_spanDate.append(art.publictime.substring(5,10)).addClass("date");
+                    e_spanDate.append(art.publicTime.substring(5,10)).addClass("date");
                     e_spanClear.addClass("clear");
                     e_li.append(e_spanTitle).append(e_spanDate).append(e_spanClear);
                     ul.append(e_li);
@@ -320,7 +320,7 @@ $(function () {
                         .attr("href","/content.html?id="+art.id).attr("target","_blank").attr("title",art.title);
 
                     e_spanTitle.append(e_a).addClass("title");
-                    e_spanDate.append(art.publictime.substring(5,10)).addClass("date");
+                    e_spanDate.append(art.publicTime.substring(5,10)).addClass("date");
                     e_spanClear.addClass("clear");
                     e_li.append(e_spanTitle).append(e_spanDate).append(e_spanClear);
                     ul.append(e_li);
@@ -362,7 +362,7 @@ $(function () {
                         .attr("href","/content.html?id="+art.id).attr("target","_blank").attr("title",art.title);
 
                     e_spanTitle.append(e_a).addClass("title");
-                    e_spanDate.append(art.publictime.substring(5,10)).addClass("date");
+                    e_spanDate.append(art.publicTime.substring(5,10)).addClass("date");
                     e_spanClear.addClass("clear");
                     e_li.append(e_spanTitle).append(e_spanDate).append(e_spanClear);
                     ul.append(e_li);
@@ -404,7 +404,7 @@ $(function () {
                         .attr("href","/content.html?id="+art.id).attr("target","_blank").attr("title",art.title);
 
                     e_spanTitle.append(e_a).addClass("title");
-                    e_spanDate.append(art.publictime.substring(5,10)).addClass("date");
+                    e_spanDate.append(art.publicTime.substring(5,10)).addClass("date");
                     e_spanClear.addClass("clear");
                     e_li.append(e_spanTitle).append(e_spanDate).append(e_spanClear);
                     ul.append(e_li);

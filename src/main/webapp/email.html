@@ -9,6 +9,7 @@
 <link href="css/main.css" rel="stylesheet">
   <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
   <script type="text/javascript" src="js/navInit.js"></script>
+  <script type="text/javascript" src="js/email.js"></script>
   <!--[if lt IE 9]>
 
 <script src="js/modernizr.js"></script>
@@ -22,10 +23,10 @@
 </head>
 <body>
 
- 
+
   <div class="top_box">
  <div class="top_box_inner">
-   
+
 
 
 	 <div class="topcontent"><img src="images/banner.jpg"></div>
@@ -40,8 +41,8 @@
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_jdgz">监督工作</a></li>
 <li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_rsrm">人事任免</a></li>
 <li class="menu_style"  name="MenuItem"><a href="/email.html" class="menu" id="nav_rdxx">人大信箱</a></li>
-<li class="menu_style"  name="MenuItem"><a href="#" class="menu" >联系我们</a></li>
-<li class="menu_style"  name="MenuItem"><a href="#" class="menu" >使用帮助</a></li>
+<li class="menu_style"  name="MenuItem"><a href="#" class="menu"  id="nav_lxwm" >联系我们</a></li>
+<li class="menu_style"  name="MenuItem"><a href="#" class="menu" id="nav_sybz" >使用帮助</a></li>
 </ul></div>
  </div>
 </div>
@@ -57,13 +58,14 @@
       <p>人大信箱是东乡区人大与民众沟通的渠道之一，也是人大进一步密切与人民群众联系的桥梁和纽带。受理举报、咨询、批评建议、申诉、控告及其他要求解决个人问题的信访事项。
       <p>请填写下面表单，您的问题我们将及时反馈给您，非常感谢你的支持。</p>
       <p class="ps_red">注：如您需要得到有关方面的答复，请您详细如实填写联系电话或联系地址！</p>
-    </div>  
+    </div>
     <div class="notebook">
-      <form action="#" method="post" name="form1" id="form1">
+      <form id="messageForm" style="display: block">
         <div class="gbook left">
           <ul>
+            <li>留言主题：</li>
             <li>您的姓名：</li>
-            <li>联系邮箱：</li>
+            <li>联系地址：</li>
             <li>联系电话：</li>
             <li class="bookarea">留言内容：</li>
             <li class="bookbtn"></li>
@@ -72,28 +74,36 @@
         <div class="gform left">
           <ul>
             <li>
+              <input name="title" type="text" id="title">
+              <span>*（必填）</span></li>
+
+            <li>
               <input name="name" type="text" id="name">
-              <span>*（必填）</span></li>
+             </li>
             <li>
-              <input name="email" type="text" id="email">
-              <span>*（必填）</span></li>
+              <input name="addr" type="text" id="addr">
+            </li>
             <li>
-              <input name="mycall" type="text" id="mycall">
+              <input name="phone" type="text" id="phone">
             </li>
             <li class="bookare">
               <textarea name="lytext" cols="60" rows="12" id="lytext"></textarea>
             </li>
-            <li class="bookbtn">
-              <input type="submit" name="Submit3" value="提交" class="btn">
-              <input type="reset" name="Submit22" value="重置" class="btn btnrest">
-              <input name="enews" type="hidden" id="enews" value="AddGbook">
-            </li>
+            <input name="coId" type="hidden" id="coId" >
           </ul>
         </div>
       </form>
+
+      <div class="bookbtn left" style="padding: 5px;">
+        <button class="btn" id="btnSubmit"> 提交</button>
+        <button  id="btnReset" class="btn btnrest"> 重置</button>
+      </div>
+
+        </div>
+
     </div>
-   
-   
+
+
   </div>
 </article>
 </div>
@@ -109,8 +119,8 @@
       <li><a href="#" id="fnav_jdgz">监督工作</a></li>
       <li><a href="#" id="fnav_rsrm">人事任免</a></li>
       <li><a href="/email.html" id="fnav_rdxx">人大信箱</a></li>
-	  <li><a href="#" >联系我们</a></li>
-	  <li><a href="#" >使用帮助</a></li>
+	  <li><a href="#" id="fnav_lxwm">联系我们</a></li>
+	  <li><a href="#" id="fnav_sybz">使用帮助</a></li>
     </ul>
   </div>
   <div class="copyright">

@@ -10,7 +10,8 @@
         {url:"manager?coName='议事决定'",text:"议事决定"},
         {url:"manager?coName='人事任免'",text:"人事任免"},
         {url:"manager?coName='监督工作'",text:"监督工作"},
-        {url:"manager?coName='人大信箱'",text:"人大信箱"}
+        {url:"email",text:"人大信箱"},
+        {url:"manager?coName='其他信息'",text:"其他信息(如使用帮助，联系我们)"}
 
 	]}
 ];

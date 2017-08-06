@@ -25,7 +25,7 @@
     <script src="/ligerStatic/lib/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
     <script src="/ligerStatic/lib/jquery-validation/messages_cn.js" type="text/javascript"></script>
 
-    <script src="/ligerStatic/myjs/manager.js" type="text/javascript"></script>
+    <script src="/ligerStatic/myjs/email.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -113,39 +113,10 @@
         <tr>
 
             <td>
-                <button id="btnAdd" class="l-button"
-                        style="width:75px;color:#57b255;">新增
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnUpdate" class="l-button"
-                        style="width:75px;color:#57b255;">编辑
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnFrom" class="l-button"
-                        style="width:75px;color:#57b255;">编辑来源
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnTime" class="l-button"
-                        style="width:75px;color:#57b255;">修改时间
-                </button>
-            </td>
-
-
-            <td>
                 <button id="btnDel" class="l-button"
                         style="width:75px;color:red;">删除
                 </button>
             </td>
-
 
             <td>
                 <button id="btnRefresh" class="l-button"
@@ -153,89 +124,35 @@
                 </button>
             </td>
 
+            <td>
+                <button id="btnPublic" class="l-button"
+                        style="width:90px;color:#57b255;">标记已读
+                </button>
+            </td>
 
             <td><span style="display:inline-block;">双击或右键选择查看</span></td>
 
         </tr>
-        <tr>
 
-            <td>
-                <button id="btnPublic" class="l-button"
-                        style="width:75px;color:#57b255;">发布
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnCheck" class="l-button"
-                        style="width:75px;color:#57b255;"> 送审
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnBack" class="l-button"
-                        style="width:75px;color:#57b255;">退回
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnSetHot" class="l-button"
-                        style="width:75px;color:#57b255;">标记HOT
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnSetNew" class="l-button"
-                        style="width:75px;color:#57b255;">标记NEW
-                </button>
-            </td>
-
-
-
-            <td>
-                <button id="btnCopy" class="l-button"
-                        style="width:75px;color:#57b255;">复制到
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnMove" class="l-button"
-                        style="width:75px;color:#57b255;">移动到
-                </button>
-            </td>
-
-        </tr>
 
     </table>
+
     <div class="container" align="center" style="width: 100%">
         <div id="articleList" style="width: 100%"></div>
     </div>
 
-    <div style=" display:none">
-        <div id="divfrom">
-            来源<input id="txtFrom"/>
+    <div id="messageContent" style="display:none">
+        <label style="display:block ;float:left;line-height:1.5;">留言主题：</label>
+        <div style="display:block ;width:300px; margin-left:80px;text-align:justify;">
+            <span style="line-height:1.5;" id="msgTitle"></span>
         </div>
-    </div>
-    <div style=" display:none">
-        <div id="divtime">
-            更新时间<input id="txtTime"/>
-        </div>
-    </div>
 
-    <div style=" display:none">
-        <div id="divcopy">
-            复制文章到栏目<input id="txtCopy"/>
-        </div>
-    </div>
 
-    <div style=" display:none">
-        <div id="divmove">
-            移动文章到栏目<input id="txtMove"/>
+        <label style="display:block ;float:left ;line-height:1.5;">留言内容：</label>
+        <div style="  margin-left:80px;;display:block ;width:300px; text-align:justify;">
+            <span style="line-height:1.5;" id="msgContent"></span>
         </div>
+
     </div>
 
 

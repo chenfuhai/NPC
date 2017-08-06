@@ -35,7 +35,7 @@ public class AuthorityController {
                     return true;
 
                 } else if (url.startsWith("/login") || url.equals("") || url.startsWith("/invalidAccess")
-                        || url.startsWith("/error")) {
+                        || url.startsWith("/error") || url.startsWith("/addMessage")) {
                     return true;
 
                 } else {
@@ -82,6 +82,10 @@ public class AuthorityController {
     }
 
     //========================================ligerUI================
+    @RequestMapping("/admin/email")
+    public String toEmailBox() {
+        return "ManagerEmail";
+    }
     @RequestMapping("/admin/manager")
     public String toDrftBox() {
         return "ManagerArt";

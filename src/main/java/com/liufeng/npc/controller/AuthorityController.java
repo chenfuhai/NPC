@@ -87,8 +87,16 @@ public class AuthorityController {
         return "ManagerEmail";
     }
     @RequestMapping("/admin/manager")
-    public String toDrftBox() {
+    public String toArtBox() {
         return "ManagerArt";
+    }
+    @RequestMapping("/admin/managerUser")
+    public String toUserBox() {
+        return "ManagerUser";
+    }
+    @RequestMapping("/admin/selfInfo")
+    public String toSelfBox() {
+        return "ManagerSelfInfo";
     }
 
     @RequestMapping("/admin/welcome_main")

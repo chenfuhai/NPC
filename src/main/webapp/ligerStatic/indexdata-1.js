@@ -13,7 +13,11 @@
         {url:"email",text:"人大信箱"},
         {url:"manager?coName='其他信息'",text:"其他信息(如使用帮助，联系我们)"}
 
-	]}
+	]},
+    { text: '用户管理',icon:"/ligerStatic/icon/email.png",isexpand:true,children: [
+        {url:"managerUser",text:"用户管理"}
+
+    ]}
 ];
 
 var indexdatar =

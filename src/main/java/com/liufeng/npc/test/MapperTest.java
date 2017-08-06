@@ -44,6 +44,13 @@ public class MapperTest {
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj6", Md5Tool.getMd5("123456"), "超级管理员", 1));
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj7", Md5Tool.getMd5("123456"), "超级管理员", 1));
 //        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj8", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj9", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj10", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj11", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj12", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj13", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj14", Md5Tool.getMd5("123456"), "超级管理员", 1));
+//        adminUserMapper.insertSelective(new AdminUserWithBLOBs("liufengkj15", Md5Tool.getMd5("123456"), "超级管理员", 1));
 
 //        AdminUserExample adminUserExample = new AdminUserExample();
 //		adminUserExample.or().andAdNameEqualTo("liufengkj");

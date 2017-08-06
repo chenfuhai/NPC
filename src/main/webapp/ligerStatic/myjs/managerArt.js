@@ -215,7 +215,7 @@ function initListener() {
             //提示确认
             var msg = "您将删除以下文章：<br>" + rowmsg;
 
-            if (dlgedit == null) {
+
                 dlgedit = $.ligerDialog.open({
                     buttons: [{
                         text: '确认', onclick: function (i, d) {
@@ -230,9 +230,7 @@ function initListener() {
                         }],
                     content: msg, width: 350
                 });
-            } else {
-                dlgedit.show();
-            }
+
 
             //批量删除
             function delBatch() {

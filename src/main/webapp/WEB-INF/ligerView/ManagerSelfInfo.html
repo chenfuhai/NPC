@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 
 
-    <title>管理文章</title>
+    <title>管理用户</title>
     <link href="/ligerStatic/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
     <link href="/ligerStatic/lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css">
     <link href="/ligerStatic/css/style-item.css" rel="stylesheet" media="all"/>
@@ -25,7 +25,7 @@
     <script src="/ligerStatic/lib/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
     <script src="/ligerStatic/lib/jquery-validation/messages_cn.js" type="text/javascript"></script>
 
-    <script src="/ligerStatic/myjs/managerArt.js" type="text/javascript"></script>
+    <script src="/ligerStatic/myjs/managerUser.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -112,40 +112,18 @@
     <table>
         <tr>
 
+
             <td>
                 <button id="btnAdd" class="l-button"
-                        style="width:75px;color:#57b255;">新增
+                        style="width:90px;color:#57b255;">新增
                 </button>
             </td>
-
-
-            <td>
-                <button id="btnUpdate" class="l-button"
-                        style="width:75px;color:#57b255;">编辑
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnFrom" class="l-button"
-                        style="width:75px;color:#57b255;">编辑来源
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnTime" class="l-button"
-                        style="width:75px;color:#57b255;">修改时间
-                </button>
-            </td>
-
 
             <td>
                 <button id="btnDel" class="l-button"
                         style="width:75px;color:red;">删除
                 </button>
             </td>
-
 
             <td>
                 <button id="btnRefresh" class="l-button"
@@ -154,89 +132,15 @@
             </td>
 
 
-            <td><span style="display:inline-block;">双击或右键选择查看</span></td>
-
         </tr>
-        <tr>
 
-            <td>
-                <button id="btnPublic" class="l-button"
-                        style="width:75px;color:#57b255;">发布
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnCheck" class="l-button"
-                        style="width:75px;color:#57b255;"> 送审
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnBack" class="l-button"
-                        style="width:75px;color:#57b255;">退回
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnSetHot" class="l-button"
-                        style="width:75px;color:#57b255;">标记HOT
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnSetNew" class="l-button"
-                        style="width:75px;color:#57b255;">标记NEW
-                </button>
-            </td>
-
-
-
-            <td>
-                <button id="btnCopy" class="l-button"
-                        style="width:75px;color:#57b255;">复制到
-                </button>
-            </td>
-
-
-            <td>
-                <button id="btnMove" class="l-button"
-                        style="width:75px;color:#57b255;">移动到
-                </button>
-            </td>
-
-        </tr>
 
     </table>
+
     <div class="container" align="center" style="width: 100%">
-        <div id="articleList" style="width: 100%"></div>
+        <div id="usersList" style="width: 100%"></div>
     </div>
 
-    <div style=" display:none">
-        <div id="divfrom">
-            来源<input id="txtFrom"/>
-        </div>
-    </div>
-    <div style=" display:none">
-        <div id="divtime">
-            更新时间<input id="txtTime"/>
-        </div>
-    </div>
-
-    <div style=" display:none">
-        <div id="divcopy">
-            复制文章到栏目<input id="txtCopy"/>
-        </div>
-    </div>
-
-    <div style=" display:none">
-        <div id="divmove">
-            移动文章到栏目<input id="txtMove"/>
-        </div>
-    </div>
 
 
 </div>

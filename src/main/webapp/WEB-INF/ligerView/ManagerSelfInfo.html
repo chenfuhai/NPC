@@ -25,7 +25,7 @@
     <script src="/ligerStatic/lib/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
     <script src="/ligerStatic/lib/jquery-validation/messages_cn.js" type="text/javascript"></script>
 
-    <script src="/ligerStatic/myjs/managerUser.js" type="text/javascript"></script>
+    <script src="/ligerStatic/myjs/managerSelf.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -115,13 +115,13 @@
 
             <td>
                 <button id="btnUpdateInfo" class="l-button"
-                        style="width:90px;color:#57b255;">修改密码
+                        style="width:90px;color:#57b255;">修改简介
                 </button>
             </td>
 
             <td>
                 <button id="btnChangePwd" class="l-button"
-                        style="width:75px;color:red;">修改简介
+                        style="width:75px;color:red;">修改密码
                 </button>
             </td>
 
@@ -134,24 +134,18 @@
 
 
     <div id="divInfo" >
-        <label style="display:block ;float:left;line-height:1.5;">用户名：</label>
-        <div style="display:block ;width:300px; margin-left:80px;text-align:justify;">
-            <span style="line-height:1.5;" id="info_name">dsfgsd中文中文中文中文中文中文中文中文fgdsfg</span>
-        </div>
+        <label>用户名：</label>
+        <span  id="info_name"></span>
 
         <br>
 
-        <label style="display:block ;float:left ;line-height:1.5;">权限等级：</label>
-        <div style="  margin-left:80px;;display:block ;width:300px; text-align:justify;">
-            <span style="line-height:1.5;" id="info_powercode">ddlfjgljdflgjldfjglkjd中文中文中文中文中文中文中文中文</span>
-        </div>
+        <label >权限等级：</label>
+        <span id="info_powercode"></span>
 
         <br>
 
-        <label style="display:block ;float:left ;line-height:1.5;">个人简介：</label>
-        <div style="  margin-left:80px;;display:block ;width:300px; text-align:justify;">
-            <span style="line-height:1.5;" id="info_info">gdfgdfgd中文中文中文中文中文中文中文中文中文中文中文fg</span>
-        </div>
+        <label >个人简介：</label>
+        <span  id="info_info">  </span>
 
     </div>
 
@@ -159,7 +153,7 @@
     <form id="ChangePwdForm">
         <div style=" display:none">
             <div id="changePwd"  >
-                旧密码：<input   name="oldpwd" id="cag_name" type="password"><br>
+                旧密码：<input    id="cag_oldpwd" type="password" name="oldpwd"><br>
                 新密码：<input  id="cag_pwd"  type="password"><br>
                 确认密码：<input id="cag_compwd" type="password" name="newpwd"><br>
             </div>

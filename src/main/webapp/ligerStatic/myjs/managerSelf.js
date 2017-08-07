@@ -27,8 +27,8 @@ function initData() {
                 $.ligerDialog.warn(result.extend.msg);
             }else if (result.code===100){
                 var user = result.extend.loginedUser;
-                $("#info_name").empty().extend(user.adName);
-                $("#info_info").empty().extend(user.adInfo);
+                $("#info_name").empty().html(user.adName);
+                $("#info_info").empty().html(user.adInfo);
                 var pc="";
                 switch (user.adPowercode) {
                     case 0:
@@ -38,7 +38,7 @@ function initData() {
                         pc= "<span style='color:green'>超级管理员</span>";
                         break;
                 }
-                $("#info_powercode").empty().extend(pc);
+                $("#info_powercode").empty().html(pc);
             }
         }
 
@@ -77,11 +77,12 @@ function initListener() {
                                 $.ajax({
                                     url:"/admin/user/"+user.adId,
                                     dataType:"json",
-                                    type:"get",
+                                    type:"put",
                                     data:"adInfo="+info,
                                     success:function (result) {
                                         if (result.code===200){
                                             $.ligerDialog.warn(result.msg);
+                                            initData();
                                         }else if (result.code===100) {
                                             $.ligerDialog.success(result.msg);
                                         }
@@ -121,7 +122,7 @@ function initListener() {
                             url:"/admin/user/changePwd",
                             dataType:"json",
                             type:"put",
-                            data:$("#ChangePwdForm").serialize(),
+                            data:"oldpwd="+$("#cag_oldpwd").val()+"&newpwd",
                             success:function (result) {
                                 if (result.code===200){
                                     $.ligerDialog.warn(result.extend.msg);

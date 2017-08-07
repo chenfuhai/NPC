@@ -29,12 +29,12 @@ public class AdminUserService {
         return user;
     }
 
-    public AdminUser getUserByNameAndPwd(String userName,String pwd){
+    public AdminUserWithBLOBs getUserByNameAndPwd(String userName,String pwd){
         pwd = Md5Tool.getMd5(pwd);
         AdminUserExample example = new AdminUserExample();
         example.or().andAdPwdEqualTo(pwd).andAdNameEqualTo(userName);
 
-        List<AdminUser> adminUsers = adminUserMapper.selectByExample(example);
+        List<AdminUserWithBLOBs> adminUsers = adminUserMapper.selectByExampleWithBLOBs(example);
         if (adminUsers.size()>0){
             return adminUsers.get(0);
         }else {

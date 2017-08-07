@@ -137,7 +137,7 @@ public class AdminUserController {
             case 0:return msg0;
             case 1:return msg1;
             case 2:
-                AdminUser user = adminUserService.getUserByNameAndPwd(userName,pwd);
+                AdminUserWithBLOBs user = adminUserService.getUserByNameAndPwd(userName,pwd);
                 if (user!=null){
                     model.addAttribute("loginedUser",user);
                     session.setMaxInactiveInterval(30*60);
@@ -191,7 +191,7 @@ public class AdminUserController {
                 if (flag){
                     return Msg.success().add("msg","修改成功");
                 }else  {
-                    Msg msgError = Msg.error().add("msg","未知错误");
+                    Msg msgError = Msg.error().add("msg","修改失败");
                     return msgError;
                 }
             }

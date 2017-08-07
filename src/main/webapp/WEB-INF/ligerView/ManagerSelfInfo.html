@@ -114,22 +114,17 @@
 
 
             <td>
-                <button id="btnAdd" class="l-button"
-                        style="width:90px;color:#57b255;">新增
+                <button id="btnUpdateInfo" class="l-button"
+                        style="width:90px;color:#57b255;">修改密码
                 </button>
             </td>
 
             <td>
-                <button id="btnDel" class="l-button"
-                        style="width:75px;color:red;">删除
+                <button id="btnChangePwd" class="l-button"
+                        style="width:75px;color:red;">修改简介
                 </button>
             </td>
 
-            <td>
-                <button id="btnRefresh" class="l-button"
-                        style="width:75px;color:#57b255;">刷新
-                </button>
-            </td>
 
 
         </tr>
@@ -137,11 +132,47 @@
 
     </table>
 
-    <div class="container" align="center" style="width: 100%">
-        <div id="usersList" style="width: 100%"></div>
+
+    <div id="divInfo" >
+        <label style="display:block ;float:left;line-height:1.5;">用户名：</label>
+        <div style="display:block ;width:300px; margin-left:80px;text-align:justify;">
+            <span style="line-height:1.5;" id="info_name">dsfgsd中文中文中文中文中文中文中文中文fgdsfg</span>
+        </div>
+
+        <br>
+
+        <label style="display:block ;float:left ;line-height:1.5;">权限等级：</label>
+        <div style="  margin-left:80px;;display:block ;width:300px; text-align:justify;">
+            <span style="line-height:1.5;" id="info_powercode">ddlfjgljdflgjldfjglkjd中文中文中文中文中文中文中文中文</span>
+        </div>
+
+        <br>
+
+        <label style="display:block ;float:left ;line-height:1.5;">个人简介：</label>
+        <div style="  margin-left:80px;;display:block ;width:300px; text-align:justify;">
+            <span style="line-height:1.5;" id="info_info">gdfgdfgd中文中文中文中文中文中文中文中文中文中文中文fg</span>
+        </div>
+
     </div>
 
 
+    <form id="ChangePwdForm">
+        <div style=" display:none">
+            <div id="changePwd"  >
+                旧密码：<input   name="oldpwd" id="cag_name" type="password"><br>
+                新密码：<input  id="cag_pwd"  type="password"><br>
+                确认密码：<input id="cag_compwd" type="password" name="newpwd"><br>
+            </div>
+        </div>
+    </form>
+    <form id="ChangeInfoForm">
+        <div style=" display:none">
+            <div id="changeInfo"  >
+                介绍：<textarea    id="cag_info" cols="30" rows="5" ></textarea><br>
+
+            </div>
+        </div>
+    </form>
 
 </div>
 

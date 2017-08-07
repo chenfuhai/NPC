@@ -163,6 +163,45 @@ public class AdminUserController {
         }
 
     }
+
+    //更改密码
+    @ResponseBody
+    @RequestMapping(value = "/user/changePwd",method = RequestMethod.PUT)
+    public Msg updateUser(@RequestParam(value = "newpwd",defaultValue = "")String newpwd,@RequestParam(value = "oldpwd",defaultValue = "")String oldpwd,HttpSession session){
+
+        AdminUserWithBLOBs user = (AdminUserWithBLOBs) session.getAttribute("loginedUser");
+        if (user==null){
+            //返回警告信息
+            return Msg.error().add("msg","您尚未登录或登录已过期");
+        }else{
+
+            if (oldpwd.equals("")){
+                return Msg.error().add("msg","没有填写旧密码");
+            }else{
+                if(!user.getAdPwd().equals(Md5Tool.getMd5(oldpwd))){
+                    return Msg.error().add("msg","旧密码不正确");
+                }
+            }
+            if (newpwd.equals("")){
+                return Msg.error().add("msg","没有填写新密码");
+            }else{
+                user.setAdPwd(newpwd);
+                boolean flag = false;
+                flag = adminUserService.updateUser(user);
+                if (flag){
+                    return Msg.success().add("msg","修改成功");
+                }else  {
+                    Msg msgError = Msg.error().add("msg","未知错误");
+                    return msgError;
+                }
+            }
+        }
+
+
+
+
+    }
+
     //删除对应的用户信息
     @ResponseBody
     @RequestMapping(value = "/user/{userIds}",method = RequestMethod.DELETE)

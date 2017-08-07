@@ -15,7 +15,8 @@
 
 	]},
     { text: '用户管理',icon:"/ligerStatic/icon/email.png",isexpand:true,children: [
-        {url:"managerUser",text:"用户管理"}
+        {url:"managerUser",text:"用户管理"},
+        {url:"selfInfo",text:"个人管理"}
 
     ]}
 ];

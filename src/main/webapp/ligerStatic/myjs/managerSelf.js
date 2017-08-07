@@ -82,9 +82,10 @@ function initListener() {
                                     success:function (result) {
                                         if (result.code===200){
                                             $.ligerDialog.warn(result.msg);
-                                            initData();
+
                                         }else if (result.code===100) {
                                             $.ligerDialog.success(result.msg);
+                                            initData();
                                         }
                                     }
 

@@ -10,24 +10,24 @@
     <meta charset="utf-8"/>
     <title>KindEditor JSP</title>
 
-    <link rel="stylesheet" href="/static/themes/default/default.css"/>
-    <link rel="stylesheet" href="/static/plugins/code/prettify.css"/>
-    <script charset="utf-8" src="/static/kindeditor-all.js"></script>
-    <script charset="utf-8" src="/static/lang/zh-CN.js"></script>
-    <script charset="utf-8" src="/static/plugins/code/prettify.js"></script>
-    <script src="/ligerStatic/lib/jquery/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../static/themes/default/default.css"/>
+    <link rel="stylesheet" href="../../static/plugins/code/prettify.css"/>
+    <script charset="utf-8" src="../../static/kindeditor-all.js"></script>
+    <script charset="utf-8" src="../../static/lang/zh-CN.js"></script>
+    <script charset="utf-8" src="../../static/plugins/code/prettify.js"></script>
+    <script src="../../ligerStatic/lib/jquery/jquery-1.5.2.min.js" type="text/javascript"></script>
 
-    <link href="/ligerStatic/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
-    <link href="/ligerStatic/lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css">
-    <link href="/ligerStatic/css/style-item.css" rel="stylesheet" media="all"/>
-    <script src="/ligerStatic/lib/ligerUI/js/ligerui.min.js" type="text/javascript"></script>
+    <link href="../../ligerStatic/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css">
+    <link href="../../ligerStatic/lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css">
+    <link href="../../ligerStatic/css/style-item.css" rel="stylesheet" media="all"/>
+    <script src="../../ligerStatic/lib/ligerUI/js/ligerui.min.js" type="text/javascript"></script>
 
-    <script src="/ligerStatic/lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+    <script src="../../ligerStatic/lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
 
-    <script src="/ligerStatic/lib/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="/ligerStatic/lib/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
-    <script src="/ligerStatic/lib/jquery-validation/messages_cn.js" type="text/javascript"></script>
-    <script src="/static/myjs/kindeditor.js" charset="utf-8"></script>
+    <script src="../../ligerStatic/lib/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="../../ligerStatic/lib/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
+    <script src="../../ligerStatic/lib/jquery-validation/messages_cn.js" type="text/javascript"></script>
+    <script src="../../static/myjs/kindeditor.js" charset="utf-8"></script>
 
 </head>
 <body>

@@ -34,11 +34,13 @@ public class AdminUserController {
     @RequestMapping(value = "/user/logined",method = RequestMethod.GET)
     public Msg getLoginedUser(HttpServletRequest request){
         AdminUser user = (AdminUser) request.getSession().getAttribute("loginedUser");
+        //始终从数据库中提取最准确的用户信息
         if (user==null){
             //返回警告信息
             return Msg.error().add("msg","您尚未登录或登录已过期，请重新登录");
         }else{
-            return Msg.success().add("loginedUser",user);
+            AdminUser userCurrent = adminUserService.getUserById(user.getAdId());
+            return Msg.success().add("loginedUser",userCurrent);
         }
 
     }

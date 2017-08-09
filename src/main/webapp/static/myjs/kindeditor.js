@@ -40,6 +40,7 @@ KindEditor.ready(function (K) {
             });
         }
     });
+
     prettyPrint();
 
 
@@ -97,6 +98,7 @@ KindEditor.ready(function (K) {
         });
     });
 
+    setInterval("heartbeat()",1000*60*10);
 
 });
 
@@ -258,4 +260,11 @@ function displayProp(obj) {
     alert(names);
 }
 
+function heartbeat(){
+    $.ajax({
+        url:"/admin/heartbeat",
+        type:"get",
+        dataType:"json"
+    })
+};
 

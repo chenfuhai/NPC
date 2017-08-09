@@ -67,7 +67,26 @@
 
         $(document.getElementById("art_content").contentWindow.document.body).html(art.arContent);
 
-        $("#art_content").height(document.getElementById("art_content").contentWindow.document.documentElement.clientHeight);
+        //$("#art_content").height(document.getElementById("art_content").contentWindow.document.documentElement.clientHeight);
+
+        var iframe=document.getElementById("art_content");
+        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+        if (iframeWin.document.body) {
+            iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+        }
+
+        // var iframeid=document.getElementById("art_content"); //iframe id
+        // if (document.getElementById){
+        //     if (iframeid && !window.opera){
+        //         if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight){
+        //             iframeid.height = iframeid.contentDocument.body.offsetHeight+50;
+        //         }else if(iframeid.Document && iframeid.Document.body.scrollHeight){
+        //             iframeid.height = iframeid.Document.body.scrollHeight+50;
+        //         }
+        //     }
+        // }
+
+
     }
     function fillPosition(art){
         var col_id = art.arColumnid;

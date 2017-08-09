@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.liufeng.npc.bean.*;
 import com.liufeng.npc.service.ArticleService;
-import com.liufeng.npc.utils.ArtImgHunter;
+import com.liufeng.npc.utils.ArtURLHunter;
 import com.liufeng.npc.utils.Log;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -51,7 +51,7 @@ public class ArticleController {
         for (ArticleWithBLOBs a:articles
              ) {
             System.out.println(a.toString());
-            Map<String, String> map = ArtImgHunter.getImgUrlFromArt(a);
+            Map<String, String> map = ArtURLHunter.getFristImgUrlFromArt(a);
 
             //需要的数据有 文章id 图片src 文章标题
             JSONObject object = new JSONObject();
@@ -402,6 +402,17 @@ public class ArticleController {
 
     }
 
+    //编辑文章的时候避免session过期的定时发送包处理
+    @ResponseBody
+    @RequestMapping(value = "/heartbeat",method = RequestMethod.GET)
+    public Msg heartbeatDetection(){
+        System.out.println("======================与服务器通信了=================");
+        Msg msg = new Msg();
+        msg.msg="======================与服务器通信了=================";
+        return Msg.success();
+    }
+
+
     //删除文章 单个文章和多个文章一起处理 单个1 多个1-2-3
     @ResponseBody
     @RequestMapping(value = "/art/{artIds}", method = RequestMethod.DELETE)
@@ -444,7 +455,6 @@ public class ArticleController {
                 return Msg.error();
             }
         }
-
 
     }
 

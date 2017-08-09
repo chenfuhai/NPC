@@ -28,9 +28,9 @@ public class FileController {
     @ResponseBody
     public EditorMsg uploadFile(@RequestParam(value = "file", required = false) MultipartFile file,
                                 HttpServletRequest request) {
-        Log.logI("文件开始保存");
-        //服务器项目所在的实际地址
         String path = request.getServletContext().getRealPath("/");
+        Log.logI("文件开始保存  "+path);
+        //服务器项目所在的实际地址
         try {
             request.getServletContext().getRealPath("/");
         } catch (Exception e) {

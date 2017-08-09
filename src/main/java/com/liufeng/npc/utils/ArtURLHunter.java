@@ -2,7 +2,9 @@ package com.liufeng.npc.utils;
 
 import com.liufeng.npc.bean.ArticleWithBLOBs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,14 +12,14 @@ import java.util.regex.Pattern;
 /**
  * 从一篇文章中找出（第一个）图片链接
  */
-public class ArtImgHunter {
+public class ArtURLHunter {
 
     /**
      * 返回找到的第一个图片链接 如果文章里面没有 返回空null map取值为 src alt
      * @param article
      * @return
      */
-    public static Map<String,String> getImgUrlFromArt(ArticleWithBLOBs article){
+    public static Map<String,String> getFristImgUrlFromArt(ArticleWithBLOBs article){
         String regexImg = "<img src=\"/upload/.*/>";
         String regexSrc = "\"/upload/.*?\"";
         String regexAlt = "alt=\".*?\"";
@@ -52,4 +54,22 @@ public class ArtImgHunter {
 
         return map;
     }
+
+    /**
+     *  将文章中的所有文件的文件的文件名取出来 然后删除
+     * @param articleWithBLOBs
+     * @return
+     */
+    public static List<String> getAllFileFromArt(ArticleWithBLOBs articleWithBLOBs){
+        String regex = "upload/.*?\"";//还有一个"要去除
+        List<String> results = new ArrayList<String>();
+        Matcher matcher =  Pattern.compile(regex).matcher(articleWithBLOBs.getArContent());
+        while (matcher.find()){
+            String temp = matcher.group();
+            temp = temp.substring(0,temp.length()-1);
+            results.add(temp);
+        }
+        return results;
+
+    };
 }

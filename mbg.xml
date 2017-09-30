@@ -17,9 +17,9 @@
 
         <!-- 配置数据库连接信息 -->
         <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-                        connectionURL="jdbc:sqlserver://localhost:1433;DatabaseName=NPC"
-                        userId="sa"
-                        password="123456">
+                        connectionURL="jdbc:sqlserver://116.196.120.161:1433;DatabaseName=NPC"
+                        userId="cfh"
+                        password="cfh123456">
         </jdbcConnection>
 
         <javaTypeResolver>

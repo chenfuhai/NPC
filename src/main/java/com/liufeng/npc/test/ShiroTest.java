@@ -27,6 +27,7 @@ public class ShiroTest {
         //使用subject的login方法判断 login传入用户输入的凭证token
         UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
         //捕捉错误，如果有错就捕捉出来然后返回信息
+
         try {
             subject.login(token);
             if (subject.isAuthenticated()){

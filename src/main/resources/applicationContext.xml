@@ -123,8 +123,26 @@
 
 	<!--shiro FileterFactory加入容器内下一步 没有了-->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!--必要的管理器-->
 		<property name="securityManager" ref="securityManager" />
+		<!--登陆的URL 如果没有会自动找webapps底下的login.jsp-->
+		<property name="loginUrl" value="admin/login"/>
+		<!--successUrl ：登录成功默认跳转页面，不配置则跳转至”/”。如果登陆前点击的一个需要登录的页面，则在登录自动跳转到那个需要登录的页面。不跳转到此。-->
+		<property name="successUrl" value="admin/main"/>
+		<!--没有权限自动跳转的页面-->
+		<property name="unauthorizedUrl" value="/admin/login"/>
+		<property name="filterChainDefinitions">
+			<value>
+				/home* = anon
+				/ = anon
+				/logout = logout
+				/role/** = roles[admin]
+				/permission/** = perms[permssion:look]
+				/** = authc
+			</value>
 
+
+		</property>
 	</bean>
 
 

@@ -47,6 +47,7 @@
 	<!-- 配置扫描器 将mubatis接口的实现(dao下)加入IOC容器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.liufeng.npc.dao"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 	
 	
@@ -112,10 +113,11 @@
 <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/>
 
 
+	<bean id="testRealm" class="com.liufeng.npc.realm.TestRealm"/>
 	<!--shiro securityManagerper加入容器内下一步 FileterFactory加入配置-->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!--在这里面配置realm cache 等东西-->
-		<property name="realm" ref="sampleJDBCRealm"/>
+		<property name="realm" ref="testRealm"/>
 		<!--如果有多个realm 就用realms-->
 		
 		<property name="cacheManager" ref="cacheManager"/>
@@ -133,12 +135,8 @@
 		<property name="unauthorizedUrl" value="/admin/login"/>
 		<property name="filterChainDefinitions">
 			<value>
-				/home* = anon
-				/ = anon
-				/logout = logout
-				/role/** = roles[admin]
-				/permission/** = perms[permssion:look]
-				/** = authc
+				/** = anon
+
 			</value>
 
 

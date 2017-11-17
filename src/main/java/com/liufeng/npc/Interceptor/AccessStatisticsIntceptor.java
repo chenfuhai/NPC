@@ -23,8 +23,8 @@ public class AccessStatisticsIntceptor implements HandlerInterceptor {
 
 
 
-        return AuthorityController.isAuthorized(httpServletRequest,httpServletResponse);
-
+        // return AuthorityController.isAuthorized(httpServletRequest,httpServletResponse);
+    return true;
 
 
     }

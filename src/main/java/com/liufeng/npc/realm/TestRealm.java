@@ -6,15 +6,18 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.realm.Realm;
 
 public class TestRealm implements Realm {
+    @Override
     public String getName() {
         return null;
     }
 
-    public boolean supports(AuthenticationToken token) {
+    @Override
+    public boolean supports(AuthenticationToken authenticationToken) {
         return false;
     }
 
-    public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+    @Override
+    public AuthenticationInfo getAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         return null;
     }
 }

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml", "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class MVCTest {
     @Autowired
     WebApplicationContext context;

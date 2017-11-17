@@ -268,12 +268,7 @@ public class AdminUserController {
 
     }
 
-    @ResponseBody
-    @RequestMapping("/logout")
-    public Msg logout(SessionStatus sessionStatus) {
-        sessionStatus.setComplete();
-        return Msg.success();
-    }
+
 
 
 }

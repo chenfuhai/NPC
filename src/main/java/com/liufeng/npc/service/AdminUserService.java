@@ -30,7 +30,7 @@ public class AdminUserService {
     }
 
     public AdminUserWithBLOBs getUserByNameAndPwd(String userName,String pwd){
-        pwd = Md5Tool.getMd5(pwd);
+
         AdminUserExample example = new AdminUserExample();
         example.or().andAdPwdEqualTo(pwd).andAdNameEqualTo(userName);
 

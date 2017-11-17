@@ -1,6 +1,18 @@
 package com.liufeng.npc.bean;
 
 public class AdminUserWithBLOBs extends AdminUser {
+
+    @Override
+    public String toString() {
+        return "AdminUserWithBLOBs{" +
+                "ad1='" + ad1 + '\'' +
+                ", ad2='" + ad2 + '\'' +
+                ", ad3='" + ad3 + '\'' +
+                ", ad4='" + ad4 + '\'' +
+                ", ad5='" + ad5 + '\'' +
+                '}'+super.toString();
+    }
+
     private String ad1;
 
     private String ad2;
